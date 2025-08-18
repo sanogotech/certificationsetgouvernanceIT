@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Icebreaker - Formations Certifiantes & Gouvernance IT</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-dark: #2c3e50;
+            --secondary-blue: #3498db;
+            --accent-orange: #ff7f2a;
+            --success-green: #27ae60;
+            --danger-red: #e74c3c;
+            --light-bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #34495e;
+            --border-color: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            padding: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-header h1 {
+            color: var(--primary-dark);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quiz-header p {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .progress-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+            background-color: var(--border-color);
+        }
+
+        .progress-bar {
+            background-color: var(--secondary-blue);
+            border-radius: 5px;
+            transition: width 0.4s ease-in-out;
+        }
+
+        #question-card {
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2rem;
+            background-color: #fdfdfd;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+        
+        #question-text {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            color: var(--primary-dark);
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            background-color: var(--card-bg);
+            transition: all 0.2s ease;
+            color: var(--text-color);
+        }
+
+        .option-btn:hover:not([disabled]) {
+            border-color: var(--accent-orange);
+            background-color: #fffaf5;
+            transform: translateY(-2px);
+        }
+        
+        .option-btn.selected {
+            background-color: #e0f2f7;
+            border-color: var(--secondary-blue);
+            font-weight: 600;
+        }
+
+        .option-btn.correct {
+            background-color: #e9f7ef;
+            border-color: var(--success-green);
+            color: var(--success-green);
+            font-weight: 700;
+        }
+
+        .option-btn.incorrect {
+            background-color: #fdeded;
+            border-color: var(--danger-red);
+            color: var(--danger-red);
+            font-weight: 700;
+        }
+
+        #explanation-box {
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        #explanation-box h5 {
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .explanation-correct {
+             background-color: #e9f7ef;
+             border-left: 5px solid var(--success-green);
+             color: var(--success-green);
+        }
+
+        .explanation-incorrect {
+            background-color: #fdeded;
+            border-left: 5px solid var(--danger-red);
+            color: var(--danger-red);
+        }
+        .explanation-text {
+            color: var(--text-color);
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .nav-btn {
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        /* Animation pour les bonnes réponses */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .correct {
+            animation: pulse 0.5s ease;
+        }
+
+        /* Modal styling */
+        .modal-header {
+            background-color: var(--primary-dark);
+            color: var(--card-bg);
+            border-bottom: none;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .modal-title-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--accent-orange);
+        }
+        
+        .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .final-score {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .score-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            color: var(--card-bg);
+            background-color: var(--secondary-blue);
+        }
+
+        .level-novice { background-color: #7f8c8d; }
+        .level-debutant { background-color: #e67e22; }
+        .level-intermediaire { background-color: #3498db; }
+        .level-avance { background-color: #27ae60; }
+        .level-expert { background-color: #8e44ad; }
+
+        #final-recommendations h4 {
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        #final-recommendations ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        #final-recommendations ul li {
+            background-color: #f0f3f5;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 0.6rem;
+            border-left: 4px solid var(--secondary-blue);
+            font-size: 0.95rem;
+        }
+        #final-recommendations ul li i {
+            margin-right: 0.8rem;
+            color: var(--secondary-blue);
+        }
+
+        .modal-footer {
+            border-top: none;
+            background-color: var(--light-bg);
+        }
+
+        /* Animation pour le timer */
+        @keyframes timerWarning {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .timer-warning {
+            animation: timerWarning 1s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <h1><i class="fas fa-certificate" style="color:var(--accent-orange);"></i> Quiz Icebreaker: Formations Certifiantes & Gouvernance IT</h1>
+                <p>Testez vos connaissances sur les certifications et leur impact sur la gouvernance IT en 20 questions.</p>
+            </div>
+
+            <div class="progress-section">
+                <span id="question-counter">Question 1 / 20</span>
+                <span id="current-score">Score: 0</span>
+            </div>
+            <div class="progress" style="height: 10px;">
+                <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 5%;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+
+            <div id="timer-text">01:15</div>
+            <div id="timer-bar-container">
+                <div id="timer-bar"></div>
+            </div>
+
+            <div id="question-card" class="card">
+                <div class="card-body">
+                    <h2 id="question-text">Chargement de la question...</h2>
+                    <div id="options-container">
+                        <!-- Les boutons d'options seront insérés ici par JavaScript -->
+                    </div>
+                    <div id="explanation-box" class="d-none">
+                        <h5 id="explanation-title"></h5>
+                        <p id="explanation-text" class="explanation-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-navigation">
+                <button id="next-btn" class="btn btn-primary nav-btn" disabled>Suivant <i class="fas fa-arrow-right"></i></button>
+                <button id="finish-btn" class="btn btn-success nav-btn d-none">Terminer & Voir les Résultats</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for results -->
+    <div class="modal fade" id="resultsModal" tabindex="-1" aria-labelledby="resultsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resultsModalLabel"><i class="fas fa-award modal-title-icon"></i>Vos Résultats du Quiz</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <h4 class="score-text">Votre score final est :</h4>
+                    <p class="final-score" id="final-score-percentage">0%</p>
+                    <p class="text-muted fs-5">
+                        <span id="final-score-correct">0</span> sur 
+                        <span id="final-score-total">0</span> bonnes réponses
+                    </p>
+                    <hr>
+                    <h4 class="mt-4">Votre Niveau :</h4>
+                    <span id="level-badge" class="level-badge"></span>
+                    <div id="final-recommendations" class="text-start mt-4"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="restart-quiz-btn"><i class="fas fa-redo"></i> Recommencer le quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const quizData = {
+            questions: [
+                {
+                    question: "Quelle est la certification la plus reconnue en gestion de projet IT ?",
+                    options: [
+                        "PMP (Project Management Professional)",
+                        "ITIL Foundation",
+                        "Certified Scrum Master (CSM)",
+                        "AWS Certified Solutions Architect"
+                    ],
+                    correctAnswer: "PMP (Project Management Professional)",
+                    explanation: "Le PMP est la certification de gestion de projet la plus reconnue mondialement, délivrée par le PMI. Elle valide une expertise solide en gestion de projet selon les standards du PMBOK."
+                },
+                {
+                    question: "Quelle certification est essentielle pour un DPO (Data Protection Officer) ?",
+                    options: [
+                        "CISSP (Certified Information Systems Security Professional)",
+                        "CIPP/E (Certified Information Privacy Professional/Europe)",
+                        "CEH (Certified Ethical Hacker)",
+                        "TOGAF (The Open Group Architecture Framework)"
+                    ],
+                    correctAnswer: "CIPP/E (Certified Information Privacy Professional/Europe)",
+                    explanation: "La certification CIPP/E est spécifiquement conçue pour les professionnels du RGPD et de la protection des données en Europe. Elle couvre les lois et pratiques de régulation de la vie privée."
+                },
+                {
+                    question: "Quel pourcentage des projets IT échouent à cause d'un manque de compétences certifiées selon Gartner ?",
+                    options: [
+                        "25%",
+                        "50%",
+                        "75%",
+                        "90%"
+                    ],
+                    correctAnswer: "75%",
+                    explanation: "Selon Gartner, 75% des échecs de projets IT sont attribuables à un déficit de compétences certifiées dans les équipes, soulignant l'importance des formations validantes."
+                },
+                {
+                    question: "Laquelle de ces certifications Agile est considérée comme la plus rigoureuse ?",
+                    options: [
+                        "Certified Scrum Master (CSM)",
+                        "Professional Scrum Master (PSM)",
+                        "SAFe Agilist",
+                        "PMI-ACP (Agile Certified Practitioner)"
+                    ],
+                    correctAnswer: "Professional Scrum Master (PSM)",
+                    explanation: "La certification PSM de Scrum.org est réputée plus difficile à obtenir que le CSM, avec un examen plus complet et un taux de réussite généralement plus bas."
+                },
+                {
+                    question: "Quelle certification est indispensable pour la gouvernance des données ?",
+                    options: [
+                        "CDMP (Certified Data Management Professional)",
+                        "Google Data Analytics Certificate",
+                        "Microsoft Certified: Azure Data Scientist",
+                        "Tableau Desktop Certified Associate"
+                    ],
+                    correctAnswer: "CDMP (Certified Data Management Professional)",
+                    explanation: "Le CDMP est la certification de référence pour les professionnels de la gouvernance des données, couvrant les principes fondamentaux de gestion et gouvernance des données."
+                },
+                {
+                    question: "Combien coûte en moyenne une certification PMP (frais d'examen) ?",
+                    options: [
+                        "200€",
+                        "450€",
+                        "700€",
+                        "1000€"
+                    ],
+                    correctAnswer: "700€",
+                    explanation: "L'examen PMP coûte 575$ pour les membres PMI (environ 530€) et 405$ pour les non-membres (environ 375€), avec des frais d'adhésion supplémentaires si nécessaire."
+                },
+                {
+                    question: "Quelle certification est la plus adaptée pour un architecte cloud ?",
+                    options: [
+                        "CISA (Certified Information Systems Auditor)",
+                        "AWS Certified Solutions Architect",
+                        "CISM (Certified Information Security Manager)",
+                        "Prince2 Practitioner"
+                    ],
+                    correctAnswer: "AWS Certified Solutions Architect",
+                    explanation: "La certification AWS Certified Solutions Architect est spécifiquement conçue pour valider les compétences en architecture de solutions cloud sur AWS, la plateforme leader du marché."
+                },
+                {
+                    question: "Quelle organisation délivre les certifications ITIL ?",
+                    options: [
+                        "Project Management Institute (PMI)",
+                        "Axelos",
+                        "Scrum Alliance",
+                        "ISACA"
+                    ],
+                    correctAnswer: "Axelos",
+                    explanation: "Axelos est l'organisme propriétaire du cadre ITIL et délivre les certifications ITIL. ITIL est le framework de référence pour la gestion des services IT."
+                },
+                {
+                    question: "Quelle est la durée de validité typique d'une certification CISSP ?",
+                    options: [
+                        "1 an",
+                        "3 ans",
+                        "5 ans",
+                        "À vie"
+                    ],
+                    correctAnswer: "3 ans",
+                    explanation: "La certification CISSP doit être renouvelée tous les 3 ans en accumulant des CPE (Continuing Professional Education) et en payant des frais de maintenance annuels."
+                },
+                {
+                    question: "Quelle certification est recommandée pour un responsable de la cybersécurité ?",
+                    options: [
+                        "CISM (Certified Information Security Manager)",
+                        "Google Analytics Individual Qualification",
+                        "Microsoft Certified: Azure Administrator",
+                        "Certified Kubernetes Administrator"
+                    ],
+                    correctAnswer: "CISM (Certified Information Security Manager)",
+                    explanation: "Le CISM est une certification de haut niveau pour les managers en sécurité de l'information, axée sur la gouvernance et la gestion des risques plutôt que sur les aspects techniques."
+                },
+                {
+                    question: "Quelle certification Agile combine Scrum, Kanban et Lean ?",
+                    options: [
+                        "SAFe Agilist",
+                        "Disciplined Agile Scrum Master (DASM)",
+                        "Certified Scrum Professional (CSP)",
+                        "PMI-ACP"
+                    ],
+                    correctAnswer: "Disciplined Agile Scrum Master (DASM)",
+                    explanation: "Le DASM de PMI couvre plusieurs méthodes Agiles dont Scrum, Kanban et Lean, offrant une approche plus large que les certifications Scrum pures."
+                },
+                {
+                    question: "Quelle certification est obligatoire pour certains contrats publics en France ?",
+                    options: [
+                        "ISO 27001 Lead Auditor",
+                        "PCI DSS",
+                        "HDS (Hébergeur de Données de Santé)",
+                        "GDPR Practitioner"
+                    ],
+                    correctAnswer: "HDS (Hébergeur de Données de Santé)",
+                    explanation: "La certification HDS est obligatoire en France pour tout hébergement de données de santé, exigée par la loi pour les marchés publics dans ce domaine."
+                },
+                {
+                    question: "Quelle certification couvre le framework COBIT pour la gouvernance IT ?",
+                    options: [
+                        "CGEIT (Certified in the Governance of Enterprise IT)",
+                        "CRISC (Certified in Risk and Information Systems Control)",
+                        "CDPSE (Certified Data Privacy Solutions Engineer)",
+                        "CISA (Certified Information Systems Auditor)"
+                    ],
+                    correctAnswer: "CGEIT (Certified in the Governance of Enterprise IT)",
+                    explanation: "Le CGEIT est la certification phare d'ISACA pour la gouvernance IT, couvrant notamment le framework COBIT utilisé pour aligner les TI sur les besoins métiers."
+                },
+                {
+                    question: "Quelle certification est la plus appropriée pour un Product Owner ?",
+                    options: [
+                        "PSPO (Professional Scrum Product Owner)",
+                        "PMP",
+                        "ITIL 4 Specialist",
+                        "AWS Certified Developer"
+                    ],
+                    correctAnswer: "PSPO (Professional Scrum Product Owner)",
+                    explanation: "Le PSPO est spécifiquement conçu pour les Product Owners, couvrant la gestion du backlog produit, la maximisation de valeur et la collaboration avec les stakeholders."
+                },
+                {
+                    question: "Quelle certification est recommandée pour la gestion de portefeuille projets IT ?",
+                    options: [
+                        "PfMP (Portfolio Management Professional)",
+                        "CAPM (Certified Associate in Project Management)",
+                        "CompTIA Project+",
+                        "Six Sigma Green Belt"
+                    ],
+                    correctAnswer: "PfMP (Portfolio Management Professional)",
+                    explanation: "Le PfMP du PMI est la certification la plus avancée pour la gestion de portefeuille, validant la capacité à aligner les projets et programmes avec la stratégie organisationnelle."
+                },
+                {
+                    question: "Quelle certification est la plus récente dans le domaine de l'IA responsable ?",
+                    options: [
+                        "Certified Ethical AI Practitioner",
+                        "Microsoft Certified: Azure AI Engineer",
+                        "Google Professional Machine Learning Engineer",
+                        "IBM AI Engineering Professional"
+                    ],
+                    correctAnswer: "Certified Ethical AI Practitioner",
+                    explanation: "La certification 'Certified Ethical AI Practitioner' émerge comme une référence pour l'IA responsable, couvrant l'éthique, les biais et la conformité réglementaire."
+                },
+                {
+                    question: "Combien de PDUs faut-il accumuler pour maintenir une certification PMP ?",
+                    options: [
+                        "15 tous les ans",
+                        "30 tous les 3 ans",
+                        "60 tous les 3 ans",
+                        "100 tous les 5 ans"
+                    ],
+                    correctAnswer: "60 tous les 3 ans",
+                    explanation: "Les détenteurs de certification PMP doivent accumuler 60 PDUs (Professional Development Units) tous les 3 ans pour maintenir leur certification active."
+                },
+                {
+                    question: "Quelle certification est essentielle pour un architecte d'entreprise ?",
+                    options: [
+                        "TOGAF (The Open Group Architecture Framework)",
+                        "Certified Kubernetes Administrator",
+                        "Cisco Certified Network Associate (CCNA)",
+                        "Certified Data Professional (CDP)"
+                    ],
+                    correctAnswer: "TOGAF (The Open Group Architecture Framework)",
+                    explanation: "TOGAF est le framework d'architecture d'entreprise le plus répandu, et sa certification valide la maîtrise des méthodes pour concevoir et gérer des architectures IT alignées sur le métier."
+                },
+                {
+                    question: "Quelle organisation délivre les certifications Prince2 ?",
+                    options: [
+                        "Scrum Alliance",
+                        "PeopleCert",
+                        "Project Management Institute",
+                        "ISACA"
+                    ],
+                    correctAnswer: "PeopleCert",
+                    explanation: "PeopleCert est l'organisme qui administre les certifications Prince2 depuis 2013, après avoir acquis les droits d'Axelos."
+                },
+                {
+                    question: "Quelle certification est la plus adaptée pour un DevOps Engineer ?",
+                    options: [
+                        "AWS Certified DevOps Engineer",
+                        "Certified Scrum Developer (CSD)",
+                        "ITIL 4 Specialist: High Velocity IT",
+                        "Certified Information Systems Auditor (CISA)"
+                    ],
+                    correctAnswer: "AWS Certified DevOps Engineer",
+                    explanation: "La certification AWS Certified DevOps Engineer valide spécifiquement les compétences en automatisation, déploiement continu et monitoring sur l'écosystème AWS, clés pour le DevOps."
+                }
+            ]
+        };
+
+        // DOM Elements
+        const questionCounterEl = document.getElementById('question-counter');
+        const currentScoreEl = document.getElementById('current-score');
+        const progressBarEl = document.getElementById('progress-bar');
+        const questionTextEl = document.getElementById('question-text');
+        const optionsContainerEl = document.getElementById('options-container');
+        const explanationBoxEl = document.getElementById('explanation-box');
+        const explanationTitleEl = document.getElementById('explanation-title');
+        const explanationTextEl = document.getElementById('explanation-text');
+        const nextBtn = document.getElementById('next-btn');
+        const finishBtn = document.getElementById('finish-btn');
+        const timerTextEl = document.getElementById('timer-text');
+        const timerBarEl = document.getElementById('timer-bar');
+        
+        // Modal Elements
+        const resultsModal = new bootstrap.Modal(document.getElementById('resultsModal'));
+        const finalScoreCorrectEl = document.getElementById('final-score-correct');
+        const finalScoreTotalEl = document.getElementById('final-score-total');
+        const finalScorePercentageEl = document.getElementById('final-score-percentage');
+        const levelBadgeEl = document.getElementById('level-badge');
+        const finalRecommendationsEl = document.getElementById('final-recommendations');
+        const restartQuizBtn = document.getElementById('restart-quiz-btn');
+
+        // Quiz State
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+        let questions = [];
+        let timerInterval;
+        const TIME_PER_QUESTION = 75;
+        let timeLeft = TIME_PER_QUESTION;
+        let answeredCurrentQuestion = false;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startQuiz() {
+            questions = shuffleArray([...quizData.questions]);
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = new Array(questions.length).fill(null);
+            resultsModal.hide();
+            displayQuestion(currentQuestionIndex);
+            updateScoreDisplay();
+        }
+
+        function displayQuestion(index) {
+            answeredCurrentQuestion = false;
+            explanationBoxEl.classList.add('d-none');
+            nextBtn.disabled = true;
+            timerTextEl.classList.remove('warning');
+            timerTextEl.classList.remove('timer-warning');
+
+            if (index >= questions.length) {
+                showFinalResults();
+                return;
+            }
+
+            const question = questions[index];
+            questionTextEl.textContent = question.question;
+            
+            optionsContainerEl.innerHTML = '';
+            
+            question.options.forEach((optionText, optionIndex) => {
+                const button = document.createElement('button');
+                const prefix = String.fromCharCode(65 + optionIndex);
+                button.textContent = `${prefix}. ${optionText}`;
+                button.classList.add('btn', 'option-btn');
+                button.onclick = () => selectAnswer(button, optionText, index);
+                optionsContainerEl.appendChild(button);
+            });
+            
+            updateNavigation();
+            updateProgressBar();
+            startTimer();
+        }
+        
+        function selectAnswer(button, selectedAnswer, questionIndex) {
+            if (answeredCurrentQuestion) return;
+            answeredCurrentQuestion = true;
+            clearInterval(timerInterval);
+
+            const question = questions[questionIndex];
+            const isCorrect = selectedAnswer === question.correctAnswer;
+            
+            userAnswers[questionIndex] = {
+                selected: selectedAnswer,
+                correct: question.correctAnswer,
+                isCorrect: isCorrect,
+                timeTaken: TIME_PER_QUESTION - timeLeft
+            };
+            
+            if(isCorrect) {
+                score++;
+            }
+            updateScoreDisplay();
+            showAnswerFeedback(questionIndex);
+            nextBtn.disabled = false;
+            
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.classList.add('d-none');
+                finishBtn.classList.remove('d-none');
+            }
+        }
+
+        function showAnswerFeedback(index) {
+            const userAnswer = userAnswers[index];
+            if (!userAnswer) return;
+
+            const question = questions[index];
+
+            const optionButtons = optionsContainerEl.querySelectorAll('.option-btn');
+            optionButtons.forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent.includes(userAnswer.correct)) {
+                    btn.classList.add('correct');
+                } else if (btn.textContent.includes(userAnswer.selected) && !userAnswer.isCorrect) {
+                    btn.classList.add('incorrect');
+                }
+            });
+
+            explanationTextEl.textContent = question.explanation;
+            if (userAnswer.isCorrect) {
+                explanationTitleEl.textContent = "Correct !";
+                explanationBoxEl.className = 'explanation-correct';
+            } else {
+                explanationTitleEl.textContent = "Incorrect. Explication :";
+                explanationBoxEl.className = 'explanation-incorrect';
+            }
+            explanationBoxEl.classList.remove('d-none');
+        }
+
+        function startTimer() {
+            timeLeft = TIME_PER_QUESTION;
+            updateTimerDisplay();
+            timerBarEl.style.transition = `width ${TIME_PER_QUESTION}s linear`;
+            timerBarEl.style.width = '0%';
+
+            setTimeout(() => {
+                timerBarEl.style.transition = 'none';
+                timerBarEl.style.width = '100%';
+                setTimeout(() => {
+                    timerBarEl.style.transition = `width ${TIME_PER_QUESTION}s linear`;
+                    timerBarEl.style.width = '0%';
+                }, 50);
+            }, 0);
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+
+                if (timeLeft <= 10) {
+                    timerTextEl.classList.add('warning');
+                    if (timeLeft <= 5) {
+                        timerTextEl.classList.add('timer-warning');
+                    }
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerTextEl.classList.remove('warning');
+                    timerTextEl.classList.remove('timer-warning');
+                    if (!answeredCurrentQuestion) {
+                        userAnswers[currentQuestionIndex] = {
+                            selected: null,
+                            correct: questions[currentQuestionIndex].correctAnswer,
+                            isCorrect: false,
+                            timeTaken: TIME_PER_QUESTION
+                        };
+                        showAnswerFeedback(currentQuestionIndex);
+                        updateScoreDisplay();
+                        nextBtn.disabled = false;
+                        
+                        if (currentQuestionIndex === questions.length - 1) {
+                            nextBtn.classList.add('d-none');
+                            finishBtn.classList.remove('d-none');
+                        }
+                    }
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerTextEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function updateNavigation() {
+            // No previous button for this test type
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+            progressBarEl.style.width = `${progress}%`;
+            progressBarEl.setAttribute('aria-valuenow', progress);
+            questionCounterEl.textContent = `Question ${currentQuestionIndex + 1} / ${questions.length}`;
+        }
+        
+        function updateScoreDisplay() {
+            currentScoreEl.textContent = `Score: ${score}`;
+        }
+
+        function handleNext() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion(currentQuestionIndex);
+            } else {
+                showFinalResults();
+            }
+        }
+
+        function determineLevelAndRecommendations(percentage) {
+            let level = "";
+            let levelClass = "";
+            let recommendations = "";
+
+            if (percentage >= 90) {
+                level = "Expert en Certifications IT";
+                levelClass = "level-expert";
+                recommendations = `
+                    <h4><i class="fas fa-trophy"></i> Félicitations, Expert(e) !</h4>
+                    <p>Votre connaissance des certifications IT et leur impact sur la gouvernance est exceptionnelle. Vous pourriez former d'autres professionnels.</p>
+                    <h5><i class="fas fa-lightbulb"></i> Recommandations :</h5>
+                    <ul>
+                        <li><i class="fas fa-chalkboard-teacher"></i> Envisagez de devenir formateur certifié</li>
+                        <li><i class="fas fa-network-wired"></i> Obtenez des certifications de niveau expert (CISSP-ISSMP, TOGAF 9 Certified)</li>
+                        <li><i class="fas fa-handshake"></i> Participez à des comités de gouvernance IT</li>
+                    </ul>
+                `;
+            } else if (percentage >= 70) {
+                level = "Avancé en Certifications IT";
+                levelClass = "level-avance";
+                recommendations = `
+                    <h4><i class="fas fa-check-circle"></i> Très bon niveau !</h4>
+                    <p>Vous avez une excellente compréhension des certifications clés et de leur importance pour la gouvernance IT.</p>
+                    <h5><i class="fas fa-lightbulb"></i> Recommandations :</h5>
+                    <ul>
+                        <li><i class="fas fa-certificate"></i> Ciblez 1-2 certifications stratégiques pour votre rôle</li>
+                        <li><i class="fas fa-book"></i> Approfondissez les frameworks de gouvernance (COBIT, ITIL 4)</li>
+                        <li><i class="fas fa-users"></i> Participez à des groupes de pratique professionnelle</li>
+                    </ul>
+                `;
+            } else if (percentage >= 50) {
+                level = "Intermédiaire en Certifications IT";
+                levelClass = "level-intermediaire";
+                recommendations = `
+                    <h4><i class="fas fa-info-circle"></i> Bonnes bases !</h4>
+                    <p>Vous connaissez les principales certifications mais pourriez approfondir leur impact sur la gouvernance.</p>
+                    <h5><i class="fas fa-lightbulb"></i> Recommandations :</h5>
+                    <ul>
+                        <li><i class="fas fa-search"></i> Étudiez les certifications les plus demandées dans votre secteur</li>
+                        <li><i class="fas fa-graduation-cap"></i> Suivez des formations préparatoires aux certifications</li>
+                        <li><i class="fas fa-clipboard-list"></i> Analysez comment les certifications pourraient améliorer vos projets</li>
+                    </ul>
+                `;
+            } else if (percentage >= 25) {
+                level = "Débutant en Certifications IT";
+                levelClass = "level-debutant";
+                recommendations = `
+                    <h4><i class="fas fa-seedling"></i> Début prometteur !</h4>
+                    <p>Vous commencez à comprendre l'écosystème des certifications IT. Continuez à apprendre.</p>
+                    <h5><i class="fas fa-lightbulb"></i> Recommandations :</h5>
+                    <ul>
+                        <li><i class="fas fa-book-open"></i> Commencez par des certifications d'entrée de gamme (ITIL 4, Scrum Fundamentals)</li>
+                        <li><i class="fas fa-user-friends"></i> Discutez avec des collègues certifiés de leur expérience</li>
+                        <li><i class="fas fa-map"></i> Identifiez un parcours de certification aligné avec vos objectifs</li>
+                    </ul>
+                `;
+            } else {
+                level = "Novice en Certifications IT";
+                levelClass = "level-novice";
+                recommendations = `
+                    <h4><i class="fas fa-exclamation-triangle"></i> À approfondir</h4>
+                    <p>Les certifications IT et leur impact sur la gouvernance sont nouveaux pour vous. C'est le moment idéal pour apprendre.</p>
+                    <h5><i class="fas fa-lightbulb"></i> Recommandations :</h5>
+                    <ul>
+                        <li><i class="fas fa-graduation-cap"></i> Suivez une introduction aux certifications IT</li>
+                        <li><i class="fas fa-question-circle"></i> Posez des questions à vos collègues sur les certifications qu'ils détiennent</li>
+                        <li><i class="fas fa-info-circle"></i> Consultez les sites des organismes de certification (PMI, ISACA, Scrum.org)</li>
+                    </ul>
+                `;
+            }
+
+            return { level, levelClass, recommendations };
+        }
+
+        function showFinalResults() {
+            clearInterval(timerInterval);
+            nextBtn.classList.add('d-none');
+            finishBtn.classList.add('d-none');
+
+            const percentage = (score / questions.length) * 100;
+            const { level, levelClass, recommendations } = determineLevelAndRecommendations(percentage);
+
+            finalScoreCorrectEl.textContent = score;
+            finalScoreTotalEl.textContent = questions.length;
+            finalScorePercentageEl.textContent = `${percentage.toFixed(0)}%`;
+            finalScorePercentageEl.style.color = getScoreColor(percentage);
+            
+            levelBadgeEl.textContent = level;
+            levelBadgeEl.className = `level-badge ${levelClass}`;
+            finalRecommendationsEl.innerHTML = recommendations;
+
+            resultsModal.show();
+        }
+
+        function getScoreColor(percentage) {
+            if (percentage >= 90) return 'var(--success-green)';
+            if (percentage >= 70) return 'var(--secondary-blue)';
+            if (percentage >= 50) return 'var(--accent-orange)';
+            if (percentage >= 25) return '#e67e22';
+            return 'var(--danger-red)';
+        }
+
+        // Event Listeners
+        nextBtn.addEventListener('click', handleNext);
+        finishBtn.addEventListener('click', showFinalResults);
+        restartQuizBtn.addEventListener('click', () => {
+            resultsModal.hide();
+            setTimeout(startQuiz, 500);
+        });
+        
+        // Initial call
+        document.addEventListener('DOMContentLoaded', startQuiz);
+    </script>
+</body>
+</html>
