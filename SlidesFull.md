@@ -3,30 +3,57 @@
 
 ---
 
-## **1. Slide d’Ouverture**  
-- **Titre :** *"Formations Certifiantes et Gouvernance IT : Illusion ou Levier ?"*  
-- **Visuel :** Illustration d’un puzzle (certifications + gouvernance).  
-- **Message :** *"75% des projets IT échouent à cause d’un déficit de compétences certifiées (Gartner, 2023)."*  
+### **Slide 1 : Titre – "Formations Certifiantes et Gouvernance IT : Illusion ou Levier ?"**  
+**Contenu détaillé :**  
+- **Titre principal :** Gros en-tête accrocheur avec police moderne (ex : Montserrat Bold).  
+- **Sous-titre :** *"75% des projets IT échouent à cause d’un déficit de compétences certifiées (Gartner, 2023)."*  
+- **Visuel :**  
+  - Image d’un puzzle avec deux pièces manquantes : une étiquetée **"Certifications"**, l’autre **"Gouvernance"**.  
+  - Fond : dégradé bleu professionnel avec icônes discrètes (badge de certification, bouclier RGPD).  
+- **Animation :**  
+  - Le puzzle s’assemble progressivement au clic pour symboliser l’alignement nécessaire.  
+- **Notes orateur :**  
+  *"Les certifications sont-elles un vrai gage de compétence ou un simple argument commercial ? Nous allons démystifier leur impact réel sur la gouvernance IT."*  
 
 ---
 
-## **2. Agenda**  
-- **Liste interactive :**  
-  1. Icebreaker & Enjeux  
-  2. Conférence : Certifications vs Réalité  
-  3. Atelier : Matrice de Compétences  
-  4. Table Ronde : Retours Terrain  
-  5. Clôture & Actions  
+### **Slide 2 : Agenda**  
+**Contenu détaillé :**  
+- **Titre :** *"Votre Feuille de Route pour les 3h à Venir"*  
+- **Contenu :**  
+  - Liste interactive avec icônes et timing :  
+    1. 🎤 **Icebreaker & Enjeux** (30 min) – Quiz et partage d’expériences.  
+    2. 📊 **Conférence : Certifications vs Réalité** (45 min) – Data et cas concrets.  
+    3. 🛠️ **Atelier : Matrice de Compétences** (60 min) – Auto-évaluation guidée.  
+    4. 💬 **Table Ronde : Retours Terrain** (45 min) – Témoignages DSI/chefs de projet.  
+    5. 🎯 **Clôture & Actions** (30 min) – Plan individuel et ressources.  
+- **Visuel :**  
+  - Timeline horizontale avec points colorés (bleu pour théorie, vert pour pratique).  
+  - Icône de sablier pour marquer les temps forts.  
+- **Animation :**  
+  - Chaque point de l’agenda s’illumine au fur et à mesure de la présentation.  
+- **Notes orateur :**  
+  *"Nous alternerons théorie, exercices et échanges pour concrétiser vos apprentissages."*  
 
 ---
 
-## **3. Icebreaker : Quiz Mentimeter**  
-- **Question :** *"À quoi associez-vous les certifications IT ?"*  
-  - A) Gage de compétence  
-  - B) Obligation RH  
-  - C) Outil marketing  
-  - D) Frein à l’innovation  
-- **Graphique temps réel** pour lancer le débat.  
+### **Slide 3 : Icebreaker – Quiz Mentimeter**  
+**Contenu détaillé :**  
+- **Titre :** *"Place au Débat !"*  
+- **Question centrale :**  
+  *"À quoi associez-vous les certifications IT ?"*  
+  - **Réponses :**  
+    - A) Gage de compétence *(🟢)*  
+    - B) Obligation RH *(🟡)*  
+    - C) Outil marketing *(🔴)*  
+    - D) Frein à l’innovation *(🔵)*  
+- **Visuel :**  
+  - Graphique type "word cloud" ou camembert vide, prêt à afficher les réponses en direct.  
+  - QR Code pour accéder au quiz (lien Mentimeter).  
+- **Animation :**  
+  - Les résultats s’affichent en temps réel après 2 min de vote.  
+- **Notes orateur :**  
+  *"Observez les résultats : si la majorité vote ‘Outil marketing’, cela confirme les dérives que nous allons explorer. Si ‘Gage de compétence’ domine, interrogeons-nous sur les preuves tangibles."*  
 
 ---
 
