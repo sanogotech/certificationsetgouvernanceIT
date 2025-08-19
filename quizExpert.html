@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Certifications IT - Prise de conscience</title>
+    <title>Quiz Icebreaker - Formations Certifiantes & Gouvernance IT</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -120,7 +120,6 @@
             background-color: var(--card-bg);
             transition: all 0.2s ease;
             color: var(--text-color);
-            position: relative;
         }
 
         .option-btn:hover:not([disabled]) {
@@ -147,7 +146,6 @@
             border-color: var(--danger-red);
             color: var(--danger-red);
             font-weight: 700;
-            text-decoration: line-through;
         }
 
         #explanation-box {
@@ -279,16 +277,15 @@
             background-color: var(--light-bg);
         }
 
-        /* Badge pour les bonnes réponses */
-        .correct-badge {
-            position: absolute;
-            right: 15px;
-            background-color: var(--success-green);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: bold;
+        /* Animation pour le timer */
+        @keyframes timerWarning {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .timer-warning {
+            animation: timerWarning 1s infinite;
         }
     </style>
 </head>
@@ -297,8 +294,8 @@
     <div class="container">
         <div class="quiz-container">
             <div class="quiz-header">
-                <h1><i class="fas fa-certificate" style="color:var(--accent-orange);"></i> Quiz Certifications IT</h1>
-                <p>Testez vos connaissances sur les certifications et leur impact réel</p>
+                <h1><i class="fas fa-certificate" style="color:var(--accent-orange);"></i> Quiz Icebreaker: Formations Certifiantes & Gouvernance IT</h1>
+                <p>Testez vos connaissances sur les certifications et leur impact sur la gouvernance IT en 20 questions.</p>
             </div>
 
             <div class="progress-section">
@@ -307,6 +304,11 @@
             </div>
             <div class="progress" style="height: 10px;">
                 <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 5%;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+
+            <div id="timer-text">01:15</div>
+            <div id="timer-bar-container">
+                <div id="timer-bar"></div>
             </div>
 
             <div id="question-card" class="card">
@@ -363,224 +365,224 @@
         const quizData = {
             questions: [
                 {
-                    question: "À quoi associez-vous principalement les certifications IT ?",
+                    question: "Quelle est la certification la plus reconnue en gestion de projet IT ?",
                     options: [
-                        "Gage de compétence (🟢)",
-                        "Obligation RH (🟡)",
-                        "Outil marketing (🔴)",
-                        "Frein à l'innovation (🔵)"
+                        "PMP (Project Management Professional)",
+                        "ITIL Foundation",
+                        "Certified Scrum Master (CSM)",
+                        "AWS Certified Solutions Architect"
                     ],
-                    correctAnswer: "Gage de compétence (🟢)",
-                    explanation: "Les certifications reconnues valident des compétences spécifiques. Par exemple, le PMP démontre une maîtrise des bonnes pratiques en gestion de projet selon le PMBOK. Cependant, elles doivent être complétées par une expérience pratique."
+                    correctAnswer: "PMP (Project Management Professional)",
+                    explanation: "Le PMP est la certification de gestion de projet la plus reconnue mondialement, délivrée par le PMI. Elle valide une expertise solide en gestion de projet selon les standards du PMBOK."
                 },
                 {
-                    question: "Quel est le principal bénéfice des certifications pour une organisation ?",
+                    question: "Quelle certification est essentielle pour un DPO (Data Protection Officer) ?",
                     options: [
-                        "Standardiser les compétences (🟢)",
-                        "Améliorer l'image de marque (🟡)",
-                        "Remplir des critères d'appels d'offres (🔴)",
-                        "Justifier des budgets formation (🔵)"
+                        "CISSP (Certified Information Systems Security Professional)",
+                        "CIPP/E (Certified Information Privacy Professional/Europe)",
+                        "CEH (Certified Ethical Hacker)",
+                        "TOGAF (The Open Group Architecture Framework)"
                     ],
-                    correctAnswer: "Standardiser les compétences (🟢)",
-                    explanation: "Une étude Gartner montre que les entreprises avec 60%+ de collaborateurs certifiés ont 35% moins d'incidents IT. La standardisation réduit les risques opérationnels."
+                    correctAnswer: "CIPP/E (Certified Information Privacy Professional/Europe)",
+                    explanation: "La certification CIPP/E est spécifiquement conçue pour les professionnels du RGPD et de la protection des données en Europe. Elle couvre les lois et pratiques de régulation de la vie privée."
                 },
                 {
-                    question: "Comment choisir une certification pertinente ?",
+                    question: "Quel pourcentage des projets IT échouent à cause d'un manque de compétences certifiées selon Gartner ?",
                     options: [
-                        "Alignement avec les besoins métiers (🟢)",
-                        "Popularité sur LinkedIn (🟡)",
-                        "Coût et durée de formation (🔴)",
-                        "Exigence du manager (🔵)"
+                        "25%",
+                        "50%",
+                        "75%",
+                        "90%"
                     ],
-                    correctAnswer: "Alignement avec les besoins métiers (🟢)",
-                    explanation: "Le ROI des certifications est optimal quand elles répondent à des besoins concrets. Ex: une certification AWS pour une migration cloud, plutôt qu'une certification générique."
+                    correctAnswer: "75%",
+                    explanation: "Selon Gartner, 75% des échecs de projets IT sont attribuables à un déficit de compétences certifiées dans les équipes, soulignant l'importance des formations validantes."
                 },
                 {
-                    question: "Quelle affirmation sur les certifications est vraie ?",
+                    question: "Laquelle de ces certifications Agile est considérée comme la plus rigoureuse ?",
                     options: [
-                        "Elles nécessitent un engagement continu (🟢)",
-                        "Une fois obtenues, elles sont valables à vie (🟡)",
-                        "Elles garantissent une promotion (🔴)",
-                        "Les auto-formations en ligne suffisent (🔵)"
+                        "Certified Scrum Master (CSM)",
+                        "Professional Scrum Master (PSM)",
+                        "SAFe Agilist",
+                        "PMI-ACP (Agile Certified Practitioner)"
                     ],
-                    correctAnswer: "Elles nécessitent un engagement continu (🟢)",
-                    explanation: "85% des certifications exigent une formation continue (PDUs/CPEs). Par exemple, le PMP requiert 60 PDUs tous les 3 ans pour rester valide."
+                    correctAnswer: "Professional Scrum Master (PSM)",
+                    explanation: "La certification PSM de Scrum.org est réputée plus difficile à obtenir que le CSM, avec un examen plus complet et un taux de réussite généralement plus bas."
                 },
                 {
-                    question: "Quel est le piège à éviter avec les certifications ?",
+                    question: "Quelle certification est indispensable pour la gouvernance des données ?",
                     options: [
-                        "Privilégier la quantité sur la qualité (🟢)",
-                        "Les choisir trop spécialisées (🟡)",
-                        "Ne pas les mentionner sur son CV (🔴)",
-                        "Attendre d'être expert pour les passer (🔵)"
+                        "CDMP (Certified Data Management Professional)",
+                        "Google Data Analytics Certificate",
+                        "Microsoft Certified: Azure Data Scientist",
+                        "Tableau Desktop Certified Associate"
                     ],
-                    correctAnswer: "Privilégier la quantité sur la qualité (🟢)",
-                    explanation: "5 certifications reconnues valent mieux que 20 certifications obscures. Les recruteurs privilégient la pertinence plutôt que le nombre."
+                    correctAnswer: "CDMP (Certified Data Management Professional)",
+                    explanation: "Le CDMP est la certification de référence pour les professionnels de la gouvernance des données, couvrant les principes fondamentaux de gestion et gouvernance des données."
                 },
                 {
-                    question: "Quelle certification est la plus adaptée pour un DPO ?",
+                    question: "Combien coûte en moyenne une certification PMP (frais d'examen) ?",
                     options: [
-                        "CIPP/E (protection des données) (🟢)",
-                        "PMP (gestion de projet) (🟡)",
-                        "AWS Certified (cloud) (🔴)",
-                        "ITIL (gestion des services) (🔵)"
+                        "200€",
+                        "450€",
+                        "700€",
+                        "1000€"
                     ],
-                    correctAnswer: "CIPP/E (protection des données) (🟢)",
-                    explanation: "Le CIPP/E est la certification de référence pour les DPO, couvrant spécifiquement le RGPD et les lois européennes sur la protection des données."
+                    correctAnswer: "700€",
+                    explanation: "L'examen PMP coûte 575$ pour les membres PMI (environ 530€) et 405$ pour les non-membres (environ 375€), avec des frais d'adhésion supplémentaires si nécessaire."
                 },
                 {
-                    question: "Quel pourcentage des détenteurs de certifications déclarent un impact positif sur leur carrière ?",
+                    question: "Quelle certification est la plus adaptée pour un architecte cloud ?",
                     options: [
-                        "73% (🟢)",
-                        "50% (🟡)",
-                        "35% (🔴)",
-                        "20% (🔵)"
+                        "CISA (Certified Information Systems Auditor)",
+                        "AWS Certified Solutions Architect",
+                        "CISM (Certified Information Security Manager)",
+                        "Prince2 Practitioner"
                     ],
-                    correctAnswer: "73% (🟢)",
-                    explanation: "Selon PMI, 73% des certifiés rapportent un impact positif, avec en moyenne +20% de salaire et +30% d'opportunités de promotion."
-                },
-                {
-                    question: "Quelle est la certification la plus demandée en cybersécurité ?",
-                    options: [
-                        "CISSP (🟢)",
-                        "CEH (🟡)",
-                        "CompTIA Security+ (🔴)",
-                        "ISO 27001 (🔵)"
-                    ],
-                    correctAnswer: "CISSP (🟢)",
-                    explanation: "Le CISSP est la certification sécurité la plus recherchée, avec +15% de demandes en 2023. Elle valide 5 ans d'expérience en sécurité."
-                },
-                {
-                    question: "Combien coûte en moyenne une certification professionnelle reconnue ?",
-                    options: [
-                        "400-800€ (🟢)",
-                        "100-300€ (🟡)",
-                        "1000-1500€ (🔴)",
-                        "Gratuite (🔵)"
-                    ],
-                    correctAnswer: "400-800€ (🟢)",
-                    explanation: "Les certifications sérieuses (PMP, CISSP, ITIL) coûtent typiquement 400-800€. Les prix en dessous peuvent indiquer un manque de reconnaissance."
-                },
-                {
-                    question: "Quelle durée de préparation pour une certification comme le PMP ?",
-                    options: [
-                        "2-3 mois (🟢)",
-                        "2 semaines (🟡)",
-                        "6-12 mois (🔴)",
-                        "Pas besoin de préparation (🔵)"
-                    ],
-                    correctAnswer: "2-3 mois (🟢)",
-                    explanation: "Le PMP nécessite environ 100-150h de préparation. Un rythme de 10h/semaine permet une préparation sérieuse en 2-3 mois."
-                },
-                {
-                    question: "Quelle certification agile est la plus rigoureuse ?",
-                    options: [
-                        "PSM (Scrum.org) (🟢)",
-                        "CSM (Scrum Alliance) (🟡)",
-                        "SAFe Agilist (🔴)",
-                        "PMI-ACP (🔵)"
-                    ],
-                    correctAnswer: "PSM (Scrum.org) (🟢)",
-                    explanation: "Le PSM a un taux de réussite de 65% contre 95% pour le CSM, avec un examen plus complet sur la maîtrise de Scrum."
-                },
-                {
-                    question: "Quelle certification cloud est la plus universelle ?",
-                    options: [
-                        "AWS Certified Solutions Architect (🟢)",
-                        "Google Cloud Architect (🟡)",
-                        "Azure Administrator (🔴)",
-                        "Cloud Security Alliance (🔵)"
-                    ],
-                    correctAnswer: "AWS Certified Solutions Architect (🟢)",
-                    explanation: "AWS domine 33% du marché cloud. Sa certification est transférable même vers d'autres plateformes cloud."
-                },
-                {
-                    question: "Quelle affirmation sur les 'bootcamps certifiants' est vraie ?",
-                    options: [
-                        "Ils doivent être complétés par de la pratique (🟢)",
-                        "Ils remplacent une expérience terrain (🟡)",
-                        "Ils garantissent un emploi (🔴)",
-                        "Ils sont reconnus comme les universités (🔵)"
-                    ],
-                    correctAnswer: "Ils doivent être complétés par de la pratique (🟢)",
-                    explanation: "Les bootcamps sont utiles pour les bases, mais 72% des employeurs exigent une mise en pratique concrète des connaissances."
-                },
-                {
-                    question: "Quelle certification est utile pour un architecte SI ?",
-                    options: [
-                        "TOGAF (🟢)",
-                        "Six Sigma (🟡)",
-                        "Prince2 (🔴)",
-                        "CISA (🔵)"
-                    ],
-                    correctAnswer: "TOGAF (🟢)",
-                    explanation: "TOGAF est le framework d'architecture d'entreprise le plus répandu, utilisé par 80% des grandes entreprises pour leurs transformations SI."
-                },
-                {
-                    question: "Quelle certification data est la plus polyvalente ?",
-                    options: [
-                        "CDMP (DAMA) (🟢)",
-                        "Google Data Analytics (🟡)",
-                        "Tableau Certified (🔴)",
-                        "Microsoft Power BI (🔵)"
-                    ],
-                    correctAnswer: "CDMP (DAMA) (🟢)",
-                    explanation: "Le CDMP couvre l'ensemble du cycle de vie des données, contrairement aux certifications outils spécifiques."
-                },
-                {
-                    question: "Quel est le délai de renouvellement typique d'une certification ?",
-                    options: [
-                        "3 ans (🟢)",
-                        "1 an (🟡)",
-                        "5 ans (🔴)",
-                        "10 ans (🔵)"
-                    ],
-                    correctAnswer: "3 ans (🟢)",
-                    explanation: "La plupart des certifications IT (PMP, CISSP, ITIL) exigent un renouvellement tous les 3 ans pour maintenir leur pertinence."
-                },
-                {
-                    question: "Quelle certification est cruciale pour un DevOps ?",
-                    options: [
-                        "AWS Certified DevOps Engineer (🟢)",
-                        "Kubernetes Certified (🟡)",
-                        "ITIL 4 (🔴)",
-                        "COBIT (🔵)"
-                    ],
-                    correctAnswer: "AWS Certified DevOps Engineer (🟢)",
-                    explanation: "Cette certification combine compétences cloud et pratiques DevOps, couvrant CI/CD, monitoring et automatisation sur AWS."
+                    correctAnswer: "AWS Certified Solutions Architect",
+                    explanation: "La certification AWS Certified Solutions Architect est spécifiquement conçue pour valider les compétences en architecture de solutions cloud sur AWS, la plateforme leader du marché."
                 },
                 {
                     question: "Quelle organisation délivre les certifications ITIL ?",
                     options: [
-                        "Axelos (🟢)",
-                        "PMI (🟡)",
-                        "ISACA (🔴)",
-                        "Scrum Alliance (🔵)"
+                        "Project Management Institute (PMI)",
+                        "Axelos",
+                        "Scrum Alliance",
+                        "ISACA"
                     ],
-                    correctAnswer: "Axelos (🟢)",
-                    explanation: "Axelos (joint venture Capita/UK Cabinet Office) détient ITIL depuis 2013. ITIL 4 est la version actuelle depuis 2019."
+                    correctAnswer: "Axelos",
+                    explanation: "Axelos est l'organisme propriétaire du cadre ITIL et délivre les certifications ITIL. ITIL est le framework de référence pour la gestion des services IT."
                 },
                 {
-                    question: "Quelle certification est recommandée pour un Product Owner ?",
+                    question: "Quelle est la durée de validité typique d'une certification CISSP ?",
                     options: [
-                        "PSPO (Scrum.org) (🟢)",
-                        "PMP (🟡)",
-                        "CBAP (🔴)",
-                        "CISA (🔵)"
+                        "1 an",
+                        "3 ans",
+                        "5 ans",
+                        "À vie"
                     ],
-                    correctAnswer: "PSPO (Scrum.org) (🟢)",
-                    explanation: "Le Professional Scrum Product Owner (PSPO) est spécifiquement conçu pour les PO, couvrant la gestion du backlog et la maximisation de valeur."
+                    correctAnswer: "3 ans",
+                    explanation: "La certification CISSP doit être renouvelée tous les 3 ans en accumulant des CPE (Continuing Professional Education) et en payant des frais de maintenance annuels."
                 },
                 {
-                    question: "Quelle certification émerge pour l'IA responsable ?",
+                    question: "Quelle certification est recommandée pour un responsable de la cybersécurité ?",
                     options: [
-                        "Certified Ethical AI Practitioner (🟢)",
-                        "TensorFlow Developer (🟡)",
-                        "Microsoft AI Engineer (🔴)",
-                        "Google ML Specialist (🔵)"
+                        "CISM (Certified Information Security Manager)",
+                        "Google Analytics Individual Qualification",
+                        "Microsoft Certified: Azure Administrator",
+                        "Certified Kubernetes Administrator"
                     ],
-                    correctAnswer: "Certified Ethical AI Practitioner (🟢)",
-                    explanation: "Cette nouvelle certification couvre les biais algorithmiques, l'éthique et la conformité réglementaire - des enjeux cruciaux pour l'IA en entreprise."
+                    correctAnswer: "CISM (Certified Information Security Manager)",
+                    explanation: "Le CISM est une certification de haut niveau pour les managers en sécurité de l'information, axée sur la gouvernance et la gestion des risques plutôt que sur les aspects techniques."
+                },
+                {
+                    question: "Quelle certification Agile combine Scrum, Kanban et Lean ?",
+                    options: [
+                        "SAFe Agilist",
+                        "Disciplined Agile Scrum Master (DASM)",
+                        "Certified Scrum Professional (CSP)",
+                        "PMI-ACP"
+                    ],
+                    correctAnswer: "Disciplined Agile Scrum Master (DASM)",
+                    explanation: "Le DASM de PMI couvre plusieurs méthodes Agiles dont Scrum, Kanban et Lean, offrant une approche plus large que les certifications Scrum pures."
+                },
+                {
+                    question: "Quelle certification est obligatoire pour certains contrats publics en France ?",
+                    options: [
+                        "ISO 27001 Lead Auditor",
+                        "PCI DSS",
+                        "HDS (Hébergeur de Données de Santé)",
+                        "GDPR Practitioner"
+                    ],
+                    correctAnswer: "HDS (Hébergeur de Données de Santé)",
+                    explanation: "La certification HDS est obligatoire en France pour tout hébergement de données de santé, exigée par la loi pour les marchés publics dans ce domaine."
+                },
+                {
+                    question: "Quelle certification couvre le framework COBIT pour la gouvernance IT ?",
+                    options: [
+                        "CGEIT (Certified in the Governance of Enterprise IT)",
+                        "CRISC (Certified in Risk and Information Systems Control)",
+                        "CDPSE (Certified Data Privacy Solutions Engineer)",
+                        "CISA (Certified Information Systems Auditor)"
+                    ],
+                    correctAnswer: "CGEIT (Certified in the Governance of Enterprise IT)",
+                    explanation: "Le CGEIT est la certification phare d'ISACA pour la gouvernance IT, couvrant notamment le framework COBIT utilisé pour aligner les TI sur les besoins métiers."
+                },
+                {
+                    question: "Quelle certification est la plus appropriée pour un Product Owner ?",
+                    options: [
+                        "PSPO (Professional Scrum Product Owner)",
+                        "PMP",
+                        "ITIL 4 Specialist",
+                        "AWS Certified Developer"
+                    ],
+                    correctAnswer: "PSPO (Professional Scrum Product Owner)",
+                    explanation: "Le PSPO est spécifiquement conçu pour les Product Owners, couvrant la gestion du backlog produit, la maximisation de valeur et la collaboration avec les stakeholders."
+                },
+                {
+                    question: "Quelle certification est recommandée pour la gestion de portefeuille projets IT ?",
+                    options: [
+                        "PfMP (Portfolio Management Professional)",
+                        "CAPM (Certified Associate in Project Management)",
+                        "CompTIA Project+",
+                        "Six Sigma Green Belt"
+                    ],
+                    correctAnswer: "PfMP (Portfolio Management Professional)",
+                    explanation: "Le PfMP du PMI est la certification la plus avancée pour la gestion de portefeuille, validant la capacité à aligner les projets et programmes avec la stratégie organisationnelle."
+                },
+                {
+                    question: "Quelle certification est la plus récente dans le domaine de l'IA responsable ?",
+                    options: [
+                        "Certified Ethical AI Practitioner",
+                        "Microsoft Certified: Azure AI Engineer",
+                        "Google Professional Machine Learning Engineer",
+                        "IBM AI Engineering Professional"
+                    ],
+                    correctAnswer: "Certified Ethical AI Practitioner",
+                    explanation: "La certification 'Certified Ethical AI Practitioner' émerge comme une référence pour l'IA responsable, couvrant l'éthique, les biais et la conformité réglementaire."
+                },
+                {
+                    question: "Combien de PDUs faut-il accumuler pour maintenir une certification PMP ?",
+                    options: [
+                        "15 tous les ans",
+                        "30 tous les 3 ans",
+                        "60 tous les 3 ans",
+                        "100 tous les 5 ans"
+                    ],
+                    correctAnswer: "60 tous les 3 ans",
+                    explanation: "Les détenteurs de certification PMP doivent accumuler 60 PDUs (Professional Development Units) tous les 3 ans pour maintenir leur certification active."
+                },
+                {
+                    question: "Quelle certification est essentielle pour un architecte d'entreprise ?",
+                    options: [
+                        "TOGAF (The Open Group Architecture Framework)",
+                        "Certified Kubernetes Administrator",
+                        "Cisco Certified Network Associate (CCNA)",
+                        "Certified Data Professional (CDP)"
+                    ],
+                    correctAnswer: "TOGAF (The Open Group Architecture Framework)",
+                    explanation: "TOGAF est le framework d'architecture d'entreprise le plus répandu, et sa certification valide la maîtrise des méthodes pour concevoir et gérer des architectures IT alignées sur le métier."
+                },
+                {
+                    question: "Quelle organisation délivre les certifications Prince2 ?",
+                    options: [
+                        "Scrum Alliance",
+                        "PeopleCert",
+                        "Project Management Institute",
+                        "ISACA"
+                    ],
+                    correctAnswer: "PeopleCert",
+                    explanation: "PeopleCert est l'organisme qui administre les certifications Prince2 depuis 2013, après avoir acquis les droits d'Axelos."
+                },
+                {
+                    question: "Quelle certification est la plus adaptée pour un DevOps Engineer ?",
+                    options: [
+                        "AWS Certified DevOps Engineer",
+                        "Certified Scrum Developer (CSD)",
+                        "ITIL 4 Specialist: High Velocity IT",
+                        "Certified Information Systems Auditor (CISA)"
+                    ],
+                    correctAnswer: "AWS Certified DevOps Engineer",
+                    explanation: "La certification AWS Certified DevOps Engineer valide spécifiquement les compétences en automatisation, déploiement continu et monitoring sur l'écosystème AWS, clés pour le DevOps."
                 }
             ]
         };
@@ -596,6 +598,8 @@
         const explanationTextEl = document.getElementById('explanation-text');
         const nextBtn = document.getElementById('next-btn');
         const finishBtn = document.getElementById('finish-btn');
+        const timerTextEl = document.getElementById('timer-text');
+        const timerBarEl = document.getElementById('timer-bar');
         
         // Modal Elements
         const resultsModal = new bootstrap.Modal(document.getElementById('resultsModal'));
@@ -611,6 +615,10 @@
         let score = 0;
         let userAnswers = [];
         let questions = [];
+        let timerInterval;
+        const TIME_PER_QUESTION = 75;
+        let timeLeft = TIME_PER_QUESTION;
+        let answeredCurrentQuestion = false;
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -634,6 +642,8 @@
             answeredCurrentQuestion = false;
             explanationBoxEl.classList.add('d-none');
             nextBtn.disabled = true;
+            timerTextEl.classList.remove('warning');
+            timerTextEl.classList.remove('timer-warning');
 
             if (index >= questions.length) {
                 showFinalResults();
@@ -647,28 +657,22 @@
             
             question.options.forEach((optionText, optionIndex) => {
                 const button = document.createElement('button');
-                button.textContent = optionText;
+                const prefix = String.fromCharCode(65 + optionIndex);
+                button.textContent = `${prefix}. ${optionText}`;
                 button.classList.add('btn', 'option-btn');
-                
-                // Ajouter un badge pour la bonne réponse
-                if (optionText === question.correctAnswer) {
-                    const badge = document.createElement('span');
-                    badge.classList.add('correct-badge');
-                    badge.textContent = 'Bonne réponse';
-                    button.appendChild(badge);
-                }
-                
                 button.onclick = () => selectAnswer(button, optionText, index);
                 optionsContainerEl.appendChild(button);
             });
             
             updateNavigation();
             updateProgressBar();
+            startTimer();
         }
         
         function selectAnswer(button, selectedAnswer, questionIndex) {
             if (answeredCurrentQuestion) return;
             answeredCurrentQuestion = true;
+            clearInterval(timerInterval);
 
             const question = questions[questionIndex];
             const isCorrect = selectedAnswer === question.correctAnswer;
@@ -676,23 +680,13 @@
             userAnswers[questionIndex] = {
                 selected: selectedAnswer,
                 correct: question.correctAnswer,
-                isCorrect: isCorrect
+                isCorrect: isCorrect,
+                timeTaken: TIME_PER_QUESTION - timeLeft
             };
             
             if(isCorrect) {
                 score++;
-                button.classList.add('correct');
-            } else {
-                button.classList.add('incorrect');
-                // Trouver et marquer la bonne réponse
-                const options = optionsContainerEl.querySelectorAll('.option-btn');
-                options.forEach(opt => {
-                    if (opt.textContent.includes(question.correctAnswer)) {
-                        opt.classList.add('correct');
-                    }
-                });
             }
-            
             updateScoreDisplay();
             showAnswerFeedback(questionIndex);
             nextBtn.disabled = false;
@@ -709,15 +703,81 @@
 
             const question = questions[index];
 
+            const optionButtons = optionsContainerEl.querySelectorAll('.option-btn');
+            optionButtons.forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent.includes(userAnswer.correct)) {
+                    btn.classList.add('correct');
+                } else if (btn.textContent.includes(userAnswer.selected) && !userAnswer.isCorrect) {
+                    btn.classList.add('incorrect');
+                }
+            });
+
             explanationTextEl.textContent = question.explanation;
             if (userAnswer.isCorrect) {
                 explanationTitleEl.textContent = "Correct !";
                 explanationBoxEl.className = 'explanation-correct';
             } else {
-                explanationTitleEl.textContent = "Incorrect - Analyse :";
+                explanationTitleEl.textContent = "Incorrect. Explication :";
                 explanationBoxEl.className = 'explanation-incorrect';
             }
             explanationBoxEl.classList.remove('d-none');
+        }
+
+        function startTimer() {
+            timeLeft = TIME_PER_QUESTION;
+            updateTimerDisplay();
+            timerBarEl.style.transition = `width ${TIME_PER_QUESTION}s linear`;
+            timerBarEl.style.width = '0%';
+
+            setTimeout(() => {
+                timerBarEl.style.transition = 'none';
+                timerBarEl.style.width = '100%';
+                setTimeout(() => {
+                    timerBarEl.style.transition = `width ${TIME_PER_QUESTION}s linear`;
+                    timerBarEl.style.width = '0%';
+                }, 50);
+            }, 0);
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+
+                if (timeLeft <= 10) {
+                    timerTextEl.classList.add('warning');
+                    if (timeLeft <= 5) {
+                        timerTextEl.classList.add('timer-warning');
+                    }
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerTextEl.classList.remove('warning');
+                    timerTextEl.classList.remove('timer-warning');
+                    if (!answeredCurrentQuestion) {
+                        userAnswers[currentQuestionIndex] = {
+                            selected: null,
+                            correct: questions[currentQuestionIndex].correctAnswer,
+                            isCorrect: false,
+                            timeTaken: TIME_PER_QUESTION
+                        };
+                        showAnswerFeedback(currentQuestionIndex);
+                        updateScoreDisplay();
+                        nextBtn.disabled = false;
+                        
+                        if (currentQuestionIndex === questions.length - 1) {
+                            nextBtn.classList.add('d-none');
+                            finishBtn.classList.remove('d-none');
+                        }
+                    }
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerTextEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
 
         function updateNavigation() {
@@ -754,12 +814,12 @@
                 levelClass = "level-expert";
                 recommendations = `
                     <h4><i class="fas fa-trophy"></i> Félicitations, Expert(e) !</h4>
-                    <p>Votre compréhension des certifications IT et de leur valeur est exceptionnelle.</p>
-                    <h5>Recommandations :</h5>
+                    <p>Votre connaissance des certifications IT et leur impact sur la gouvernance est exceptionnelle. Vous pourriez former d'autres professionnels.</p>
+                    <h5><i class="fas fa-lightbulb"></i> Recommandations :</h5>
                     <ul>
-                        <li><i class="fas fa-chalkboard-teacher"></i> Partagez votre expertise en mentorant des collègues</li>
-                        <li><i class="fas fa-certificate"></i> Ciblez des certifications de niveau stratégique (CISSP-ISSMP, TOGAF 9)</li>
-                        <li><i class="fas fa-network-wired"></i> Participez à des comités de gouvernance IT</li>
+                        <li><i class="fas fa-chalkboard-teacher"></i> Envisagez de devenir formateur certifié</li>
+                        <li><i class="fas fa-network-wired"></i> Obtenez des certifications de niveau expert (CISSP-ISSMP, TOGAF 9 Certified)</li>
+                        <li><i class="fas fa-handshake"></i> Participez à des comités de gouvernance IT</li>
                     </ul>
                 `;
             } else if (percentage >= 70) {
@@ -767,12 +827,12 @@
                 levelClass = "level-avance";
                 recommendations = `
                     <h4><i class="fas fa-check-circle"></i> Très bon niveau !</h4>
-                    <p>Vous maîtrisez bien l'écosystème des certifications IT.</p>
-                    <h5>Recommandations :</h5>
+                    <p>Vous avez une excellente compréhension des certifications clés et de leur importance pour la gouvernance IT.</p>
+                    <h5><i class="fas fa-lightbulb"></i> Recommandations :</h5>
                     <ul>
-                        <li><i class="fas fa-search-plus"></i> Approfondissez les certifications spécifiques à votre domaine</li>
-                        <li><i class="fas fa-project-diagram"></i> Étudiez comment maximiser leur impact opérationnel</li>
-                        <li><i class="fas fa-users"></i> Rejoignez des communautés de pratique</li>
+                        <li><i class="fas fa-certificate"></i> Ciblez 1-2 certifications stratégiques pour votre rôle</li>
+                        <li><i class="fas fa-book"></i> Approfondissez les frameworks de gouvernance (COBIT, ITIL 4)</li>
+                        <li><i class="fas fa-users"></i> Participez à des groupes de pratique professionnelle</li>
                     </ul>
                 `;
             } else if (percentage >= 50) {
@@ -780,12 +840,12 @@
                 levelClass = "level-intermediaire";
                 recommendations = `
                     <h4><i class="fas fa-info-circle"></i> Bonnes bases !</h4>
-                    <p>Vous avez une compréhension correcte des certifications IT.</p>
-                    <h5>Recommandations :</h5>
+                    <p>Vous connaissez les principales certifications mais pourriez approfondir leur impact sur la gouvernance.</p>
+                    <h5><i class="fas fa-lightbulb"></i> Recommandations :</h5>
                     <ul>
-                        <li><i class="fas fa-book-open"></i> Étudiez les frameworks de référence (PMBOK, ITIL, COBIT)</li>
-                        <li><i class="fas fa-bullseye"></i> Identifiez 1-2 certifications clés pour votre rôle</li>
-                        <li><i class="fas fa-question-circle"></i> Discutez avec des collègues certifiés de leur expérience</li>
+                        <li><i class="fas fa-search"></i> Étudiez les certifications les plus demandées dans votre secteur</li>
+                        <li><i class="fas fa-graduation-cap"></i> Suivez des formations préparatoires aux certifications</li>
+                        <li><i class="fas fa-clipboard-list"></i> Analysez comment les certifications pourraient améliorer vos projets</li>
                     </ul>
                 `;
             } else if (percentage >= 25) {
@@ -793,12 +853,12 @@
                 levelClass = "level-debutant";
                 recommendations = `
                     <h4><i class="fas fa-seedling"></i> Début prometteur !</h4>
-                    <p>Vous commencez à explorer le monde des certifications IT.</p>
-                    <h5>Recommandations :</h5>
+                    <p>Vous commencez à comprendre l'écosystème des certifications IT. Continuez à apprendre.</p>
+                    <h5><i class="fas fa-lightbulb"></i> Recommandations :</h5>
                     <ul>
-                        <li><i class="fas fa-graduation-cap"></i> Commencez par des certifications d'introduction (ITIL 4, Scrum Fundamentals)</li>
-                        <li><i class="fas fa-globe"></i> Explorez les sites des organismes certificateurs (PMI, ISACA, Scrum.org)</li>
-                        <li><i class="fas fa-clipboard-list"></i> Analysez les certifications les plus demandées dans votre secteur</li>
+                        <li><i class="fas fa-book-open"></i> Commencez par des certifications d'entrée de gamme (ITIL 4, Scrum Fundamentals)</li>
+                        <li><i class="fas fa-user-friends"></i> Discutez avec des collègues certifiés de leur expérience</li>
+                        <li><i class="fas fa-map"></i> Identifiez un parcours de certification aligné avec vos objectifs</li>
                     </ul>
                 `;
             } else {
@@ -806,12 +866,12 @@
                 levelClass = "level-novice";
                 recommendations = `
                     <h4><i class="fas fa-exclamation-triangle"></i> À approfondir</h4>
-                    <p>Les certifications IT sont un domaine nouveau pour vous.</p>
-                    <h5>Recommandations :</h5>
+                    <p>Les certifications IT et leur impact sur la gouvernance sont nouveaux pour vous. C'est le moment idéal pour apprendre.</p>
+                    <h5><i class="fas fa-lightbulb"></i> Recommandations :</h5>
                     <ul>
-                        <li><i class="fas fa-book"></i> Lisez des articles sur l'importance des certifications dans votre métier</li>
-                        <li><i class="fas fa-user-friends"></i> Demandez à vos collègues quelles certifications ils ont trouvées utiles</li>
-                        <li><i class="fas fa-play-circle"></i> Suivez des webinars d'introduction aux certifications</li>
+                        <li><i class="fas fa-graduation-cap"></i> Suivez une introduction aux certifications IT</li>
+                        <li><i class="fas fa-question-circle"></i> Posez des questions à vos collègues sur les certifications qu'ils détiennent</li>
+                        <li><i class="fas fa-info-circle"></i> Consultez les sites des organismes de certification (PMI, ISACA, Scrum.org)</li>
                     </ul>
                 `;
             }
@@ -820,6 +880,7 @@
         }
 
         function showFinalResults() {
+            clearInterval(timerInterval);
             nextBtn.classList.add('d-none');
             finishBtn.classList.add('d-none');
 
