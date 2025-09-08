@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petit Déjeuner IT – Formations & Gouvernance Digitale</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    /* VARIABLES DE COULEUR */
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --light-bg: #f8f9fa;
+      --dark-bg: #343a40;
+      --formation-blue: #2c6aa1;
+      --governance-purple: #6f42c1;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* BARRE DE NAVIGATION */
+    .navbar {
+      background-color: var(--primary-color);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: white;
+    }
+
+    /* SECTION HERO */
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--formation-blue) 100%);
+      color: white;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+      border-radius: 0 0 20px 20px;
+    }
+
+    /* CARTES DE CONTENU */
+    .card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .card-header {
+      color: white;
+      font-weight: 600;
+    }
+
+    .formation-header {
+      background-color: var(--formation-blue);
+    }
+
+    .governance-header {
+      background-color: var(--governance-purple);
+    }
+
+    .module-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--secondary-color);
+    }
+
+    /* BOUTONS PERSONNALISÉS */
+    .btn-formation {
+      background-color: var(--formation-blue);
+      color: white;
+      border: none;
+    }
+
+    .btn-formation:hover {
+      background-color: #245786;
+      color: white;
+    }
+
+    .btn-governance {
+      background-color: var(--governance-purple);
+      color: white;
+      border: none;
+    }
+
+    .btn-governance:hover {
+      background-color: #5a359c;
+      color: white;
+    }
+
+    /* SIMULATIONS */
+    .simulation-container {
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .process-step {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 20px;
+    }
+
+    .process-step:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background-color: var(--formation-blue);
+      border-radius: 50%;
+    }
+
+    .process-step:after {
+      content: "";
+      position: absolute;
+      left: 9px;
+      top: 20px;
+      width: 2px;
+      height: 100%;
+      background-color: var(--formation-blue);
+    }
+
+    .process-step:last-child:after {
+      display: none;
+    }
+
+    .highlight-box {
+      background-color: rgba(44, 106, 161, 0.1);
+      border-left: 4px solid var(--formation-blue);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 5px 5px 0;
+    }
+
+    .governance-highlight {
+      background-color: rgba(111, 66, 193, 0.1);
+      border-left: 4px solid var(--governance-purple);
+    }
+
+    .linked-modules {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .linked-module {
+      background-color: var(--light-bg);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: var(--primary-color);
+      border: 1px solid #ddd;
+    }
+
+    .tab-content {
+      padding: 1.5rem 0;
+    }
+
+    /* PIED DE PAGE */
+    footer {
+      background-color: var(--dark-bg);
+      color: white;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .module-card {
+      animation: fadeIn 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .module-card:nth-child(1) { animation-delay: 0.1s; }
+    .module-card:nth-child(2) { animation-delay: 0.2s; }
+    .module-card:nth-child(3) { animation-delay: 0.3s; }
+    .module-card:nth-child(4) { animation-delay: 0.4s; }
+    .module-card:nth-child(5) { animation-delay: 0.5s; }
+    .module-card:nth-child(6) { animation-delay: 0.6s; }
+    .module-card:nth-child(7) { animation-delay: 0.7s; } /* Ajouté */
+    .module-card:nth-child(8) { animation-delay: 0.8s; } /* Ajouté */
+    .module-card:nth-child(9) { animation-delay: 0.9s; } /* Ajouté */
+
+    /* FEUILLE DE ROUTE */
+    .roadmap {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .roadmap-phase {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .roadmap-phase:before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      width: 20px;
+      height: 2px;
+      background-color: var(--formation-blue);
+    }
+
+    .roadmap-phase:after {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: calc(50% - 5px);
+      width: 10px;
+      height: 10px;
+      background-color: var(--formation-blue);
+      border-radius: 50%;
+    }
+
+    .phase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .phase-title {
+      font-weight: bold;
+      color: var(--formation-blue);
+    }
+
+    .phase-duration {
+      background-color: var(--formation-blue);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+
+    /* RESPONSIVITÉ */
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 2rem 0;
+      }
+
+      .module-icon {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-cup-hot me-2"></i>Petit Déjeuner IT
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#concepts">Enjeux</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#formations">Formations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#gouvernance">Gouvernance</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#roadmap">Parcours</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#simulations">Simulations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#inscription">Inscription</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <div class="container text-center">
+      <h1 class="display-4 fw-bold mb-3">Petit Déjeuner IT – Formations Certifiantes & Gouvernance Digitale</h1>
+      <p class="lead mb-4">Maîtrisez les compétences clés pour piloter vos projets, sécuriser les opérations et accélérer la transformation digitale</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="#inscription" class="btn btn-light btn-lg px-4">S'inscrire</a>
+        <a href="#formations" class="btn btn-outline-light btn-lg px-4">Découvrir les formations</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mb-5">
+    <section id="concepts" class="mb-5">
+      <h2 class="text-center mb-4">Enjeux et Défis Prioritaires</h2>
+      
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-shield-check me-2"></i>
+              <h5 class="mb-0">Sécurité des systèmes critiques</h5>
+            </div>
+            <div class="card-body">
+              <p>Protection des infrastructures vitales contre les cyberattaques et interruptions de service.</p>
+              <div class="highlight-box">
+                <p><strong>Formations associées :</strong></p>
+                <ul>
+                  <li>Cybersécurité (CISSP, CISM)</li>
+                  <li>ISO 27001</li>
+                  <li>Plans de Reprise d'Activité (PRA)</li>
+                  <li>Gestion des risques</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-clock-history me-2"></i>
+              <h5 class="mb-0">Livraison des projets dans les délais et budgets</h5>
+            </div>
+            <div class="card-body">
+              <p>Réduction des retards et échecs pour sécuriser la valeur des initiatives digitales.</p>
+              <div class="highlight-box">
+                <p><strong>Formations associées :</strong></p>
+                <ul>
+                  <li>PMP, PRINCE2</li>
+                  <li>Agile Scrum</li>
+                  <li>Gestion de projet avancée</li>
+                  <li>Management de portefeuille</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-arrow-repeat me-2"></i>
+              <h5 class="mb-0">Continuité et résilience des services</h5>
+            </div>
+            <div class="card-body">
+              <p>Garantir la disponibilité des services essentiels avec des plans de continuité robustes.</p>
+              <p>Mise en place de PRA et gestion proactive des risques.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-diagram-3 me-2"></i>
+              <h5 class="mb-0">Transformation digitale rapide</h5>
+            </div>
+            <div class="card-body">
+              <p>Conduire le changement digital tout en maintenant la qualité et la conformité.</p>
+              <p>Adoption des nouvelles technologies et évolution des processus.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-people me-2"></i>
+              <h5 class="mb-0">Gestion des talents IT</h5>
+            </div>
+            <div class="card-body">
+              <p>Attirer, développer et fidéliser les compétences critiques dans un contexte concurrentiel.</p>
+              <p>Plans de formation et de succession.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-gear me-2"></i>
+              <h5 class="mb-0">Optimisation des opérations IT</h5>
+            </div>
+            <div class="card-body">
+              <p>Améliorer l'efficacité des processus et la performance des services IT.</p>
+              <p>Mise en place de tableaux de bord et indicateurs de performance clés (KPI).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-database me-2"></i>
+              <h5 class="mb-0">Gestion et protection des données</h5>
+            </div>
+            <div class="card-body">
+              <p>Assurer la qualité, la sécurité et la gouvernance des données de l'entreprise.</p>
+              <p>Politiques de confidentialité et classification des données.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-bar-chart-line me-2"></i>
+              <h5 class="mb-0">Management de la performance</h5>
+            </div>
+            <div class="card-body">
+              <p>Évaluer et suivre la performance des équipes et des projets IT.</p>
+              <p>Adoption de métriques et d'outils de reporting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="formations" class="mb-5">
+      <h2 class="text-center mb-4">Domaines de Formation</h2>
+      
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-kanban me-2"></i>
+              <h5 class="mb-0">Gestion de Projets & Méthodes Agiles</h5>
+            </div>
+            <div class="card-body">
+              <p>Maîtrisez les méthodologies de gestion de projet et les approches agiles pour une livraison efficace.</p>
+              <div class="linked-modules">
+                <span class="linked-module">PMP</span>
+                <span class="linked-module">PRINCE2</span>
+                <span class="linked-module">Agile Scrum</span>
+                <span class="linked-module">SAFe</span>
+                <span class="linked-module">Lean IT</span>
+                <span class="linked-module">Six Sigma</span>
+              </div>
+              <button class="btn btn-formation btn-sm mt-3" onclick="showDetails('gestion-projet')">
+                <i class="bi bi-info-circle me-1"></i>Voir le programme
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-shield-lock me-2"></i>
+              <h5 class="mb-0">Sécurité & Conformité</h5>
+            </div>
+            <div class="card-body">
+              <p>Protégez les systèmes d'information et assurez la conformité réglementaire.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Cybersécurité</span>
+                <span class="linked-module">ISO 27001</span>
+                <span class="linked-module">CISM</span>
+                <span class="linked-module">CISSP</span>
+                <span class="linked-module">CEH</span>
+                <span class="linked-module">PRA</span>
+              </div>
+              <button class="btn btn-formation btn-sm mt-3" onclick="showDetails('securite')">
+                <i class="bi bi-info-circle me-1"></i>Voir le programme
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-code-slash me-2"></i>
+              <h5 class="mb-0">Développement & Logiciels</h5>
+            </div>
+            <div class="card-body">
+              <p>Acquérez les compétences techniques pour développer des applications robustes et modernes.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Java</span>
+                <span class="linked-module">Python</span>
+                <span class="linked-module">C#</span>
+                <span class="linked-module">Front-end</span>
+                <span class="linked-module">DevOps</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-cloud me-2"></i>
+              <h5 class="mb-0">Cloud, DevOps & Data</h5>
+            </div>
+            <div class="card-body">
+              <p>Maîtrisez les technologies cloud, les pratiques DevOps et la gestion des données.</p>
+              <div class="linked-modules">
+                <span class="linked-module">AWS</span>
+                <span class="linked-module">Azure</span>
+                <span class="linked-module">Google Cloud</span>
+                <span class="linked-module">Data Analytics</span>
+                <span class="linked-module">Big Data</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-cpu me-2"></i>
+              <h5 class="mb-0">Infrastructure & Supervision</h5>
+            </div>
+            <div class="card-body">
+              <p>Optimisez les infrastructures IT et les systèmes de supervision.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Linux</span>
+                <span class="linked-module">Windows Server</span>
+                <span class="linked-module">Data Center</span>
+                <span class="linked-module">Virtualisation</span>
+                <span class="linked-module">Monitoring</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-people me-2"></i>
+              <h5 class="mb-0">Management & Leadership</h5>
+            </div>
+            <div class="card-body">
+              <p>Développez vos compétences en leadership et en management d'équipes IT.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Management de projet</span>
+                <span class="linked-module">Leadership digital</span>
+                <span class="linked-module">Communication</span>
+                <span class="linked-module">Négociation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-briefcase me-2"></i>
+              <h5 class="mb-0">Consulting & Stratégie IT</h5>
+            </div>
+            <div class="card-body">
+              <p>Acquérez les compétences pour conseiller sur la stratégie et les solutions IT.</p>
+              <div class="linked-modules">
+                <span class="linked-module">IT Strategy</span>
+                <span class="linked-module">Architecture d'entreprise (TOGAF)</span>
+                <span class="linked-module">Analyse métier</span>
+                <span class="linked-module">Business Process Management</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-journal-richtext me-2"></i>
+              <h5 class="mb-0">IT Service Management (ITSM)</h5>
+            </div>
+            <div class="card-body">
+              <p>Optimisez la gestion des services IT avec les meilleures pratiques du secteur.</p>
+              <div class="linked-modules">
+                <span class="linked-module">ITIL 4</span>
+                <span class="linked-module">ServiceNow</span>
+                <span class="linked-module">JIRA Service Desk</span>
+                <span class="linked-module">Gestion des incidents</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gouvernance" class="mb-5">
+      <h2 class="text-center mb-4">Gouvernance Digitale</h2>
+      
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-diagram-3 me-2"></i>
+              <h5 class="mb-0">Cadres de Gouvernance</h5>
+            </div>
+            <div class="card-body">
+              <p>Implémentez des cadres de gouvernance robustes pour aligner la stratégie IT avec les objectifs métier.</p>
+              
+              <div class="governance-highlight highlight-box mt-3">
+                <p><strong>Cadres clés :</strong></p>
+                <ul>
+                  <li><strong>COBIT :</strong> Cadre de gouvernance et de management</li>
+                  <li><strong>ITIL :</strong> Gestion des services IT</li>
+                  <li><strong>ISO 38500 :</strong> Gouvernance des technologies</li>
+                  <li><strong>TOGAF :</strong> Architecture d'entreprise</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-clipboard-data me-2"></i>
+              <h5 class="mb-0">Management du Risque IT</h5>
+            </div>
+            <div class="card-body">
+              <p>Identifiez, évaluez et traitez les risques liés aux systèmes d'information.</p>
+              <div class="row">
+                <div class="col-md-6 text-center mb-3">
+                  <i class="bi bi-exclamation-triangle fs-3" style="color: var(--governance-purple);"></i>
+                  <p class="mt-2 fw-bold">Identification</p>
+                  <p>Détection des risques</p>
+                </div>
+                <div class="col-md-6 text-center mb-3">
+                  <i class="bi bi-graph-up fs-3" style="color: var(--governance-purple);"></i>
+                  <p class="mt-2 fw-bold">Évaluation</p>
+                  <p>Analyse d'impact</p>
+                </div>
+              </div>
+              <button class="btn btn-governance btn-sm mt-2" onclick="showDetails('risque')">
+                <i class="bi bi-info-circle me-1"></i>Approfondir
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-wrench me-2"></i>
+              <h5 class="mb-0">Gestion de la Conformité</h5>
+            </div>
+            <div class="card-body">
+              <p>Assurez la conformité réglementaire et le respect des normes en vigueur.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">RGPD</li>
+                <li class="list-group-item">Directives sectorielles</li>
+                <li class="list-group-item">Audits de conformité</li>
+                <li class="list-group-item">Reporting réglementaire</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-cash-coin me-2"></i>
+              <h5 class="mb-0">Gestion de Portefeuille Projets</h5>
+            </div>
+            <div class="card-body">
+              <p>Priorisez et sélectionnez les initiatives pour maximiser la valeur métier.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Analyse de valeur</li>
+                <li class="list-group-item">Optimisation des investissements</li>
+                <li class="list-group-item">Alignement stratégique</li>
+                <li class="list-group-item">Suivi de la performance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-people me-2"></i>
+              <h5 class="mb-0">Gouvernance des Données</h5>
+            </div>
+            <div class="card-body">
+              <p>Établissez des politiques et processus pour la gestion des données.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Qualité des données</li>
+                <li class="list-group-item">Classification</li>
+                <li class="list-group-item">Lifecycle management</li>
+                <li class="list-group-item">Sécurité des données</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-person-fill-gear me-2"></i>
+              <h5 class="mb-0">Gestion des talents & des compétences</h5>
+            </div>
+            <div class="card-body">
+              <p>Définissez et mettez en œuvre une stratégie de gestion des talents et des compétences IT.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cartographie des compétences</li>
+                <li class="list-group-item">Plans de développement des talents</li>
+                <li class="list-group-item">Gestion de la mobilité interne</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-link-45deg me-2"></i>
+              <h5 class="mb-0">Alignement Stratégique IT-Métier</h5>
+            </div>
+            <div class="card-body">
+              <p>Assurez que la stratégie IT est en parfaite harmonie avec les objectifs et besoins de l'entreprise.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Comités de pilotage IT</li>
+                <li class="list-group-item">Définition de la valeur métier</li>
+                <li class="list-group-item">Mise en place de KPIs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="roadmap" class="mb-5">
+      <h2 class="text-center mb-4">Parcours de Certification</h2>
+      
+      <div class="roadmap">
+        <div class="roadmap-phase">
+          <div class="phase-header">
+            <span class="phase-title">Niveau Fondamentaux</span>
+            <span class="phase-duration">2-3 mois</span>
+          </div>
+          <p>Acquérir les bases essentielles en gestion de projet et gouvernance IT.</p>
+          <div class="linked-modules">
+            <span class="linked-module">ITIL Foundation</span>
+            <span class="linked-module">COBIT Foundation</span>
+            <span class="linked-module">PRINCE2 Foundation</span>
+            <span class="linked-module">Agile Fundamentals</span>
+          </div>
+        </div>
+        
+        <div class="roadmap-phase">
+          <div class="phase-header">
+            <span class="phase-title">Niveau Practicioner</span>
+            <span class="phase-duration">3-4 mois</span>
+          </div>
+          <p>Approfondir les compétences pratiques pour la mise en œuvre.</p>
+          <div class="linked-modules">
+            <span class="linked-module">PMP</span>
+            <span class="linked-module">CISSP</span>
+            <span class="linked-module">AWS Architect</span>
+            <span class="linked-module">Scrum Master</span>
+          </div>
+        </div>
+        
+        <div class="roadmap-phase">
+          <div class="phase-header">
+            <span class="phase-title">Niveau Expert</span>
+            <span class="phase-duration">4-6 mois</span>
+          </div>
+          <p>Devenir expert dans un domaine spécialisé avec des certifications avancées.</p>
+          <div class="linked-modules">
+            <span class="linked-module">TOGAF Certified</span>
+            <span class="linked-module">CISM</span>
+            <span class="linked-module">SAFe Program Consultant</span>
+            <span class="linked-module">Google Cloud Professional</span>
+          </div>
+        </div>
+        
+        <div class="roadmap-phase">
+          <div class="phase-header">
+            <span class="phase-title">Niveau Leader</span>
+            <span class="phase-duration">6+ mois</span>
+          </div>
+          <p>Développer des compétences stratégiques pour le leadership digital.</p>
+          <div class="linked-modules">
+            <span class="linked-module">Digital Transformation Leader</span>
+            <span class="linked-module">IT Governance Manager</span>
+            <span class="linked-module">Chief Information Security Officer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="simulations" class="mb-5">
+      <h2 class="text-center mb-4">Simulations Interactives</h2>
+
+      <ul class="nav nav-tabs justify-content-center mb-4" id="simulationTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="risk-tab" data-bs-toggle="tab" data-bs-target="#risk" type="button" role="tab">Gestion des Risques</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="planning-tab" data-bs-toggle="tab" data-bs-target="#planning" type="button" role="tab">Planification de Projet</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="incident-tab" data-bs-toggle="tab" data-bs-target="#incident" type="button" role="tab">Gestion d'Incident</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="change-tab" data-bs-toggle="tab" data-bs-target="#change" type="button" role="tab">Gestion du Changement</button>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="simulationTabContent">
+        <div class="tab-pane fade show active" id="risk" role="tabpanel">
+          <div class="simulation-container">
+            <h3 class="mb-4"><i class="bi bi-exclamation-triangle me-2"></i>Simulation de Gestion des Risques</h3>
+            <p>Cette simulation vous permet d'expérimenter l'identification, l'évaluation et le traitement des risques dans un projet IT.</p>
+            
+            <div class="process-step">
+              <h5>1. Identification des risques</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" onclick="simulateRiskStep('identify')">Simuler cette étape</button>
+                <div id="identifyResult" class="mt-3" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Risques identifiés pour le projet de migration cloud :</p>
+                    <ul>
+                      <li>Dépassement de budget dû à une mauvaise estimation des coûts cloud</li>
+                      <li>Retards causés par des dépendances techniques non identifiées</li>
+                      <li>Perte de données pendant la migration</li>
+                      <li>Résistance au changement des équipes</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>2. Analyse et évaluation</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="analyzeBtn" disabled onclick="simulateRiskStep('analyze')">Simuler cette étape</button>
+                <div id="analyzeResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Évaluation des risques selon leur probabilité et impact :</p>
+                    <table class="table table-sm">
+                      <thead>
+                        <tr><th>Risque</th><th>Probabilité</th><th>Impact</th><th>Niveau</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Dépassement de budget</td><td>Élevée</td><td>Élevé</td><td>Critique</td></tr>
+                        <tr><td>Retards techniques</td><td>Moyenne</td><td>Moyen</td><td>Modéré</td></tr>
+                        <tr><td>Perte de données</td><td>Faible</td><td>Critique</td><td>Élevé</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>3. Plan de traitement</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="treatBtn" disabled onclick="simulateRiskStep('treat')">Simuler cette étape</button>
+                <div id="treatResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Stratégies de traitement des risques critiques :</p>
+                    <ul>
+                      <li><strong>Dépassement budget :</strong> Mise en place de contrôles de coûts stricts et revues hebdomadaires</li>
+                      <li><strong>Perte de données :</strong> Plan de sauvegarde renforcé et tests de restauration</li>
+                      <li><strong>Retards techniques :</strong> Identification précoce des dépendances et buffers temporels</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <button class="btn btn-primary" onclick="resetRiskSimulation()">Réinitialiser la simulation</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="planning" role="tabpanel">
+          <div class="simulation-container">
+            <h3 class="mb-4"><i class="bi bi-calendar-check me-2"></i>Simulation de Planification de Projet</h3>
+            <p>Cette simulation vous guide à travers les étapes clés de la planification d'un projet IT.</p>
+            
+            <div class="process-step">
+              <h5>1. Définition du scope</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" onclick="simulatePlanningStep('scope')">Simuler cette étape</button>
+                <div id="scopeResult" class="mt-3" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Scope défini pour le projet "Modernisation de l'application client" :</p>
+                    <ul>
+                      <li>Refonte de l'interface utilisateur</li>
+                      <li>Intégration avec le nouveau système de paiement</li>
+                      <li>Migration des données historiques</li>
+                      <li>Formation des utilisateurs finaux</li>
+                      <li>Support post-déploiement (30 jours)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>2. Estimation des ressources</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="resourcesBtn" disabled onclick="simulatePlanningStep('resources')">Simuler cette étape</button>
+                <div id="resourcesResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Estimation des ressources nécessaires :</p>
+                    <table class="table table-sm">
+                      <thead>
+                        <tr><th>Rôle</th><th>Charge (jours-homme)</th><th>Compétences requises</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Développeur Front-end</td><td>45</td><td>React, HTML5, CSS3</td></tr>
+                        <tr><td>Développeur Back-end</td><td>30</td><td>Java, Spring Boot, API</td></tr>
+                        <tr><td>Architecte</td><td>20</td><td>Cloud, Microservices</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>3. Établissement du calendrier</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="calendarBtn" disabled onclick="simulatePlanningStep('calendar')">Simuler cette étape</button>
+                <div id="calendarResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Calendrier prévisionnel sur 12 semaines :</p>
+                    <ul>
+                      <li><strong>Semaines 1-2 :</strong> Conception détaillée et prototypage</li>
+                      <li><strong>Semaines 3-8 :</strong> Développement et tests unitaires</li>
+                      <li><strong>Semaines 9-10 :</strong> Tests d'intégration et recette</li>
+                      <li><strong>Semaine 11 :</strong> Formation utilisateurs</li>
+                      <li><strong>Semaine 12 :</strong> Déploiement et support</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <button class="btn btn-primary" onclick="resetPlanningSimulation()">Réinitialiser la simulation</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="incident" role="tabpanel">
+          <div class="simulation-container">
+            <h3 class="mb-4"><i class="bi bi-bug me-2"></i>Simulation de Gestion d'Incident de Sécurité</h3>
+            <p>Cette simulation reproduit la gestion d'un incident de sécurité dans un environnement critique.</p>
+            
+            <div class="process-step">
+              <h5>1. Détection et classification</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" onclick="simulateIncidentStep('detection')">Simuler cette étape</button>
+                <div id="detectionResult" class="mt-3" style="display:none;">
+                  <div class="alert alert-danger">
+                    <p><strong>ALERTE :</strong> Système de détection d'intrusion signale une activité suspecte sur le serveur SRV-PROD-02</p>
+                    <p>Classification initiale : Incident de niveau 2 (Impact moyen)</p>
+                    <p>Heure de détection : 08:45</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>2. Containment et analyse</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="containmentBtn" disabled onclick="simulateIncidentStep('containment')">Simuler cette étape</button>
+                <div id="containmentResult" style="display:none;">
+                  <div class="alert alert-warning">
+                    <p>Actions immédiates :</p>
+                    <ul>
+                      <li>Isolation du serveur du réseau</li>
+                      <li>Capture de la mémoire vive et des logs</li>
+                      <li>Analyse forensic initiale</li>
+                    </ul>
+                    <p>Conclusion : Tentative d'accès non autorisé via une vulnérabilité connue non patchée</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>3. Éradication et recovery</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="recoveryBtn" disabled onclick="simulateIncidentStep('recovery')">Simuler cette étape</button>
+                <div id="recoveryResult" style="display:none;">
+                  <div class="alert alert-info">
+                    <p>Actions correctives :</p>
+                    <ul>
+                      <li>Application du patch de sécurité manquant</li>
+                      <li>Nettoyage du système et vérification de l'intégrité</li>
+                      <li>Restoration depuis backup validé</li>
+                    </ul>
+                    <p>Heure de résolution : 11:30 (2h45 après détection)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>4. Post-mortem et amélioration</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="postmortemBtn" disabled onclick="simulateIncidentStep('postmortem')">Simuler cette étape</button>
+                <div id="postmortemResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Leçons apprises et actions d'amélioration :</p>
+                    <ol>
+                      <li>Mise en place d'un processus de patch management plus rigoureux</li>
+                      <li>Renforcement des règles de monitoring et d'alerting</li>
+                      <li>Formation complémentaire de l'équipe sur la réponse aux incidents</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <button class="btn btn-primary" onclick="resetIncidentSimulation()">Réinitialiser la simulation</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-pane fade" id="change" role="tabpanel">
+          <div class="simulation-container">
+            <h3 class="mb-4"><i class="bi bi-shuffle me-2"></i>Simulation de Gestion du Changement</h3>
+            <p>Cette simulation vous guide dans l'implémentation d'un changement majeur, de la communication à la validation.</p>
+            
+            <div class="process-step">
+              <h5>1. Planification de la transition</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" onclick="simulateChangeStep('planning')">Simuler cette étape</button>
+                <div id="changePlanningResult" class="mt-3" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Plan de transition pour l'adoption du nouveau CRM :</p>
+                    <ul>
+                      <li>Identification des parties prenantes clés</li>
+                      <li>Analyse des impacts sur les processus métier</li>
+                      <li>Création d'un plan de communication</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="process-step">
+              <h5>2. Communication et formation</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="changeCommunicationBtn" disabled onclick="simulateChangeStep('communication')">Simuler cette étape</button>
+                <div id="changeCommunicationResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Exécution du plan de communication :</p>
+                    <ul>
+                      <li>Envoi d'une newsletter pour annoncer le changement</li>
+                      <li>Organisation de webinaires pour les utilisateurs</li>
+                      <li>Mise en place d'une formation pratique sur le nouvel outil</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="process-step">
+              <h5>3. Suivi et validation</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="changeValidationBtn" disabled onclick="simulateChangeStep('validation')">Simuler cette étape</button>
+                <div id="changeValidationResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Suivi post-lancement :</p>
+                    <ul>
+                      <li>Recueil des feedbacks des utilisateurs (sondages)</li>
+                      <li>Analyse des indicateurs d'adoption</li>
+                      <li>Ajustement du support et de la documentation</li>
+                    </ul>
+                    <p>Le changement est validé et les utilisateurs sont autonomes.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <button class="btn btn-primary" onclick="resetChangeSimulation()">Réinitialiser la simulation</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="inscription" class="mb-5">
+      <h2 class="text-center mb-4">Inscription au Petit Déjeuner IT</h2>
+      
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header formation-header text-center">
+              <h4 class="mb-0">Réservez votre place</h4>
+            </div>
+            <div class="card-body">
+              <form id="registrationForm">
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="firstName" class="form-label">Prénom</label>
+                    <input type="text" class="form-control" id="firstName" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="lastName" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="lastName" required>
+                  </div>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email professionnel</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="company" class="form-label">Entreprise</label>
+                  <input type="text" class="form-control" id="company" required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="position" class="form-label">Fonction</label>
+                  <select class="form-select" id="position" required>
+                    <option value="" selected disabled>Sélectionnez votre fonction</option>
+                    <option value="director">Directeur/Directrice</option>
+                    <option value="manager">Manager/Chef de service</option>
+                    <option value="project">Chef de projet</option>
+                    <option value="technical">Expert technique</option>
+                    <option value="other">Autre</option>
+                  </select>
+                </div>
+                
+                <div class="mb-3">
+                  <label class="form-label">Domaines d'intérêt (plusieurs choix possibles)</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="security" id="interestSecurity">
+                    <label class="form-check-label" for="interestSecurity">Sécurité et conformité</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="project" id="interestProject">
+                    <label class="form-check-label" for="interestProject">Gestion de projet</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="cloud" id="interestCloud">
+                    <label class="form-check-label" for="interestCloud">Cloud et infrastructure</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="governance" id="interestGovernance">
+                    <label class="form-check-label" for="interestGovernance">Gouvernance IT</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="development" id="interestDevelopment">
+                    <label class="form-check-label" for="interestDevelopment">Développement</label>
+                  </div>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="questions" class="form-label">Questions ou sujets spécifiques que vous souhaitez aborder</label>
+                  <textarea class="form-control" id="questions" rows="3"></textarea>
+                </div>
+                
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="newsletter">
+                  <label class="form-check-label" for="newsletter">
+                    Je souhaite recevoir des informations sur les futurs événements et formations
+                  </label>
+                </div>
+                
+                <button type="submit" class="btn btn-formation w-100">S'inscrire maintenant</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5>Petit Déjeuner IT</h5>
+          <p>Formations Certifiantes & Gouvernance Digitale</p>
+          <p>Échangez, apprenez et repartez avec des clés concrètes pour booster vos projets.</p>
+        </div>
+        
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5>Contact</h5>
+          <p><i class="bi bi-envelope me-2"></i> contact@petitdejeunerit.fr</p>
+          <p><i class="bi bi-telephone me-2"></i> +33 1 23 45 67 89</p>
+          <p><i class="bi bi-geo-alt me-2"></i> Paris, France</p>
+        </div>
+        
+        <div class="col-md-4">
+          <h5>Suivez-nous</h5>
+          <div class="d-flex gap-3 fs-4">
+            <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <hr class="my-4">
+      
+      <div class="text-center">
+        <p class="mb-0">© 2023 Petit Déjeuner IT – Tous droits réservés</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailsModalLabel">Détails</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="detailsModalContent">
+          Chargement...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // États des simulations
+    let riskSimulationState = {
+      identify: false,
+      analyze: false,
+      treat: false
+    };
+
+    let planningSimulationState = {
+      scope: false,
+      resources: false,
+      calendar: false
+    };
+
+    let incidentSimulationState = {
+      detection: false,
+      containment: false,
+      recovery: false,
+      postmortem: false
+    };
+    
+    // NOUVEAU: État de la simulation de gestion du changement
+    let changeSimulationState = {
+      planning: false,
+      communication: false,
+      validation: false
+    };
+
+    // Éléments du DOM
+    const detailsModal = new bootstrap.Modal(document.getElementById('detailsModal'));
+    const detailsModalTitle = document.getElementById('detailsModalLabel');
+    const detailsModalContent = document.getElementById('detailsModalContent');
+
+    // Soumission du formulaire
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Merci pour votre inscription ! Vous recevrez prochainement un email de confirmation.');
+      this.reset();
+    });
+
+    // Affichage des détails dans le modal
+    function showDetails(type) {
+      let title = '';
+      let content = '';
+
+      switch(type) {
+        case 'gestion-projet':
+          title = 'Programme de Gestion de Projets & Méthodes Agiles';
+          content = `
+            <h5>Contenu de la formation :</h5>
+            <ol>
+              <li><strong>Fondamentaux de la gestion de projet</strong>
+                <ul>
+                  <li>Initiation et planification de projet</li>
+                  <li>Estimation des coûts et délais</li>
+                  <li>Gestion des parties prenantes</li>
+                </ul>
+              </li>
+              <li><strong>Méthodologies traditionnelles</strong>
+                <ul>
+                  <li>PRINCE2 Foundation & Practitioner</li>
+                  <li>PMP Exam Preparation</li>
+                  <li>Gestion des risques projet</li>
+                </ul>
+              </li>
+              <li><strong>Approches agiles</strong>
+                <ul>
+                  <li>Manifeste agile et principes</li>
+                  <li>Scrum Master Certified</li>
+                  <li>SAFe pour les grandes organisations</li>
+                </ul>
+              </li>
+              <li><strong>Outils et pratiques</strong>
+                <ul>
+                  <li>JIRA, Confluence, MS Project</li>
+                  <li>Techniques d'estimation agile</li>
+                  <li>Gestion de portefeuille projets</li>
+                </ul>
+              </li>
+            </ol>
+            
+            <div class="alert alert-info mt-3">
+              <p><strong>Durée :</strong> 5 jours (35 heures)</p>
+              <p><strong>Certifications préparées :</strong> PRINCE2, PMP, CSM, SAFe</p>
+              <p><strong>Public :</strong> Chefs de projet, Scrum Masters, Product Owners</p>
+            </div>
+          `;
+          break;
+        case 'securite':
+          title = 'Programme de Sécurité & Conformité';
+          content = `
+            <h5>Contenu de la formation :</h5>
+            <ol>
+              <li><strong>Fondamentaux de la cybersécurité</strong>
+                <ul>
+                  <li>Menaces et vulnérabilités actuelles</li>
+                  <li>Architectures de sécurité</li>
+                  <li>Principes de défense en profondeur</li>
+                </ul>
+              </li>
+              <li><strong>Normes et réglementations</strong>
+                <ul>
+                  <li>ISO 27001:2022</li>
+                  <li>RGPD et conformité données</li>
+                  <li>Directives sectorielles (NIS, DSP2)</li>
+                </ul>
+              </li>
+              <li><strong>Certifications techniques</strong>
+                <ul>
+                  <li>CISSP - Domaines de connaissance</li>
+                  <li>CISM - Management de la sécurité</li>
+                  <li>CEH - Ethical Hacking</li>
+                </ul>
+              </li>
+              <li><strong>Gestion d'incidents et continuité</strong>
+                <ul>
+                  <li>Plans de Reprise d'Activité (PRA)</li>
+                  <li>Réponse aux incidents de sécurité</li>
+                  <li>Forensic numérique</li>
+                </ul>
+              </li>
+            </ol>
+            
+            <div class="alert alert-info mt-3">
+              <p><strong>Durée :</strong> 5 jours (35 heures)</p>
+              <p><strong>Certifications préparées :</strong> CISSP, CISM, ISO 27001 Lead Implementer</p>
+              <p><strong>Public :</strong> RSSI, auditeurs, responsables conformité</p>
+            </div>
+          `;
+          break;
+        case 'risque':
+          title = 'Management du Risque IT';
+          content = `
+            <h5>Approche complète de gestion des risques IT :</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-header governance-header">
+                    <h6>Identification</h6>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li>Brainstorming avec parties prenantes</li>
+                      <li>Analyse documentaire</li>
+                      <li>Audits et revues</li>
+                      <li>Benchmarks sectoriels</li>
+                      <li>Veille menaces</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-header governance-header">
+                    <h6>Évaluation</h6>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li>Matrices probabilité/impact</li>
+                      <li>Analyse quantitative</li>
+                      <li>Scénarios de crise</li>
+                      <li>Tests de résistance</li>
+                      <li>Cartographie des risques</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-header governance-header">
+                    <h6>Traitement</h6>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li>Évitement</li>
+                      <li>Atténuation</li>
+                      <li>Transfert (assurance)</li>
+                      <li>Acceptation</li>
+                      <li>Plans d'action</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-header governance-header">
+                    <h6>Monitoring</h6>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li>Indicateurs clés (KRIs)</li>
+                      <li>Tableaux de bord</li>
+                      <li>Revues régulières</li>
+                      <li>Audits de contrôle</li>
+                      <li>Rapports direction</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="alert alert-info mt-3">
+              <p><strong>Cadres de référence :</strong> COBIT, ISO 31000, ISO 27005, MÉHARI</p>
+              <p><strong>Outils :</strong> RiskLens, RSA Archer, ServiceNow GRC</p>
+            </div>
+          `;
+          break;
+      }
+
+      detailsModalTitle.textContent = title;
+      detailsModalContent.innerHTML = content;
+      detailsModal.show();
+    }
+
+    // Fonctions de la simulation 1 : Gestion des risques
+    function simulateRiskStep(step) {
+      switch (step) {
+        case 'identify':
+          document.getElementById('identifyResult').style.display = 'block';
+          riskSimulationState.identify = true;
+          document.getElementById('analyzeBtn').disabled = false;
+          break;
+        case 'analyze':
+          document.getElementById('analyzeResult').style.display = 'block';
+          riskSimulationState.analyze = true;
+          document.getElementById('analyzeBtn').disabled = true;
+          document.getElementById('treatBtn').disabled = false;
+          break;
+        case 'treat':
+          document.getElementById('treatResult').style.display = 'block';
+          riskSimulationState.treat = true;
+          document.getElementById('treatBtn').disabled = true;
+          break;
+      }
+    }
+
+    function resetRiskSimulation() {
+      riskSimulationState = {
+        identify: false,
+        analyze: false,
+        treat: false
+      };
+
+      document.getElementById('identifyResult').style.display = 'none';
+      document.getElementById('analyzeResult').style.display = 'none';
+      document.getElementById('treatResult').style.display = 'none';
+
+      document.getElementById('analyzeBtn').disabled = true;
+      document.getElementById('treatBtn').disabled = true;
+    }
+
+    // Fonctions de la simulation 2 : Planification de projet
+    function simulatePlanningStep(step) {
+      switch (step) {
+        case 'scope':
+          document.getElementById('scopeResult').style.display = 'block';
+          planningSimulationState.scope = true;
+          document.getElementById('resourcesBtn').disabled = false;
+          break;
+        case 'resources':
+          document.getElementById('resourcesResult').style.display = 'block';
+          planningSimulationState.resources = true;
+          document.getElementById('resourcesBtn').disabled = true;
+          document.getElementById('calendarBtn').disabled = false;
+          break;
+        case 'calendar':
+          document.getElementById('calendarResult').style.display = 'block';
+          planningSimulationState.calendar = true;
+          document.getElementById('calendarBtn').disabled = true;
+          break;
+      }
+    }
+
+    function resetPlanningSimulation() {
+      planningSimulationState = {
+        scope: false,
+        resources: false,
+        calendar: false
+      };
+
+      document.getElementById('scopeResult').style.display = 'none';
+      document.getElementById('resourcesResult').style.display = 'none';
+      document.getElementById('calendarResult').style.display = 'none';
+
+      document.getElementById('resourcesBtn').disabled = true;
+      document.getElementById('calendarBtn').disabled = true;
+    }
+
+    // Fonctions de la simulation 3 : Gestion d'incident
+    function simulateIncidentStep(step) {
+      switch (step) {
+        case 'detection':
+          document.getElementById('detectionResult').style.display = 'block';
+          incidentSimulationState.detection = true;
+          document.getElementById('containmentBtn').disabled = false;
+          break;
+        case 'containment':
+          document.getElementById('containmentResult').style.display = 'block';
+          incidentSimulationState.containment = true;
+          document.getElementById('containmentBtn').disabled = true;
+          document.getElementById('recoveryBtn').disabled = false;
+          break;
+        case 'recovery':
+          document.getElementById('recoveryResult').style.display = 'block';
+          incidentSimulationState.recovery = true;
+          document.getElementById('recoveryBtn').disabled = true;
+          document.getElementById('postmortemBtn').disabled = false;
+          break;
+        case 'postmortem':
+          document.getElementById('postmortemResult').style.display = 'block';
+          incidentSimulationState.postmortem = true;
+          document.getElementById('postmortemBtn').disabled = true;
+          break;
+      }
+    }
+
+    function resetIncidentSimulation() {
+      incidentSimulationState = {
+        detection: false,
+        containment: false,
+        recovery: false,
+        postmortem: false
+      };
+
+      document.getElementById('detectionResult').style.display = 'none';
+      document.getElementById('containmentResult').style.display = 'none';
+      document.getElementById('recoveryResult').style.display = 'none';
+      document.getElementById('postmortemResult').style.display = 'none';
+
+      document.getElementById('containmentBtn').disabled = true;
+      document.getElementById('recoveryBtn').disabled = true;
+      document.getElementById('postmortemBtn').disabled = true;
+    }
+
+    // NOUVEAU: Fonctions de la simulation 4 : Gestion du Changement
+    function simulateChangeStep(step) {
+      switch (step) {
+        case 'planning':
+          document.getElementById('changePlanningResult').style.display = 'block';
+          changeSimulationState.planning = true;
+          document.getElementById('changeCommunicationBtn').disabled = false;
+          break;
+        case 'communication':
+          document.getElementById('changeCommunicationResult').style.display = 'block';
+          changeSimulationState.communication = true;
+          document.getElementById('changeCommunicationBtn').disabled = true;
+          document.getElementById('changeValidationBtn').disabled = false;
+          break;
+        case 'validation':
+          document.getElementById('changeValidationResult').style.display = 'block';
+          changeSimulationState.validation = true;
+          document.getElementById('changeValidationBtn').disabled = true;
+          break;
+      }
+    }
+
+    function resetChangeSimulation() {
+      changeSimulationState = {
+        planning: false,
+        communication: false,
+        validation: false
+      };
+
+      document.getElementById('changePlanningResult').style.display = 'none';
+      document.getElementById('changeCommunicationResult').style.display = 'none';
+      document.getElementById('changeValidationResult').style.display = 'none';
+
+      document.getElementById('changeCommunicationBtn').disabled = true;
+      document.getElementById('changeValidationBtn').disabled = true;
+    }
+  </script>
+</body>
+</html>
