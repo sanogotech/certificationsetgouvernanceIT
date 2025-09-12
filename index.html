@@ -3,119 +3,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guide Expert : Gouvernance & Formations à l'Ère de la Transformation Digitale</title>
+  <title>Petit Déjeuner IT – Formations & Gouvernance Digitale</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
+    /* VARIABLES DE COULEUR */
     :root {
-      --primary-color: #1a237e;
-      --primary-light: #534bae;
-      --secondary-color: #4a148c;
-      --secondary-light: #7b1fa2;
-      --accent-color: #ff5722;
-      --accent-light: #ff8a65;
-      --light-bg: #f5f7fa;
-      --dark-bg: #263238;
-      --text-color: #455a64;
-      --text-light: #78909c;
-      --success-color: #2e7d32;
-      --warning-color: #ed6c02;
-      --danger-color: #d32f2f;
-      --info-color: #0288d1;
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --light-bg: #f8f9fa;
+      --dark-bg: #343a40;
+      --formation-blue: #2c6aa1;
+      --governance-purple: #6f42c1;
     }
-    
+
     body {
       background-color: var(--light-bg);
-      font-family: 'Roboto', sans-serif;
-      color: var(--text-color);
-      line-height: 1.7;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    
-    h1, h2, h3, h4, h5, h6, .navbar-brand {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-    }
-    
+
+    /* BARRE DE NAVIGATION */
     .navbar {
       background-color: var(--primary-color);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      padding: 12px 0;
-      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    
-    .navbar.scrolled {
-      padding: 8px 0;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-    
+
     .navbar-brand {
-      color: #fff;
-      transition: color 0.3s ease;
-      font-size: 1.4rem;
-    }
-    
-    .navbar-brand:hover {
-      color: #e0e0e0;
-    }
-    
-    .nav-link {
-      font-weight: 500;
-      position: relative;
-      margin: 0 5px;
-      transition: all 0.3s ease;
-    }
-    
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: white;
-      transition: width 0.3s ease;
-    }
-    
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    
-    .header-section {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      font-weight: 700;
       color: white;
-      padding: 100px 0;
-      text-align: center;
-      box-shadow: 0 4px 25px rgba(0,0,0,0.2);
-      position: relative;
+    }
+
+    /* SECTION HERO */
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--formation-blue) 100%);
+      color: white;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+      border-radius: 0 0 20px 20px;
+    }
+
+    /* CARTES DE CONTENU */
+    .card {
+      border: none;
+      border-radius: 10px;
       overflow: hidden;
-    }
-    
-    .header-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
       height: 100%;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.05' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,192C672,181,768,139,864,138.7C960,139,1056,181,1152,181.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-      background-size: cover;
-      background-position: center;
     }
-    
-    .header-section h1 {
-      font-size: 3.8rem;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .card-header {
+      color: white;
+      font-weight: 600;
+    }
+
+    .formation-header {
+      background-color: var(--formation-blue);
+    }
+
+    .governance-header {
+      background-color: var(--governance-purple);
+    }
+
+    .module-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--secondary-color);
+    }
+
+    /* BOUTONS PERSONNALISÉS */
+    .btn-formation {
+      background-color: var(--formation-blue);
+      color: white;
+      border: none;
+    }
+
+    .btn-formation:hover {
+      background-color: #245786;
+      color: white;
+    }
+
+    .btn-governance {
+      background-color: var(--governance-purple);
+      color: white;
+      border: none;
+    }
+
+    .btn-governance:hover {
+      background-color: #5a359c;
+      color: white;
+    }
+
+    /* SIMULATIONS */
+    .simulation-container {
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .process-step {
+      position: relative;
+      padding-left: 30px;
       margin-bottom: 20px;
     }
-    
-    .header-section p.lead {
-      font-size: 1.4rem;
-      max-width: 800px;
-      margin: 0 auto;
+
+    .process-step:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background-color: var(--formation-blue);
+      border-radius: 50%;
     }
-    
-    .section-title {
+
+    .process-step:after {
+      content: "";
+      position: absolute;
+      left: 9px;
+      top: 20px;
+      width: 2px;
+      height: 100%;
+      background-color: var(--formation-blue);
+    }
+
+    .process-step:last-child:after {
+      display: none;
+    }
+	
+	.progress-bar {
+  transition: width 1.5s ease-in-out;
+}
+
+    .highlight-box {
+      background-color: rgba(44, 106, 161, 0.1);
+      border-left: 4px solid var(--formation-blue);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 5px 5px 0;
+    }
+
+    .governance-highlight {
+      background-color: rgba(111, 66, 193, 0.1);
+      border-left: 4px solid var(--governance-purple);
+    }
+
+    .linked-modules {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .linked-module {
+      background-color: var(--light-bg);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: var(--primary-color);
+      border: 1px solid #ddd;
+    }
+
+    .tab-content {
+      padding: 1.5rem 0;
+    }
+
+    /* PIED DE PAGE */
+    footer {
+      background-color: var(--dark-bg);
+      color: white;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .module-card {
+      animation: fadeIn 0.5s ease forwards;
+      opacity: 0;
+    }
+	
+	.section-title {
       font-weight: 700;
       color: var(--primary-color);
       margin-bottom: 40px;
@@ -134,1823 +215,1995 @@
       background: var(--accent-color);
       border-radius: 10px;
     }
-    
-    .card {
-      border-radius: 15px;
-      border: none;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      overflow: hidden;
-    }
-    
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    }
-    
-    .icon-box {
-      font-size: 3.5rem;
-      color: var(--secondary-color);
-      margin-bottom: 20px;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-    
-    .card:hover .icon-box {
-      transform: scale(1.1);
-      color: var(--accent-color);
-    }
-    
-    .list-group-item {
-      border: none;
-      border-left: 5px solid var(--secondary-color);
-      margin-bottom: 10px;
-      padding-left: 25px;
-      background-color: #ffffff;
-      transition: all 0.3s ease;
-    }
-    
-    .list-group-item:hover {
-      background-color: #f1f3f6;
-      border-left-color: var(--accent-color);
-    }
-    
-    .timeline {
-      list-style-type: none;
-      position: relative;
-      padding-left: 30px;
-    }
-    
-    .timeline:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 10px;
-      width: 4px;
-      background: var(--accent-color);
-      border-radius: 10px;
-    }
-    
-    .timeline-item {
-      position: relative;
-      margin-bottom: 40px;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    
-    .timeline-item:before {
-      content: '';
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      background: var(--primary-color);
-      border-radius: 50%;
-      left: -27px;
-      top: 24px;
-      border: 4px solid #fff;
-      box-shadow: 0 0 0 3px var(--accent-color);
-    }
-    
-    .table-responsive {
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-    
-    .table-striped > tbody > tr:nth-of-type(odd) {
-      background-color: #f8f9fa;
-    }
-    
-    .table-bordered th, .table-bordered td {
-      border: 1px solid #dee2e6;
-    }
-    
-    .stat-box {
-      text-align: center;
-      padding: 25px 15px;
-      border-radius: 10px;
-      background: white;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-    }
-    
-    .stat-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-bottom: 0;
-    }
-    
-    .stat-text {
-      font-size: 1rem;
-      color: var(--text-light);
-    }
-    
-    .testimonial-card {
-      background: white;
-      border-radius: 10px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      margin: 15px 0;
-      position: relative;
-    }
-    
-    .testimonial-card::before {
-      content: '"';
-      font-size: 5rem;
-      color: rgba(0,0,0,0.05);
-      position: absolute;
-      top: 10px;
-      left: 15px;
-      line-height: 1;
-    }
-    
-    .testimonial-author {
-      font-weight: 600;
-      color: var(--primary-color);
-      margin-top: 20px;
-    }
-    
-    .testimonial-role {
-      font-size: 0.9rem;
-      color: var(--text-light);
-    }
-    
-    .faq-item {
-      margin-bottom: 15px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    }
-    
-    .faq-question {
-      background: var(--primary-color);
-      color: white;
-      padding: 15px 20px;
-      cursor: pointer;
-      font-weight: 600;
-      position: relative;
-    }
-    
-    .faq-answer {
-      padding: 20px;
-      background: white;
-      display: none;
-    }
-    
-    .faq-question::after {
-      content: '+';
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.2rem;
-    }
-    
-    .faq-item.active .faq-question::after {
-      content: '-';
-    }
-    
-    .resource-card {
-      border-left: 4px solid var(--accent-color);
-      transition: all 0.3s ease;
-    }
-    
-    .resource-card:hover {
-      border-left-width: 8px;
-    }
-    
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--accent-color);
-      color: white;
+
+    .module-card:nth-child(1) { animation-delay: 0.1s; }
+    .module-card:nth-child(2) { animation-delay: 0.2s; }
+    .module-card:nth-child(3) { animation-delay: 0.3s; }
+    .module-card:nth-child(4) { animation-delay: 0.4s; }
+    .module-card:nth-child(5) { animation-delay: 0.5s; }
+    .module-card:nth-child(6) { animation-delay: 0.6s; }
+    .module-card:nth-child(7) { animation-delay: 0.7s; } /* Ajouté */
+    .module-card:nth-child(8) { animation-delay: 0.8s; } /* Ajouté */
+    .module-card:nth-child(9) { animation-delay: 0.9s; } /* Ajouté */
+
+    /* FEUILLE DE ROUTE */
+    .roadmap {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      z-index: 1000;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 2rem 0;
     }
-    
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .back-to-top:hover {
-      background: var(--primary-color);
-      transform: translateY(-5px);
-    }
-    
-    .section-padding {
-      padding: 80px 0;
-    }
-    
-    .bg-gradient-primary {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-    }
-    
-    .bg-gradient-light {
-      background: linear-gradient(135deg, #f5f7fa, #e4e8f0);
-    }
-    
-    .cta-section {
-      background: linear-gradient(rgba(26, 35, 126, 0.9), rgba(26, 35, 126, 0.9)), url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.05" fill-rule="evenodd"%3E%3Ccircle cx="3" cy="3" r="3"/%3E%3Ccircle cx="13" cy="13" r="3"/%3E%3C/g%3E%3C/svg%3E');
-      padding: 80px 0;
-      color: white;
-      text-align: center;
-    }
-    
-    .footer {
-      background: var(--dark-bg);
-      color: white;
-      padding: 60px 0 30px;
-    }
-    
-    .footer-title {
-      font-weight: 700;
-      margin-bottom: 25px;
+
+    .roadmap-phase {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       position: relative;
-      padding-bottom: 10px;
     }
-    
-    .footer-title::after {
-      content: '';
+
+    .roadmap-phase:before {
+      content: "";
       position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 40px;
-      height: 3px;
-      background: var(--accent-color);
+      left: -20px;
+      top: 50%;
+      width: 20px;
+      height: 2px;
+      background-color: var(--formation-blue);
     }
-    
-    .footer-links {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .footer-links li {
-      margin-bottom: 12px;
-    }
-    
-    .footer-links a {
-      color: #cfd8dc;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    .footer-links a:hover {
-      color: white;
-      padding-left: 5px;
-    }
-    
-    .social-links a {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      background: rgba(255,255,255,0.1);
+
+    .roadmap-phase:after {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: calc(50% - 5px);
+      width: 10px;
+      height: 10px;
+      background-color: var(--formation-blue);
       border-radius: 50%;
-      text-align: center;
-      line-height: 40px;
+    }
+
+    .phase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .phase-title {
+      font-weight: bold;
+      color: var(--formation-blue);
+    }
+
+    .phase-duration {
+      background-color: var(--formation-blue);
       color: white;
-      margin-right: 10px;
-      transition: all 0.3s ease;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
     }
-    
-    .social-links a:hover {
-      background: var(--accent-color);
-      transform: translateY(-5px);
-    }
-    
+
+    /* RESPONSIVITÉ */
     @media (max-width: 768px) {
-      .header-section h1 {
-        font-size: 2.5rem;
+      .hero-section {
+        padding: 2rem 0;
       }
-      
-      .header-section p.lead {
-        font-size: 1.1rem;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
+
+      .module-icon {
+        font-size: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-dark mb-4">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <i class="bi bi-robot me-2"></i>
-        Excellence Digitale
+        <i class="bi bi-cup-hot me-2"></i>Petit Déjeuner IT
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#manifeste">Manifeste</a></li>
-          <li class="nav-item"><a class="nav-link" href="#concepts">Concepts</a></li>
-          <li class="nav-item"><a class="nav-link" href="#statistiques">Statistiques</a></li>
-          <li class="nav-item"><a class="nav-link" href="#bonnes-pratiques">Pratiques</a></li>
-          <li class="nav-item"><a class="nav-link" href="#metriques">Métriques</a></li>
-          <li class="nav-item"><a class="nav-link" href="#cycle-vie">Cycle de Vie</a></li>
-          <li class="nav-item"><a class="nav-link" href="#feuille-route">Feuille de Route</a></li>
-          <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
-          <li class="nav-item"><a class="nav-link" href="#temoignages">Témoignages</a></li>
-          <li class="nav-item"><a class="nav-link" href="#red-flags">Dangers</a></li>
-          <li class="nav-item"><a class="nav-link" href="#ressources">Ressources</a></li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#concepts">Enjeux</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#formations">Formations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#gouvernance">Gouvernance</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#roadmap">Parcours</a>
+          </li>
+		  
+		   <li class="nav-item">
+            <a class="nav-link" href="#vision3ans">Vision 3ans</a>
+          </li>
+		  
+          <li class="nav-item">
+            <a class="nav-link" href="#simulations">Simulations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#inscription">Inscription</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <header class="header-section" id="manifeste">
-    <div class="container">
-      <h1>Le Manifeste de l'Excellence Digitale</h1>
-      <p class="lead mt-4">
-        Guide stratégique complet pour aligner les programmes de formation, la gouvernance et les objectifs business dans la transformation digitale. Découvrez les meilleures pratiques, les pièges à éviter et les stratégies pour réussir votre transition numérique.
-      </p>
-      <div class="mt-5">
-        <a href="#feuille-route" class="btn btn-light btn-lg px-5 me-3">Démarrer la transformation</a>
-        <a href="#ressources" class="btn btn-outline-light btn-lg px-5">Télécharger les ressources</a>
+  <section class="hero-section">
+    <div class="container text-center">
+      <h1 class="display-4 fw-bold mb-3">Petit Déjeuner IT – Formations Certifiantes & Gouvernance Digitale</h1>
+      <p class="lead mb-4">Maîtrisez les compétences clés pour piloter vos projets, sécuriser les opérations et accélérer la transformation digitale</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="#inscription" class="btn btn-light btn-lg px-4">S'inscrire</a>
+        <a href="#formations" class="btn btn-outline-light btn-lg px-4">Découvrir les formations</a>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main class="container py-5">
+  <div class="container mb-5">
+  
+<section id="statistiques" class="mb-5 section-padding bg-gradient-light" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+  <div class="container">
+    <h2 class="section-title text-center mb-4" style="font-weight: 700; color: #343a40;">📊 Chiffres Clés et Statistiques</h2>
+    <p class="lead text-center mb-5" style="color:#495057;">Comprendre l'impact économique, stratégique et technologique de la transformation digitale</p>
     
-    <section id="concepts" class="mb-5 section-padding">
-      <h2 class="section-title">Concepts Approfondis : L'Écosystème de la Gouvernance Digitale</h2>
-      <div class="card p-5 mb-5">
-        <p class="lead text-center">
-          La gouvernance digitale n'est pas une fonction isolée, mais un écosystème qui repose sur la synergie de cinq piliers fondamentaux.
-        </p>
-        <div class="row g-4 mt-4">
-          <div class="col-md-4">
-            <div class="card h-100 p-4 text-center bg-light">
-              <div class="card-body">
-                <div class="icon-box"><i class="bi bi-graph-up-arrow"></i></div>
-                <h5 class="card-title fw-bold">1. La Gouvernance Stratégique</h5>
-                <p class="card-text">
-                  C'est la capacité à aligner les investissements technologiques sur la vision à long terme de l'entreprise. Les formations certifiantes en gestion de projet (PMP, Agile SAFe/Scrum) et en architecture d'entreprise (TOGAF) fournissent le cadre méthodologique pour garantir que chaque projet contribue à la stratégie globale.
-                </p>
-                <div class="mt-3">
-                  <span class="badge bg-primary me-1">PMP</span>
-                  <span class="badge bg-primary me-1">Agile SAFe/Scrum</span>
-                  <span class="badge bg-primary">TOGAF</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 p-4 text-center bg-light">
-              <div class="card-body">
-                <div class="icon-box"><i class="bi bi-shield-lock"></i></div>
-                <h5 class="card-title fw-bold">2. La Gouvernance de la Sécurité</h5>
-                <p class="card-text">
-                  Avec l'essor du télétravail et des cyberattaques, la sécurité est au cœur des préoccupations. Une gouvernance robuste repose sur des équipes formées aux standards internationaux (ISO 27001, NIST) et aux certifications de pointe (CISSP, CISM).
-                </p>
-                <div class="mt-3">
-                  <span class="badge bg-primary me-1">CISSP</span>
-                  <span class="badge bg-primary me-1">CISM</span>
-                  <span class="badge bg-primary">ISO27001</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 p-4 text-center bg-light">
-              <div class="card-body">
-                <div class="icon-box"><i class="bi bi-database-fill"></i></div>
-                <h5 class="card-title fw-bold">3. La Gouvernance des Données</h5>
-                <p class="card-text">
-                  Les données sont le nouvel or noir, mais leur gestion est complexe. Les formations en Data Science, Big Data et RGPD (Certified Data Privacy Professional) sont essentielles pour garantir l'intégrité, la confidentialité et la valeur des données.
-                </p>
-                <div class="mt-3">
-                  <span class="badge bg-primary me-1">CDPP</span>
-                  <span class="badge bg-primary me-1">CDMP</span>
-                  <span class="badge bg-primary">GDPR</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4">
-            <div class="card h-100 p-4 text-center bg-light">
-              <div class="card-body">
-                <div class="icon-box"><i class="bi bi-people-fill"></i></div>
-                <h5 class="card-title fw-bold">4. La Gouvernance des Talents</h5>
-                <p class="card-text">
-                  La rétention et le développement des compétences critiques sont essentiels. Mettre en place des parcours de certification progressifs, des programmes de mentorat et une culture d'apprentissage continu permet de maintenir un avantage concurrentiel.
-                </p>
-                <div class="mt-3">
-                  <span class="badge bg-primary me-1">Mentorat</span>
-                  <span class="badge bg-primary me-1">Upskilling</span>
-                  <span class="badge bg-primary">Career Path</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 mt-4">
-            <div class="card h-100 p-4 text-center bg-light">
-              <div class="card-body">
-                <div class="icon-box"><i class="bi bi-gear-fill"></i></div>
-                <h5 class="card-title fw-bold">5. La Gouvernance Opérationnelle</h5>
-                <p class="card-text">
-                  L'alignement entre les processus métier et les systèmes d'information est crucial. Les frameworks ITIL, COBIT et DevOps fournissent les bonnes pratiques pour une delivery efficace, efficiente et alignée avec les besoins business.
-                </p>
-                <div class="mt-3">
-                  <span class="badge bg-primary me-1">ITIL</span>
-                  <span class="badge bg-primary me-1">COBIT</span>
-                  <span class="badge bg-primary">DevOps</span>
-                </div>
-              </div>
-            </div>
+    <div class="row g-4 text-center">
+      <!-- Statistiques Digitales avec barres animées -->
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-box p-4 rounded shadow-sm" style="background-color: #ffffff;">
+          <h3 class="stat-number" style="font-size:2.2rem; color:#0d6efd;">87%</h3>
+          <p class="stat-text" style="color:#495057;">des dirigeants considèrent la transformation digitale comme une priorité stratégique</p>
+          <div class="progress" style="height:8px; border-radius:4px;">
+            <div class="progress-bar bg-primary" role="progressbar" style="width:87%;" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>
       </div>
-      
-      <div class="row mt-5">
-        <div class="col-lg-6">
-          <div class="card h-100 p-4">
-            <h4 class="card-title fw-bold mb-4">Les 7 Principes de la Gouvernance Digitale</h4>
-            <ol class="list-group list-group-numbered">
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Alignement stratégique</div>
-                  La technologie doit servir les objectifs business et non l'inverse
-                </div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Création de valeur</div>
-                  Chaque investissement technologique doit générer de la valeur mesurable
-                </div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Gestion des risques</div>
-                  Identifier, évaluer et mitiger les risques technologiques et de conformité
-                </div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Mesure de la performance</div>
-                  Suivre les indicateurs clés pour évaluer l'efficacité des investissements
-                </div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Responsabilisation</div>
-                  Clarifier les rôles, responsabilités et processus décisionnels
-                </div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Transparence</div>
-                  Rendre visibles les processus, décisions et résultats
-                </div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Évolution permanente</div>
-                  S'adapter continuellement aux changements technologiques et business
-                </div>
-              </li>
-            </ol>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card h-100 p-4">
-            <h4 class="card-title fw-bold mb-4">Cadres Réglementaires et Normes</h4>
-            <div class="accordion" id="regulatoryAccordion">
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                    RGPD / GDPR
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#regulatoryAccordion">
-                  <div class="accordion-body">
-                    Règlement général sur la protection des données. Impacte toute organisation traitant des données de résidents européens. Exige une protection renforcée des données personnelles et une documentation rigoureuse des traitements.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                    NIS 2
-                  </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#regulatoryAccordion">
-                  <div class="accordion-body">
-                    Directive sur la sécurité des réseaux et des systèmes d'information. Élargit le champ d'application et renforce les exigences de sécurité pour les opérateurs de services essentiels et importants.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                    DORA
-                  </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#regulatoryAccordion">
-                  <div class="accordion-body">
-                    Digital Operational Resilience Act. Cadre réglementaire européen visant à renforcer la résilience opérationnelle du secteur financier face aux perturbations liées aux technologies de l'information.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
-                    ISO 27001
-                  </button>
-                </h2>
-                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#regulatoryAccordion">
-                  <div class="accordion-body">
-                    Norme internationale pour la mise en place d'un système de management de la sécurité de l'information (SMSI). Fournit un cadre pour gérer la sécurité des informations sensibles.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="statistiques" class="mb-5 section-padding bg-gradient-light">
-      <div class="container">
-        <h2 class="section-title">Chiffres Clés et Statistiques</h2>
-        <p class="lead text-center mb-5">Comprendre l'impact économique et stratégique de la transformation digitale</p>
-        
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-3">
-            <div class="stat-box">
-              <h3 class="stat-number">87%</h3>
-              <p class="stat-text">des dirigeants considèrent la transformation digitale comme une priorité stratégique</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="stat-box">
-              <h3 class="stat-number">70%</h3>
-              <p class="stat-text">des transformations digitales échouent à atteindre leurs objectifs initiaux</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="stat-box">
-              <h3 class="stat-number">$6.8T</h3>
-              <p class="stat-text">dépensés en transformation digitale d'ici 2023 selon IDC</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="stat-box">
-              <h3 class="stat-number">54%</h3>
-              <p class="stat-text">des entreprises déclarent manquer de compétences digitales critiques</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row mt-5">
-          <div class="col-lg-6">
-            <div class="card h-100 p-4">
-              <h4 class="card-title fw-bold mb-4">Impact des Formations Certifiantes</h4>
-              <div class="table-responsive">
-                <table class="table table-bordered">
-                  <thead class="table-primary">
-                    <tr>
-                      <th>Type de Certification</th>
-                      <th>Augmentation Salariale</th>
-                      <th>Impact sur la Performance</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Cloud (AWS, Azure)</td>
-                      <td>15-20%</td>
-                      <td>+35% d'efficacité infrastructure</td>
-                    </tr>
-                    <tr>
-                      <td>Cybersécurité (CISSP, CISM)</td>
-                      <td>12-18%</td>
-                      <td>-45% d'incidents majeurs</td>
-                    </tr>
-                    <tr>
-                      <td>Data Science</td>
-                      <td>20-25%</td>
-                      <td>+40% de précision décisionnelle</td>
-                    </tr>
-                    <tr>
-                      <td>Gestion de Projet (PMP)</td>
-                      <td>10-15%</td>
-                      <td>+30% de projets livrés dans les délais</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="card h-100 p-4">
-              <h4 class="card-title fw-bold mb-4">Coûts des Cyberincidents</h4>
-              <div class="table-responsive">
-                <table class="table table-bordered">
-                  <thead class="table-danger">
-                    <tr>
-                      <th>Type d'Incident</th>
-                      <th>Coût Moyen</th>
-                      <th>Temps de Rétablissement</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Violation de données</td>
-                      <td>4.24M$</td>
-                      <td>277 jours</td>
-                    </tr>
-                    <tr>
-                      <td>Ransomware</td>
-                      <td>1.85M$</td>
-                      <td>23 jours</td>
-                    </tr>
-                    <tr>
-                      <td>Phishing</td>
-                      <td>4.65M$</td>
-                      <td>243 jours</td>
-                    </tr>
-                    <tr>
-                      <td>DDoS</td>
-                      <td>2.5M$</td>
-                      <td>14-20 heures</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="mt-3 alert alert-warning">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                <strong>Note :</strong> Les entreprises avec des équipes certifiées en cybersécurité réduisent ces coûts de 40% en moyenne.
-              </div>
-            </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-box p-4 rounded shadow-sm" style="background-color: #ffffff;">
+          <h3 class="stat-number" style="font-size:2.2rem; color:#dc3545;">70%</h3>
+          <p class="stat-text" style="color:#495057;">des transformations digitales échouent à atteindre leurs objectifs initiaux</p>
+          <div class="progress" style="height:8px; border-radius:4px;">
+            <div class="progress-bar bg-danger" role="progressbar" style="width:70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section id="bonnes-pratiques" class="mb-5 section-padding">
-      <h2 class="section-title">Bonnes Pratiques & Retours d'Expérience (REX) pour un Impact Maximal</h2>
-      
-      <div class="card p-5 mb-5">
-        <h4 class="mb-4">REX n°1 : Le Projet de "Portail 360 Client" d'un acteur bancaire</h4>
-        <p>
-          Un leader bancaire cherchait à consolider l'ensemble des interactions clients sur une plateforme unique pour améliorer l'expérience. Le projet initial a échoué en raison d'une mauvaise gouvernance des données.
-        </p>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <i class="bi bi-lightbulb-fill me-2 text-warning"></i>
-            <strong>Leçon clé :</strong> La compétence technique seule ne suffit pas. L'entreprise a ensuite investi dans la formation de ses équipes de management et de ses data architects aux certifications en gouvernance des données (CDGP).
-          </li>
-          <li class="list-group-item">
-            <i class="bi bi-check-circle-fill me-2 text-success"></i>
-            <strong>Résultat :</strong> Les équipes ont mis en place une "Source Unique de Vérité" (SSOT) en s'appuyant sur les bonnes pratiques apprises, ce qui a permis de relancer le projet avec succès. Le taux de résolution au premier contact a augmenté de 25%.
-          </li>
-        </ul>
-      </div>
-      
-      <div class="card p-5 mb-5">
-        <h4 class="mb-4">REX n°2 : L'adoption du Cloud chez un industriel</h4>
-        <p>
-          Un groupe industriel a lancé une migration massive vers le cloud public, mais s'est retrouvé face à des coûts imprévus et des failles de sécurité.
-        </p>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <i class="bi bi-lightbulb-fill me-2 text-warning"></i>
-            <strong>Leçon clé :</strong> Ne pas négliger l'aspect financier et sécuritaire de l'infrastructure. Les équipes de l'IT ont suivi des formations certifiantes en architecture cloud (AWS Solutions Architect) et en gestion de la sécurité (CISSP).
-          </li>
-          <li class="list-group-item">
-            <i class="bi bi-check-circle-fill me-2 text-success"></i>
-            <strong>Résultat :</strong> La certification a permis de revoir l'architecture pour optimiser les coûts (FinOps) et de renforcer la posture de sécurité. Les incidents ont été réduits de 40%, et le budget cloud a été maîtrisé.
-          </li>
-        </ul>
-      </div>
-      
-      <div class="card p-5">
-        <h4 class="mb-4">REX n°3 : Transformation Agile à grande échelle dans le secteur public</h4>
-        <p>
-          Une administration publique a tenté d'implémenter des méthodes agiles sur l'ensemble de ses projets digitaux, mais a rencontré une forte résistance culturelle et des difficultés de mise en œuvre.
-        </p>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <i class="bi bi-lightbulb-fill me-2 text-warning"></i>
-            <strong>Leçon clé :</strong> L'agilité ne se décrète pas, elle s'apprend et s'inculture. L'organisation a investi dans des formations Agile SAFe/Scrum et LeSS pour ses managers et a créé un centre d'excellence Agile.
-          </li>
-          <li class="list-group-item">
-            <i class="bi bi-check-circle-fill me-2 text-success"></i>
-            <strong>Résultat :</strong> Après 18 mois, le time-to-market des projets a été réduit de 35% et la satisfaction des utilisateurs finaux a augmenté de 28 points. Le taux d'échec des projets a chuté de 45% à 15%.
-          </li>
-        </ul>
-      </div>
-      
-      <div class="row mt-5">
-        <div class="col-lg-6">
-          <div class="card h-100 p-4">
-            <h4 class="card-title fw-bold mb-4">Checklist des Bonnes Pratiques</h4>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="check1">
-              <label class="form-check-label" for="check1">
-                Aligner les formations sur les objectifs stratégiques de l'entreprise
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="check2">
-              <label class="form-check-label" for="check2">
-                Mettre en place un programme de mentorat pour les certifiés
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="check3">
-              <label class="form-check-label" for="check3">
-                Créer des communautés de pratique autour des compétences critiques
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="check4">
-              <label class="form-check-label" for="check4">
-                Mesurer le ROI des formations via des indicateurs business
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="check5">
-              <label class="form-check-label" for="check5">
-                Intégrer les certifications dans les plans de carrière
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="check6">
-              <label class="form-check-label" for="check6">
-                Favoriser les formations pratiques avec études de cas réels
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="check7">
-              <label class="form-check-label" for="check7">
-                Mettre en place un processus d'amélioration continue des compétences
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card h-100 p-4">
-            <h4 class="card-title fw-bold mb-4">Erreurs Fréquentes à Éviter</h4>
-            <div class="alert alert-danger">
-              <i class="bi bi-x-circle-fill me-2"></i>
-              <strong>Former sans stratégie :</strong> Dépenser des budgets formation sans alignement avec les objectifs business
-            </div>
-            <div class="alert alert-danger">
-              <i class="bi bi-x-circle-fill me-2"></i>
-              <strong>Négliger l'application pratique :</strong> Certifications théoriques sans opportunité de mise en pratique
-            </div>
-            <div class="alert alert-danger">
-              <i class="bi bi-x-circle-fill me-2"></i>
-              <strong>Ignorer la culture d'entreprise :</strong> Imposer des méthodes sans préparation culturelle
-            </div>
-            <div class="alert alert-danger">
-              <i class="bi bi-x-circle-fill me-2"></i>
-              <strong>Sous-estimer le changement management :</strong> Ne pas accompagner le changement induit par les nouvelles compétences
-            </div>
-            <div class="alert alert-danger">
-              <i class="bi bi-x-circle-fill me-2"></i>
-              <strong>Mesurer uniquement les inputs :</strong> Compter le nombre de certifiés sans évaluer l'impact business
-            </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-box p-4 rounded shadow-sm" style="background-color: #ffffff;">
+          <h3 class="stat-number" style="font-size:2.2rem; color:#198754;">$9.3T</h3>
+          <p class="stat-text" style="color:#495057;">dépensés en transformation digitale d'ici 2030 selon IDC</p>
+          <div class="progress" style="height:8px; border-radius:4px;">
+            <div class="progress-bar bg-success" role="progressbar" style="width:90%;" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section id="metriques" class="mb-5 section-padding bg-gradient-light">
-      <div class="container">
-        <h2 class="section-title">Les Métriques Clés de l'Impact (KPI Dashboard)</h2>
-        <div class="card p-5">
-          <p class="lead text-center">
-            Un programme de formation efficace doit être mesuré. Voici un tableau de bord des indicateurs de performance (KPI) pour évaluer son ROI.
-          </p>
-          <div class="table-responsive mt-4">
-            <table class="table table-striped table-bordered text-center">
-              <thead class="bg-primary text-white">
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-box p-4 rounded shadow-sm" style="background-color: #ffffff;">
+          <h3 class="stat-number" style="font-size:2.2rem; color:#fd7e14;">54%</h3>
+          <p class="stat-text" style="color:#495057;">des entreprises déclarent manquer de compétences digitales critiques</p>
+          <div class="progress" style="height:8px; border-radius:4px;">
+            <div class="progress-bar bg-warning" role="progressbar" style="width:54%;" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nouvelles Statistiques -->
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-box p-4 rounded shadow-sm" style="background-color: #ffffff;">
+          <h3 class="stat-number" style="font-size:2.2rem; color:#0dcaf0;">68%</h3>
+          <p class="stat-text" style="color:#495057;">des projets IT échouent à cause d'une mauvaise gouvernance de la donnée</p>
+          <div class="progress" style="height:8px; border-radius:4px;">
+            <div class="progress-bar bg-info" role="progressbar" style="width:68%;" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-box p-4 rounded shadow-sm" style="background-color: #ffffff;">
+          <h3 class="stat-number" style="font-size:2.2rem; color:#6f42c1;">92%</h3>
+          <p class="stat-text" style="color:#495057;">des entreprises utilisent le cloud pour au moins une partie de leur infrastructure</p>
+          <div class="progress" style="height:8px; border-radius:4px;">
+            <div class="progress-bar bg-purple" role="progressbar" style="width:92%;" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-box p-4 rounded shadow-sm" style="background-color: #ffffff;">
+          <h3 class="stat-number" style="font-size:2.2rem; color:#20c997;">37%</h3>
+          <p class="stat-text" style="color:#495057;">des budgets IT sont maintenant alloués à l'intelligence artificielle et au machine learning</p>
+          <div class="progress" style="height:8px; border-radius:4px;">
+            <div class="progress-bar bg-teal" role="progressbar" style="width:37%;" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-box p-4 rounded shadow-sm" style="background-color: #ffffff;">
+          <h3 class="stat-number" style="font-size:2.2rem; color:#fd6f53;">60%</h3>
+          <p class="stat-text" style="color:#495057;">des entreprises considèrent la cybersécurité comme un facteur clé de compétitivité</p>
+          <div class="progress" style="height:8px; border-radius:4px;">
+            <div class="progress-bar bg-danger" role="progressbar" style="width:60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tables des Formations et Cyberincidents -->
+    <div class="row mt-5">
+      <!-- Formations certifiantes -->
+      <div class="col-lg-6">
+        <div class="card h-100 p-4 shadow-sm">
+          <h4 class="card-title fw-bold mb-4">💡 Impact des Formations Certifiantes</h4>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+              <thead class="table-primary">
                 <tr>
-                  <th>Type de Métrique</th>
-                  <th>KPIs Qualitatifs</th>
-                  <th>KPIs Quantitatifs</th>
+                  <th>Type de Certification</th>
+                  <th>Augmentation Salariale</th>
+                  <th>Impact sur la Performance</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="fw-bold">Efficacité Opérationnelle</td>
-                  <td><ul><li>Qualité du code (moins de bugs)</li><li>Fluidité des processus (Rex)</li><li>Accélération de la mise sur le marché</li></ul></td>
-                  <td><ul><li>Coût d'un projet (réduit de 15% ?)</li><li>Taux de réussite des projets (+10%)</li><li>Temps de réponse aux incidents (réduit)</li></ul></td>
-                </tr>
-                <tr>
-                  <td class="fw-bold">Gouvernance et Risques</td>
-                  <td><ul><li>Niveau de conformité (RGPD)</li><li>Confiance des parties prenantes</li><li>Qualité de la documentation</li></ul></td>
-                  <td><ul><li>Nombre de vulnérabilités critiques (réduit de 50%)</li><li>Nombre d'audits passés avec succès</li><li>Coût des non-conformités (réduit)</li></ul></td>
-                </tr>
-                <tr>
-                  <td class="fw-bold">Ressources Humaines</td>
-                  <td><ul><li>Engagement et motivation des équipes</li><li>Amélioration du climat de travail</li><li>Développement du leadership</li></ul></td>
-                  <td><ul><li>Taux de rétention des talents (+5%)</li><li>Indice de satisfaction des employés (eNPS)</li><li>Taux d'embauche de talents externes (réduit)</li></ul></td>
-                </tr>
+                <tr><td>Cloud (AWS, Azure)</td><td>15-20%</td><td>+35% d'efficacité infrastructure</td></tr>
+                <tr><td>Cybersécurité (CISSP, CISM)</td><td>12-18%</td><td>-45% d'incidents majeurs</td></tr>
+                <tr><td>Data Science</td><td>20-25%</td><td>+40% de précision décisionnelle</td></tr>
+                <tr><td>Gestion de Projet (PMP)</td><td>10-15%</td><td>+30% de projets livrés dans les délais</td></tr>
+                <tr><td>IA et Machine Learning</td><td>18-22%</td><td>+50% d'automatisation des processus</td></tr>
+                <tr><td>DevSecOps</td><td>12-17%</td><td>+40% de sécurité et vitesse de déploiement</td></tr>
               </tbody>
             </table>
           </div>
         </div>
-        
-        <div class="row mt-5">
-          <div class="col-lg-6">
-            <div class="card h-100 p-4">
-              <h4 class="card-title fw-bold mb-4">Tableau de Bord Executive</h4>
-              <div class="table-responsive">
-                <table class="table table-bordered">
-                  <thead class="table-info">
-                    <tr>
-                      <th>KPI</th>
-                      <th>Cible</th>
-                      <th>Actuel</th>
-                      <th>Tendance</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>ROI des formations</td>
-                      <td>200%</td>
-                      <td>145%</td>
-                      <td><i class="bi bi-arrow-up-circle-fill text-success"></i></td>
-                    </tr>
-                    <tr>
-                      <td>Taux de certification</td>
-                      <td>75%</td>
-                      <td>68%</td>
-                      <td><i class="bi bi-arrow-up-circle-fill text-success"></i></td>
-                    </tr>
-                    <tr>
-                      <td>Projets livrés dans les délais</td>
-                      <td>85%</td>
-                      <td>72%</td>
-                      <td><i class="bi bi-arrow-up-circle-fill text-success"></i></td>
-                    </tr>
-                    <tr>
-                      <td>Incidents de sécurité</td>
-                      <td>-40%</td>
-                      <td>-25%</td>
-                      <td><i class="bi bi-arrow-down-circle-fill text-success"></i></td>
-                    </tr>
-                    <tr>
-                      <td>Coût des non-conformités</td>
-                      <td>-30%</td>
-                      <td>-15%</td>
-                      <td><i class="bi bi-arrow-down-circle-fill text-success"></i></td>
-                    </tr>
-                  </tbody>
-                </table>
+      </div>
+
+      <!-- Coûts des Cyberincidents -->
+      <div class="col-lg-6">
+        <div class="card h-100 p-4 shadow-sm">
+          <h4 class="card-title fw-bold mb-4">⚠️ Coûts des Cyberincidents</h4>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+              <thead class="table-danger">
+                <tr>
+                  <th>Type d'Incident</th>
+                  <th>Coût Moyen</th>
+                  <th>Temps de Rétablissement</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Violation de données</td><td>4.24M$</td><td>277 jours</td></tr>
+                <tr><td>Ransomware</td><td>1.85M$</td><td>23 jours</td></tr>
+                <tr><td>Phishing</td><td>4.65M$</td><td>243 jours</td></tr>
+                <tr><td>DDoS</td><td>2.5M$</td><td>14-20 heures</td></tr>
+                <tr><td>Compromission Cloud</td><td>3.2M$</td><td>35 jours</td></tr>
+                <tr><td>Exfiltration de données IA</td><td>5.1M$</td><td>290 jours</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-3 alert alert-warning">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <strong>Note :</strong> Les entreprises avec des équipes certifiées en cybersécurité réduisent ces coûts de 40% en moyenne.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+    <section id="concepts" class="mb-5">
+      <h2 class="text-center mb-4">Enjeux et Défis Prioritaires</h2>
+      
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-shield-check me-2"></i>
+              <h5 class="mb-0">Sécurité des systèmes critiques</h5>
+            </div>
+            <div class="card-body">
+              <p>Protection des infrastructures vitales contre les cyberattaques et interruptions de service.</p>
+              <div class="highlight-box">
+                <p><strong>Formations associées :</strong></p>
+                <ul>
+                  <li>Cybersécurité (CISSP, CISM)</li>
+                  <li>ISO 27001</li>
+                  <li>Plans de Reprise d'Activité (PRA)</li>
+                  <li>Gestion des risques</li>
+                </ul>
               </div>
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="card h-100 p-4">
-              <h4 class="card-title fw-bold mb-4">Calcul du ROI des Formations</h4>
-              <div class="mb-4">
-                <h6>Formule simplifiée :</h6>
-                <div class="bg-light p-3 rounded">
-                  <code>ROI = (Bénéfices - Coût des formations) / Coût des formations × 100</code>
-                </div>
-              </div>
-              <div class="mb-4">
-                <h6>Exemple concret :</h6>
-                <ul class="list-group">
-                  <li class="list-group-item">Coût de la formation CISSP pour 5 collaborateurs : 25 000 €</li>
-                  <li class="list-group-item">Réduction des incidents sécurité : économie estimée 45 000 €</li>
-                  <li class="list-group-item">Amélioration de l'efficacité : gain estimé 15 000 €</li>
-                  <li class="list-group-item list-group-item-success">
-                    <strong>ROI = (60 000 € - 25 000 €) / 25 000 € × 100 = 140%</strong>
-                  </li>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-clock-history me-2"></i>
+              <h5 class="mb-0">Livraison des projets dans les délais et budgets</h5>
+            </div>
+            <div class="card-body">
+              <p>Réduction des retards et échecs pour sécuriser la valeur des initiatives digitales.</p>
+              <div class="highlight-box">
+                <p><strong>Formations associées :</strong></p>
+                <ul>
+                  <li>PMP, PRINCE2</li>
+                  <li>Agile Scrum</li>
+                  <li>Gestion de projet avancée</li>
+                  <li>Management de portefeuille</li>
                 </ul>
               </div>
-              <div class="alert alert-info">
-                <i class="bi bi-info-circle-fill me-2"></i>
-                Les bénéfices intangibles (meilleure réputation, confiance clients, etc.) ne sont pas inclus dans ce calcul mais représentent une valeur significative.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-arrow-repeat me-2"></i>
+              <h5 class="mb-0">Continuité et résilience des services</h5>
+            </div>
+            <div class="card-body">
+              <p>Garantir la disponibilité des services essentiels avec des plans de continuité robustes.</p>
+              <p>Mise en place de PRA et gestion proactive des risques.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-diagram-3 me-2"></i>
+              <h5 class="mb-0">Transformation digitale rapide</h5>
+            </div>
+            <div class="card-body">
+              <p>Conduire le changement digital tout en maintenant la qualité et la conformité.</p>
+              <p>Adoption des nouvelles technologies et évolution des processus.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-people me-2"></i>
+              <h5 class="mb-0">Gestion des talents IT</h5>
+            </div>
+            <div class="card-body">
+              <p>Attirer, développer et fidéliser les compétences critiques dans un contexte concurrentiel.</p>
+              <p>Plans de formation et de succession.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-gear me-2"></i>
+              <h5 class="mb-0">Optimisation des opérations IT</h5>
+            </div>
+            <div class="card-body">
+              <p>Améliorer l'efficacité des processus et la performance des services IT.</p>
+              <p>Mise en place de tableaux de bord et indicateurs de performance clés (KPI).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-database me-2"></i>
+              <h5 class="mb-0">Gestion et protection des données</h5>
+            </div>
+            <div class="card-body">
+              <p>Assurer la qualité, la sécurité et la gouvernance des données de l'entreprise.</p>
+              <p>Politiques de confidentialité et classification des données.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-bar-chart-line me-2"></i>
+              <h5 class="mb-0">Management de la performance</h5>
+            </div>
+            <div class="card-body">
+              <p>Évaluer et suivre la performance des équipes et des projets IT.</p>
+              <p>Adoption de métriques et d'outils de reporting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+	
+	   
+
+    <section id="formations" class="mb-5">
+      <h2 class="text-center mb-4">Domaines de Formation</h2>
+      
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-kanban me-2"></i>
+              <h5 class="mb-0">Gestion de Projets & Méthodes Agiles</h5>
+            </div>
+            <div class="card-body">
+              <p>Maîtrisez les méthodologies de gestion de projet et les approches agiles pour une livraison efficace.</p>
+              <div class="linked-modules">
+                <span class="linked-module">PMP</span>
+                <span class="linked-module">PRINCE2</span>
+                <span class="linked-module">Agile Scrum</span>
+                <span class="linked-module">SAFe</span>
+                <span class="linked-module">Lean IT</span>
+                <span class="linked-module">Six Sigma</span>
               </div>
+              <button class="btn btn-formation btn-sm mt-3" onclick="showDetails('gestion-projet')">
+                <i class="bi bi-info-circle me-1"></i>Voir le programme
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-shield-lock me-2"></i>
+              <h5 class="mb-0">Sécurité & Conformité</h5>
+            </div>
+            <div class="card-body">
+              <p>Protégez les systèmes d'information et assurez la conformité réglementaire.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Cybersécurité</span>
+                <span class="linked-module">ISO 27001</span>
+                <span class="linked-module">CISM</span>
+                <span class="linked-module">CISSP</span>
+                <span class="linked-module">CEH</span>
+                <span class="linked-module">PRA</span>
+              </div>
+              <button class="btn btn-formation btn-sm mt-3" onclick="showDetails('securite')">
+                <i class="bi bi-info-circle me-1"></i>Voir le programme
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-code-slash me-2"></i>
+              <h5 class="mb-0">Développement & Logiciels</h5>
+            </div>
+            <div class="card-body">
+              <p>Acquérez les compétences techniques pour développer des applications robustes et modernes.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Java</span>
+                <span class="linked-module">Python</span>
+                <span class="linked-module">C#</span>
+                <span class="linked-module">Front-end</span>
+                <span class="linked-module">DevOps</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-cloud me-2"></i>
+              <h5 class="mb-0">Cloud, DevOps & Data</h5>
+            </div>
+            <div class="card-body">
+              <p>Maîtrisez les technologies cloud, les pratiques DevOps et la gestion des données.</p>
+              <div class="linked-modules">
+                <span class="linked-module">AWS</span>
+                <span class="linked-module">Azure</span>
+                <span class="linked-module">Google Cloud</span>
+                <span class="linked-module">Data Analytics</span>
+                <span class="linked-module">Big Data</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-cpu me-2"></i>
+              <h5 class="mb-0">Infrastructure & Supervision</h5>
+            </div>
+            <div class="card-body">
+              <p>Optimisez les infrastructures IT et les systèmes de supervision.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Linux</span>
+                <span class="linked-module">Windows Server</span>
+                <span class="linked-module">Data Center</span>
+                <span class="linked-module">Virtualisation</span>
+                <span class="linked-module">Monitoring</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-people me-2"></i>
+              <h5 class="mb-0">Management & Leadership</h5>
+            </div>
+            <div class="card-body">
+              <p>Développez vos compétences en leadership et en management d'équipes IT.</p>
+              <div class="linked-modules">
+                <span class="linked-module">Management de projet</span>
+                <span class="linked-module">Leadership digital</span>
+                <span class="linked-module">Communication</span>
+                <span class="linked-module">Négociation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-briefcase me-2"></i>
+              <h5 class="mb-0">Consulting & Stratégie IT</h5>
+            </div>
+            <div class="card-body">
+              <p>Acquérez les compétences pour conseiller sur la stratégie et les solutions IT.</p>
+              <div class="linked-modules">
+                <span class="linked-module">IT Strategy</span>
+                <span class="linked-module">Architecture d'entreprise (TOGAF)</span>
+                <span class="linked-module">Analyse métier</span>
+                <span class="linked-module">Business Process Management</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center formation-header">
+              <i class="bi bi-journal-richtext me-2"></i>
+              <h5 class="mb-0">IT Service Management (ITSM)</h5>
+            </div>
+            <div class="card-body">
+              <p>Optimisez la gestion des services IT avec les meilleures pratiques du secteur.</p>
+              <div class="linked-modules">
+                <span class="linked-module">ITIL 4</span>
+                <span class="linked-module">ServiceNow</span>
+                <span class="linked-module">JIRA Service Desk</span>
+                <span class="linked-module">Gestion des incidents</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gouvernance" class="mb-5">
+      <h2 class="text-center mb-4">Gouvernance Digitale</h2>
+      
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-diagram-3 me-2"></i>
+              <h5 class="mb-0">Cadres de Gouvernance</h5>
+            </div>
+            <div class="card-body">
+              <p>Implémentez des cadres de gouvernance robustes pour aligner la stratégie IT avec les objectifs métier.</p>
+              
+              <div class="governance-highlight highlight-box mt-3">
+                <p><strong>Cadres clés :</strong></p>
+                <ul>
+                  <li><strong>COBIT :</strong> Cadre de gouvernance et de management</li>
+                  <li><strong>ITIL :</strong> Gestion des services IT</li>
+                  <li><strong>ISO 38500 :</strong> Gouvernance des technologies</li>
+                  <li><strong>TOGAF :</strong> Architecture d'entreprise</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-clipboard-data me-2"></i>
+              <h5 class="mb-0">Management du Risque IT</h5>
+            </div>
+            <div class="card-body">
+              <p>Identifiez, évaluez et traitez les risques liés aux systèmes d'information.</p>
+              <div class="row">
+                <div class="col-md-6 text-center mb-3">
+                  <i class="bi bi-exclamation-triangle fs-3" style="color: var(--governance-purple);"></i>
+                  <p class="mt-2 fw-bold">Identification</p>
+                  <p>Détection des risques</p>
+                </div>
+                <div class="col-md-6 text-center mb-3">
+                  <i class="bi bi-graph-up fs-3" style="color: var(--governance-purple);"></i>
+                  <p class="mt-2 fw-bold">Évaluation</p>
+                  <p>Analyse d'impact</p>
+                </div>
+              </div>
+              <button class="btn btn-governance btn-sm mt-2" onclick="showDetails('risque')">
+                <i class="bi bi-info-circle me-1"></i>Approfondir
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-wrench me-2"></i>
+              <h5 class="mb-0">Gestion de la Conformité</h5>
+            </div>
+            <div class="card-body">
+              <p>Assurez la conformité réglementaire et le respect des normes en vigueur.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">RGPD</li>
+                <li class="list-group-item">Directives sectorielles</li>
+                <li class="list-group-item">Audits de conformité</li>
+                <li class="list-group-item">Reporting réglementaire</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-cash-coin me-2"></i>
+              <h5 class="mb-0">Gestion de Portefeuille Projets</h5>
+            </div>
+            <div class="card-body">
+              <p>Priorisez et sélectionnez les initiatives pour maximiser la valeur métier.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Analyse de valeur</li>
+                <li class="list-group-item">Optimisation des investissements</li>
+                <li class="list-group-item">Alignement stratégique</li>
+                <li class="list-group-item">Suivi de la performance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-people me-2"></i>
+              <h5 class="mb-0">Gouvernance des Données</h5>
+            </div>
+            <div class="card-body">
+              <p>Établissez des politiques et processus pour la gestion des données.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Qualité des données</li>
+                <li class="list-group-item">Classification</li>
+                <li class="list-group-item">Lifecycle management</li>
+                <li class="list-group-item">Sécurité des données</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-person-fill-gear me-2"></i>
+              <h5 class="mb-0">Gestion des talents & des compétences</h5>
+            </div>
+            <div class="card-body">
+              <p>Définissez et mettez en œuvre une stratégie de gestion des talents et des compétences IT.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cartographie des compétences</li>
+                <li class="list-group-item">Plans de développement des talents</li>
+                <li class="list-group-item">Gestion de la mobilité interne</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-header d-flex align-items-center governance-header">
+              <i class="bi bi-link-45deg me-2"></i>
+              <h5 class="mb-0">Alignement Stratégique IT-Métier</h5>
+            </div>
+            <div class="card-body">
+              <p>Assurez que la stratégie IT est en parfaite harmonie avec les objectifs et besoins de l'entreprise.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Comités de pilotage IT</li>
+                <li class="list-group-item">Définition de la valeur métier</li>
+                <li class="list-group-item">Mise en place de KPIs</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </section>
     
-    <section id="cycle-vie" class="mb-5 section-padding">
-        <h2 class="section-title">Le Cycle de Vie de la Compétence Digitale : De l'Analyse à l'Optimisation Continue</h2>
-        <div class="card p-5">
-            <p>
-              Gérer la compétence est un processus continu, pas un événement unique. Il se décompose en 5 phases clés pour garantir que l'investissement en formation génère un impact durable.
-            </p>
-            <div class="timeline mt-4">
-                <div class="timeline-item">
-                    <h5>1. L'Audit et le Cadrage Stratégique</h5>
-                    <p>
-                      <strong>Objectif :</strong> Comprendre les besoins réels. Utiliser des évaluations de compétences, des entretiens avec les managers et des analyses de marché pour identifier les lacunes et les aligner sur les objectifs business.
-                      <br><strong>Question clé :</strong> "Quelles compétences nous manquent pour atteindre notre vision à 5 ans ?"
-                    </p>
-                    <div class="mt-3">
-                      <span class="badge bg-secondary me-1">Skills Assessment</span>
-                      <span class="badge bg-secondary me-1">Gap Analysis</span>
-                      <span class="badge bg-secondary">Stratégie RH</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <h5>2. L'Acquisition Ciblée de Compétences</h5>
-                    <p>
-                      <strong>Objectif :</strong> Sélectionner les bonnes certifications et les bons prestataires. Privilégier des programmes qui combinent théorie et pratique, avec des laboratoires ou des études de cas réels.
-                      <br><strong>Question clé :</strong> "Cette certification résout-elle un problème de gouvernance ou de risque identifié ?"
-                    </p>
-                    <div class="mt-3">
-                      <span class="badge bg-secondary me-1">Catalogue Formations</span>
-                      <span class="badge bg-secondary me-1">Business Case</span>
-                      <span class="badge bg-secondary">Selection Prestataires</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <h5>3. L'Application et l'Expérimentation</h5>
-                    <p>
-                      <strong>Objectif :</strong> S'assurer que les connaissances ne restent pas théoriques. Mettre les équipes en situation réelle via des "Projets Pilotes" ou des "Labs" internes. Créer un environnement où l'échec est une opportunité d'apprentissage.
-                      <br><strong>Question clé :</strong> "Comment les compétences sont-elles appliquées sur le terrain au quotidien ?"
-                    </p>
-                    <div class="mt-3">
-                      <span class="badge bg-secondary me-1">Projets Pilotes</span>
-                      <span class="badge bg-secondary me-1">Labs Pratiques</span>
-                      <span class="badge bg-secondary">Learning by Doing</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <h5>4. La Mesure et l'Évaluation du ROI</h5>
-                    <p>
-                      <strong>Objectif :</strong> Mesurer l'impact sur les KPIs de l'entreprise. Utiliser les métriques présentées dans le tableau de bord pour justifier l'investissement et affiner la stratégie.
-                      <br><strong>Question clé :</strong> "Le programme a-t-il conduit à une amélioration mesurable de la productivité, de la sécurité ou de la conformité ?"
-                    </p>
-                    <div class="mt-3">
-                      <span class="badge bg-secondary me-1">Dashboard KPI</span>
-                      <span class="badge bg-secondary me-1">ROI Analysis</span>
-                      <span class="badge bg-secondary">Reporting Executive</span>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <h5>5. L'Optimisation et le Maintien</h5>
-                    <p>
-                      <strong>Objectif :</strong> Intégrer la formation continue dans la culture de l'entreprise. Les compétences doivent être mises à jour régulièrement pour rester pertinentes. Mettre en place des communautés de pratique et des programmes de mentorat.
-                      <br><strong>Question clé :</strong> "Comment pouvons-nous maintenir notre avance technologique et notre posture de gouvernance dans un environnement en constante évolution ?"
-                    </p>
-                    <div class="mt-3">
-                      <span class="badge bg-secondary me-1">Communautés de Pratique</span>
-                      <span class="badge bg-secondary me-1">Mentorat</span>
-                      <span class="badge bg-secondary">Veille Technologique</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row mt-5">
-          <div class="col-lg-6">
-            <div class="card h-100 p-4">
-              <h4 class="card-title fw-bold mb-4">Outils pour Chaque Phase</h4>
-              <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Phase 1: Audit</h5>
-                  </div>
-                  <p class="mb-1">Skills Matrix, SWOT Analysis, Competency Framework</p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Phase 2: Acquisition</h5>
-                  </div>
-                  <p class="mb-1">LMS Platforms, Certification Catalogs, Vendor Evaluation Matrix</p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Phase 3: Application</h5>
-                  </div>
-                  <p class="mb-1">Sandbox Environments, Project Management Tools, Collaboration Platforms</p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Phase 4: Mesure</h5>
-                  </div>
-                  <p class="mb-1">Analytics Dashboards, ROI Calculators, Feedback Systems</p>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Phase 5: Optimisation</h5>
-                  </div>
-                  <p class="mb-1">Community Platforms, Mentoring Software, Continuous Learning Tools</p>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="card h-100 p-4">
-              <h4 class="card-title fw-bold mb-4">Rôles et Responsabilités</h4>
-              <div class="table-responsive">
-                <table class="table table-bordered">
-                  <thead class="table-primary">
-                    <tr>
-                      <th>Rôle</th>
-                      <th>Responsabilités</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong>Directeur Learning</strong></td>
-                      <td>Définit la stratégie formation, alloue le budget, mesure le ROI</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Manager opérationnel</strong></td>
-                      <td>Identifie les besoins compétences, soutient la montée en compétences</td>
-                    </tr>
-                    <tr>
-                      <td><strong>HR Business Partner</strong></td>
-                      <td>Intègre les compétences dans les parcours carrière, gère les talents</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Responsable métier</strong></td>
-                      <td>Définit les besoins business, valide l'impact des formations</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Expert technique</strong></td>
-                      <td>Mentore les juniors, anime les communautés de pratique</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Collaborateur</strong></td>
-                      <td>Participe activement, applique les nouvelles compétences</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-    </section>
-
-    <section id="feuille-route" class="mb-5 section-padding bg-gradient-light">
-      <div class="container">
-        <h2 class="section-title">Feuille de Route Stratégique : Les 5 Étapes d'une Transformation Réussie</h2>
-        <div class="card p-5">
-          <div class="row g-4">
-            <div class="col-md-6 col-lg-4">
-              <div class="card h-100 p-4 bg-light">
-                <div class="card-body text-center">
-                  <div class="number-circle">1</div>
-                  <h5 class="card-title fw-bold mt-3">Phase 1 : Sensibilisation & Engagement</h5>
-                  <p><strong>Action :</strong> Organiser des workshops avec la direction et les managers pour présenter les enjeux de la gouvernance digitale et l'importance des compétences. Créer une équipe de pilotage multifonctionnelle.</p>
-                  <div class="mt-3">
-                    <span class="badge bg-primary me-1">2-4 semaines</span>
-                    <span class="badge bg-info">Stakeholders</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <div class="card h-100 p-4 bg-light">
-                <div class="card-body text-center">
-                  <div class="number-circle">2</div>
-                  <h5 class="card-title fw-bold mt-3">Phase 2 : Diagnostic & Priorisation</h5>
-                  <p><strong>Action :</strong> Réaliser un audit des compétences existantes et une analyse des risques. Prioriser les certifications qui ont le plus grand potentiel d'impact sur la réduction des risques et les gains financiers.</p>
-                  <div class="mt-3">
-                    <span class="badge bg-primary me-1">4-6 semaines</span>
-                    <span class="badge bg-info">Assessment</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <div class="card h-100 p-4 bg-light">
-                <div class="card-body text-center">
-                  <div class="number-circle">3</div>
-                  <h5 class="card-title fw-bold mt-3">Phase 3 : Déploiement du Programme</h5>
-                  <p><strong>Action :</strong> Lancer les formations ciblées. Mettre en place des projets pilotes pour les nouvelles compétences. Communiquer les succès internes pour motiver les équipes.</p>
-                  <div class="mt-3">
-                    <span class="badge bg-primary me-1">3-6 mois</span>
-                    <span class="badge bg-info">Implémentation</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <div class="card h-100 p-4 bg-light">
-                <div class="card-body text-center">
-                  <div class="number-circle">4</div>
-                  <h5 class="card-title fw-bold mt-3">Phase 4 : Mesure & Rapport</h5>
-                  <p><strong>Action :</strong> Suivre les KPIs du tableau de bord. Organiser des réunions régulières avec la direction pour présenter les résultats et les retours d'expérience. Collecter les feedbacks des participants.</p>
-                  <div class="mt-3">
-                    <span class="badge bg-primary me-1">Continue</span>
-                    <span class="badge bg-info">Reporting</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <div class="card h-100 p-4 bg-light">
-                <div class="card-body text-center">
-                  <div class="number-circle">5</div>
-                  <h5 class="card-title fw-bold mt-3">Phase 5 : Industrialisation & Amélioration Continue</h5>
-                  <p><strong>Action :</strong> Intégrer les processus et les compétences dans les opérations quotidiennes. Mettre en place un budget récurrent pour le développement des compétences et la veille technologique.</p>
-                  <div class="mt-3">
-                    <span class="badge bg-primary me-1">Continue</span>
-                    <span class="badge bg-info">Optimisation</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row mt-5">
-          <div class="col-lg-6">
-            <div class="card h-100 p-4">
-              <h4 class="card-title fw-bold mb-4">Timeline Type d'un Programme</h4>
-              <div class="position-relative m-4">
-                <div class="progress" style="height: 30px;">
-                  <div class="progress-bar" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">Phase 1</div>
-                  <div class="progress-bar bg-info" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Phase 2</div>
-                  <div class="progress-bar bg-warning" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">Phase 3</div>
-                  <div class="progress-bar bg-success" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Phases 4-5</div>
-                </div>
-              </div>
-              <div class="mt-4">
-                <ul class="list-group">
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Phase 1: Sensibilisation
-                    <span class="badge bg-primary rounded-pill">2-4 semaines</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Phase 2: Diagnostic
-                    <span class="badge bg-info rounded-pill">4-6 semaines</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Phase 3: Déploiement
-                    <span class="badge bg-warning rounded-pill">3-6 mois</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Phases 4-5: Mesure & Optimisation
-                    <span class="badge bg-success rounded-pill">Continue</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="card h-100 p-4">
-              <h4 class="card-title fw-bold mb-4">Budget Type (pour 100 collaborateurs)</h4>
-              <div class="table-responsive">
-                <table class="table table-bordered">
-                  <thead class="table-primary">
-                    <tr>
-                      <th>Poste de Dépense</th>
-                      <th>Pourcentage</th>
-                      <th>Montant</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Formations & Certifications</td>
-                      <td>55%</td>
-                      <td>110 000 €</td>
-                    </tr>
-                    <tr>
-                      <td>Outils & Plateformes</td>
-                      <td>15%</td>
-                      <td>30 000 €</td>
-                    </tr>
-                    <tr>
-                      <td>Consultants externes</td>
-                      <td>10%</td>
-                      <td>20 000 €</td>
-                    </tr>
-                    <tr>
-                      <td>Événements & Communication</td>
-                      <td>8%</td>
-                      <td>16 000 €</td>
-                    </tr>
-                    <tr>
-                      <td>Mesure & Évaluation</td>
-                      <td>7%</td>
-                      <td>14 000 €</td>
-                    </tr>
-                    <tr>
-                      <td>Contingence</td>
-                      <td>5%</td>
-                      <td>10 000 €</td>
-                    </tr>
-                    <tr class="table-success">
-                      <td><strong>Total</strong></td>
-                      <td><strong>100%</strong></td>
-                      <td><strong>200 000 €</strong></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="alert alert-info mt-3">
-                <i class="bi bi-lightbulb-fill me-2"></i>
-                <strong>ROI attendu :</strong> 140-200% sur 18-24 mois grâce aux gains de productivité, réduction des risques et amélioration de la qualité.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="certifications" class="mb-5 section-padding">
-      <h2 class="section-title">Top 20 des Certifications par Catégorie et Leurs Impacts Stratégiques</h2>
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="card p-4 h-100">
-            <h5 class="card-title fw-bold text-center text-primary"><i class="bi bi-cloud-check-fill me-2"></i> Cloud & DevOps</h5>
-            <ul class="list-group list-group-flush mt-3">
-              <li class="list-group-item"><strong>AWS Certified Solutions Architect</strong> : Maîtrise la conception d'architectures sur AWS. <em>Impact : Robustesse et scalabilité des infrastructures.</em></li>
-              <li class="list-group-item"><strong>Microsoft Certified: Azure Administrator</strong> : Gère les services Azure. <em>Impact : Sécurité et optimisation des coûts.</em></li>
-              <li class="list-group-item"><strong>Google Professional Cloud Architect</strong> : Expertise en solutions Google Cloud. <em>Impact : Efficience et innovation.</em></li>
-              <li class="list-group-item"><strong>Certified Kubernetes Administrator (CKA)</strong> : Gère les environnements de conteneurs. <em>Impact : Agilité et déploiements automatisés.</em></li>
-              <li class="list-group-item"><strong>ITIL 4 Foundation</strong> : Gère les services informatiques. <em>Impact : Amélioration des processus opérationnels et de la qualité de service.</em></li>
-              <li class="list-group-item"><strong>Terraform Associate</strong> : Gère les infrastructures par le code. <em>Impact : Automatisation des déploiements.</em></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card p-4 h-100">
-            <h5 class="card-title fw-bold text-center text-primary"><i class="bi bi-shield-lock-fill me-2"></i> Cybersécurité & Gouvernance</h5>
-            <ul class="list-group list-group-flush mt-3">
-              <li class="list-group-item"><strong>(ISC)² CISSP</strong> : Expertise de pointe en sécurité. <em>Impact : Réduction massive du risque cybernétique.</em></li>
-              <li class="list-group-item"><strong>ISACA CISM</strong> : Gestion des programmes de sécurité. <em>Impact : Alignement stratégique de la sécurité sur les objectifs business.</em></li>
-              <li class="list-group-item"><strong>CompTIA Security+</strong> : Compétences de base en sécurité. <em>Impact : Mise en place d'une première ligne de défense solide.</em></li>
-              <li class="list-group-item"><strong>ISO 27001 Lead Implementer</strong> : Mise en œuvre d'un SMSI. <em>Impact : Conformité réglementaire et confiance client.</em></li>
-              <li class="list-group-item"><strong>Certified Data Privacy Solutions Engineer (CDPSE)</strong> : Sécurité et protection des données. <em>Impact : Respect du RGPD et gestion des risques de fuite.</em></li>
-              <li class="list-group-item"><strong>Certified Ethical Hacker (CEH)</strong> : Test de pénétration. <em>Impact : Identification proactive des vulnérabilités.</em></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6 mt-4">
-          <div class="card p-4 h-100">
-            <h5 class="card-title fw-bold text-center text-primary"><i class="bi bi-database-fill me-2"></i> Data & Intelligence Artificielle</h5>
-            <ul class="list-group list-group-flush mt-3">
-              <li class="list-group-item"><strong>Google Certified Professional Data Engineer</strong> : Construit des pipelines de données. <em>Impact : Fiabilité et rapidité des analyses.</em></li>
-              <li class="list-group-item"><strong>Microsoft Certified: Data Analyst Associate</strong> : Analyse les données pour les affaires. <em>Impact : Décisions stratégiques basées sur des faits.</em></li>
-              <li class="list-group-item"><strong>Certified Analytics Professional (CAP)</strong> : Gère des projets d'analyse. <em>Impact : Stratégie analytique et déploiement de l'IA.</em></li>
-              <li class="list-group-item"><strong>Cloudera Certified Professional (CCP)</strong> : Expertise en écosystèmes Big Data. <em>Impact : Traitement efficace de volumes massifs de données.</em></li>
-              <li class="list-group-item"><strong>IBM Certified Data Scientist</strong> : Développe des modèles d'IA. <em>Impact : Innovation et avantage concurrentiel.</em></li>
-              <li class="list-group-item"><strong>Certified Data Management Professional (CDMP)</strong> : Gère les données d'entreprise. <em>Impact : Établissement de la gouvernance des données.</em></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6 mt-4">
-          <div class="card p-4 h-100">
-            <h5 class="card-title fw-bold text-center text-primary"><i class="bi bi-kanban-fill me-2"></i> Gestion de Projets & Agilité</h5>
-            <ul class="list-group list-group-flush mt-3">
-              <li class="list-group-item"><strong>Project Management Professional (PMP)</strong> : Méthodologie traditionnelle. <em>Impact : Fiabilité des délais et des budgets pour les grands projets.</em></li>
-              <li class="list-group-item"><strong>Professional Scrum Master (PSM I)</strong> : Facilite une équipe agile. <em>Impact : Amélioration de la productivité et de l'adaptabilité.</em></li>
-              <li class="list-group-item"><strong>Agile SAFe/Scrum Agilist (SA)</strong> : Met à l'échelle l'agilité. <em>Impact : Alignement stratégique et efficience à l'échelle de l'entreprise.</em></li>
-              <li class="list-group-item"><strong>PMI Agile Certified Practitioner (PMI-ACP)</strong> : Applique des méthodes agiles. <em>Impact : Flexibilité et réactivité face aux besoins changeants.</em></li>
-              <li class="list-group-item"><strong>Certified Associate in Project Management (CAPM)</strong> : Compétences de base en gestion de projet. <em>Impact : Organisation et suivi des tâches.</em></li>
-              <li class="list-group-item"><strong>Prince2 Foundation</strong> : Méthodologie structurée. <em>Impact : Gestion rigoureuse des projets.</em></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <section id="roadmap" class="mb-5">
+      <h2 class="text-center mb-4">Parcours de Certification</h2>
       
-      <div class="row mt-5">
-        <div class="col-lg-6">
-          <div class="card h-100 p-4">
-            <h4 class="card-title fw-bold mb-4">Parcours de Certification par Rôle</h4>
-            <div class="accordion" id="roleAccordion">
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseArchitect">
-                    Architecte Solutions
-                  </button>
-                </h2>
-                <div id="collapseArchitect" class="accordion-collapse collapse show" data-bs-parent="#roleAccordion">
-                  <div class="accordion-body">
+      <div class="roadmap">
+        <div class="roadmap-phase">
+          <div class="phase-header">
+            <span class="phase-title">Niveau Fondamentaux</span>
+            <span class="phase-duration">2-3 mois</span>
+          </div>
+          <p>Acquérir les bases essentielles en gestion de projet et gouvernance IT.</p>
+          <div class="linked-modules">
+            <span class="linked-module">ITIL Foundation</span>
+            <span class="linked-module">COBIT Foundation</span>
+            <span class="linked-module">PRINCE2 Foundation</span>
+            <span class="linked-module">Agile Fundamentals</span>
+          </div>
+        </div>
+        
+        <div class="roadmap-phase">
+          <div class="phase-header">
+            <span class="phase-title">Niveau Practicioner</span>
+            <span class="phase-duration">3-4 mois</span>
+          </div>
+          <p>Approfondir les compétences pratiques pour la mise en œuvre.</p>
+          <div class="linked-modules">
+            <span class="linked-module">PMP</span>
+            <span class="linked-module">CISSP</span>
+            <span class="linked-module">AWS Architect</span>
+            <span class="linked-module">Scrum Master</span>
+          </div>
+        </div>
+        
+        <div class="roadmap-phase">
+          <div class="phase-header">
+            <span class="phase-title">Niveau Expert</span>
+            <span class="phase-duration">4-6 mois</span>
+          </div>
+          <p>Devenir expert dans un domaine spécialisé avec des certifications avancées.</p>
+          <div class="linked-modules">
+            <span class="linked-module">TOGAF Certified</span>
+            <span class="linked-module">CISM</span>
+            <span class="linked-module">SAFe Program Consultant</span>
+            <span class="linked-module">Google Cloud Professional</span>
+          </div>
+        </div>
+        
+        <div class="roadmap-phase">
+          <div class="phase-header">
+            <span class="phase-title">Niveau Leader</span>
+            <span class="phase-duration">6+ mois</span>
+          </div>
+          <p>Développer des compétences stratégiques pour le leadership digital.</p>
+          <div class="linked-modules">
+            <span class="linked-module">Digital Transformation Leader</span>
+            <span class="linked-module">IT Governance Manager</span>
+            <span class="linked-module">Chief Information Security Officer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<section id="vision3ans" class="mb-5">
+  <h2 class="text-center mb-4">Vision à 3 ans : Métriques, Impacts et Gains</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped metrics-table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Enjeu</th>
+          <th scope="col">Métriques Clés</th>
+          <th scope="col">Situation Initiale (Avant)</th>
+          <th scope="col">Vision à 3 ans (Après)</th>
+          <th scope="col">Gains et Impacts mesurables</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- Cybersécurité & Résilience -->
+        <tr>
+          <td class="table-info"><strong>Cybersécurité & Résilience</strong></td>
+          <td>
+            <ul>
+              <li>Temps Moyen de Résolution (MTTR)</li>
+              <li>Nombre d'incidents critiques</li>
+              <li>Coût des violations de données</li>
+              <li>Taux de conformité aux audits</li>
+              <li>Nombre de tests de vulnérabilité réalisés</li>
+              <li>Indice de maturité sécurité (CMMI/ISO27001)</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>MTTR > 4 heures</li>
+              <li>3-5 incidents majeurs/an</li>
+              <li>Coûts élevés de gestion + pénalités</li>
+              <li>Conformité partielle (80%)</li>
+              <li>Tests sporadiques ou manquants</li>
+              <li>Maturité faible (niveau 1-2)</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>MTTR < 1 heure</li>
+              <li>< 1 incident majeur/an</li>
+              <li>Coûts réduits de 70%</li>
+              <li>Conformité totale (99%)</li>
+              <li>Tests réguliers et automatisés</li>
+              <li>Maturité élevée (niveau 4-5)</li>
+            </ul>
+          </td>
+          <td class="table-success">
+            <p><strong>Gains :</strong> Réduction des pertes financières, protection de la réputation et renforcement de la confiance des clients et régulateurs.</p>
+            <p><strong>Impact :</strong> Amélioration de la résilience opérationnelle et réduction du risque global.</p>
+          </td>
+        </tr>
+
+        <!-- Gestion de Projets & Agilité -->
+        <tr>
+          <td class="table-info"><strong>Gestion de Projets & Agilité</strong></td>
+          <td>
+            <ul>
+              <li>Taux de projets livrés à temps</li>
+              <li>Taux de dépassement de budget</li>
+              <li>Alignement stratégique (IT-Métier)</li>
+              <li>Taux de satisfaction des parties prenantes</li>
+              <li>Cycle moyen de livraison</li>
+              <li>Nombre de projets innovants lancés</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>50% des projets en retard</li>
+              <li>Dépassement moyen de 25%</li>
+              <li>Alignement faible ou ad-hoc</li>
+              <li>Satisfaction < 60%</li>
+              <li>Cycles longs et rigides</li>
+              <li>Peu d’innovation projet</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>> 90% des projets livrés à temps</li>
+              <li>Dépassement < 5%</li>
+              <li>Alignement total avec la stratégie métier</li>
+              <li>Satisfaction > 90%</li>
+              <li>Cycles courts et adaptatifs</li>
+              <li>Multiples projets innovants réussis</li>
+            </ul>
+          </td>
+          <td class="table-success">
+            <p><strong>Gains :</strong> Productivité accrue, time-to-market réduit, ROI maximal.</p>
+            <p><strong>Impact :</strong> La DSI devient un véritable partenaire de la croissance métier.</p>
+          </td>
+        </tr>
+
+        <!-- Transformation Digitale -->
+        <tr>
+          <td class="table-info"><strong>Transformation Digitale</strong></td>
+          <td>
+            <ul>
+              <li>Taux d’adoption des nouvelles technologies</li>
+              <li>Vitesse d’innovation (nouvelles fonctionnalités/services)</li>
+              <li>Coût d’acquisition client (CAC)</li>
+              <li>Taux de rétention client</li>
+              <li>Automatisation des processus métiers (%)</li>
+              <li>Engagement numérique des clients (app, site, chatbots)</li>
+              <li>Nombre de nouveaux modèles d’affaires digitaux lancés</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Adoption lente (< 40%)</li>
+              <li>Processus d’innovation rigide</li>
+              <li>CAC élevé</li>
+              <li>Rétention client stagnante</li>
+              <li>Automatisation faible (< 10%)</li>
+              <li>Engagement digital faible</li>
+              <li>Peu ou pas de nouveaux modèles digitaux</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Adoption rapide (> 85%)</li>
+              <li>Innovation continue et rapide</li>
+              <li>CAC réduit de 30%</li>
+              <li>Rétention client en hausse (> 90%)</li>
+              <li>Automatisation > 75%</li>
+              <li>Engagement digital élevé</li>
+              <li>Lancement de plusieurs nouveaux modèles d’affaires digitaux</li>
+            </ul>
+          </td>
+          <td class="table-success">
+            <p><strong>Gains :</strong> Acquisition de clients, nouvelles sources de revenus, réduction des coûts opérationnels grâce à l’automatisation.</p>
+            <p><strong>Impact Business :</strong> L’entreprise devient un leader agile et innovant sur son marché, capable de répondre rapidement aux besoins des clients.</p>
+          </td>
+        </tr>
+
+        <!-- Gestion des Compétences & Talents -->
+        <tr>
+          <td class="table-info"><strong>Gestion des Compétences & Talents</strong></td>
+          <td>
+            <ul>
+              <li>Taux de turnover des talents IT</li>
+              <li>Écart de compétences (Skills Gap)</li>
+              <li>Nombre de certifications par employé</li>
+              <li>Taux de participation aux formations</li>
+              <li>Score d’engagement des équipes</li>
+              <li>Temps moyen pour combler un poste clé</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Turnover élevé (> 15%)</li>
+              <li>Écart de compétences important</li>
+              <li>Peu de certifications</li>
+              <li>Taux de participation faible</li>
+              <li>Engagement moyen</li>
+              <li>Recrutement long (> 90 jours)</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Turnover < 5%</li>
+              <li>Écart de compétences comblé</li>
+              <li>Moyenne 2 certifications/employé</li>
+              <li>Taux de participation > 90%</li>
+              <li>Engagement élevé</li>
+              <li>Recrutement rapide (< 30 jours)</li>
+            </ul>
+          </td>
+          <td class="table-success">
+            <p><strong>Gains :</strong> Fidélisation et attraction des talents, renforcement des compétences critiques, meilleure performance individuelle et collective.</p>
+            <p><strong>Impact :</strong> Création d’une culture d’apprentissage continu et d’excellence technique.</p>
+          </td>
+        </tr>
+
+        <!-- Optimisation des Opérations IT -->
+        <tr>
+          <td class="table-info"><strong>Optimisation des Opérations IT</strong></td>
+          <td>
+            <ul>
+              <li>Coût par ticket d’incident</li>
+              <li>Temps de traitement des demandes de service</li>
+              <li>Taux d’automatisation des tâches</li>
+              <li>Efficacité des processus internes</li>
+              <li>Indice de satisfaction utilisateur IT</li>
+              <li>Taux d’utilisation des outils collaboratifs</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Coût élevé et variable</li>
+              <li>Délai de traitement long</li>
+              <li>Automatisation faible (< 10%)</li>
+              <li>Processus manuels et rigides</li>
+              <li>Satisfaction < 70%</li>
+              <li>Outils peu utilisés</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Coût réduit de 40%</li>
+              <li>Délai de traitement réduit de 60%</li>
+              <li>Automatisation > 75%</li>
+              <li>Processus Lean et agiles</li>
+              <li>Satisfaction > 90%</li>
+              <li>Outils pleinement adoptés</li>
+            </ul>
+          </td>
+          <td class="table-success">
+            <p><strong>Gains :</strong> Réduction des coûts, libération de ressources, meilleure qualité de service.</p>
+            <p><strong>Impact :</strong> La DSI devient un moteur d’efficacité et d’innovation pour l’entreprise.</p>
+          </td>
+        </tr>
+
+        <!-- Gestion de la Conformité et du Risque -->
+        <tr>
+          <td class="table-info"><strong>Gestion de la Conformité et du Risque</strong></td>
+          <td>
+            <ul>
+              <li>Nombre de non-conformités détectées</li>
+              <li>Impact financier des audits</li>
+              <li>Temps de réponse aux demandes réglementaires</li>
+              <li>Maturité des contrôles internes</li>
+              <li>Indice de risque global (Risk Score)</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Non-conformités régulières</li>
+              <li>Pénalités et audits coûteux</li>
+              <li>Réponses tardives ou incomplètes</li>
+              <li>Maturité faible (niveau 1-2)</li>
+              <li>Risque global élevé</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>0 non-conformité majeure</li>
+              <li>0 pénalité liée aux audits</li>
+              <li>Réponses rapides et automatisées</li>
+              <li>Maturité élevée (niveau 4-5)</li>
+              <li>Risque global réduit de 80%</li>
+            </ul>
+          </td>
+          <td class="table-success">
+            <p><strong>Gains :</strong> Réduction des risques juridiques et financiers, protection de la réputation.</p>
+            <p><strong>Impact :</strong> Opération dans un cadre sûr, anticipation des évolutions réglementaires.</p>
+          </td>
+        </tr>
+
+        <!-- Gestion de la Performance IT -->
+        <tr>
+          <td class="table-info"><strong>Gestion de la Performance IT</strong></td>
+          <td>
+            <ul>
+              <li>Alignement des KPI IT/Métier</li>
+              <li>Rapports de performance automatisés</li>
+              <li>Utilisation des tableaux de bord</li>
+              <li>Décisions basées sur les données</li>
+              <li>Indice de valeur métier générée par IT</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>KPIs techniques, déconnectés du métier</li>
+              <li>Rapports manuels et longs</li>
+              <li>Tableaux de bord peu utilisés</li>
+              <li>Décisions intuitives ou réactives</li>
+              <li>Valeur métier peu mesurée</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>KPIs alignés à 95% sur la valeur métier</li>
+              <li>Rapports automatiques en temps réel</li>
+              <li>Tableaux de bord largement adoptés</li>
+              <li>Décisions proactives et data-driven</li>
+              <li>Valeur métier clairement mesurable</li>
+            </ul>
+          </td>
+          <td class="table-success">
+            <p><strong>Gains :</strong> Prise de décision rapide et éclairée, pilotage IT axé sur la valeur.</p>
+            <p><strong>Impact :</strong> IT devient un centre stratégique maximisant sa contribution à l’entreprise.</p>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<section id="futur-metiers" class="mb-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-4">🚀 Top 10 Métiers & Compétences d’Avenir (10–20 ans)</h2>
+    <p class="lead text-center mb-5">Découvrez les métiers stratégiques, leurs certifications clés et les bonnes pratiques pour anticiper les transformations du marché.</p>
+    
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>Métier</th>
+            <th>Compétences Clés</th>
+            <th>Certifications Recommandées</th>
+            <th>Bonnes Pratiques & Recommandations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ingénieur IA & Machine Learning</strong></td>
+            <td>Deep Learning, NLP, Data Engineering</td>
+            <td>TensorFlow, AWS ML, Microsoft AI Engineer</td>
+            <td>Se former en continu, contribuer à l’open-source, pratiquer MLOps</td>
+          </tr>
+          <tr>
+            <td><strong>Expert Cybersécurité</strong></td>
+            <td>Pentest, Zero Trust, Cloud Security</td>
+            <td>CISSP, CISM, CEH, ISO 27001</td>
+            <td>Adopter DevSecOps, tester régulièrement les systèmes, veille active</td>
+          </tr>
+          <tr>
+            <td><strong>Architecte Cloud & DevOps</strong></td>
+            <td>Microservices, Kubernetes, CI/CD</td>
+            <td>AWS/Azure Architect, Kubernetes CKA, DevOps Foundation</td>
+            <td>Automatiser au maximum, surveiller coûts cloud, privilégier IaC</td>
+          </tr>
+          <tr>
+            <td><strong>Data Scientist / Analyste</strong></td>
+            <td>Python/R, BI, Big Data, Data Visualization</td>
+            <td>Google Data Engineer, Cloudera, Power BI</td>
+            <td>Nettoyage rigoureux des données, storytelling, éthique des données</td>
+          </tr>
+          <tr>
+            <td><strong>Développeur Blockchain & Web3</strong></td>
+            <td>Smart Contracts, Solidity, Cryptographie</td>
+            <td>Ethereum Developer, Hyperledger</td>
+            <td>Privilégier la sécurité, tester les dApps, suivre régulations crypto</td>
+          </tr>
+          <tr>
+            <td><strong>Expert IoT & Edge Computing</strong></td>
+            <td>Capteurs, 5G, Temps réel, MQTT</td>
+            <td>Cisco IoT, AWS IoT, Azure IoT</td>
+            <td>Adopter normes sécurité IoT, optimiser consommation énergétique</td>
+          </tr>
+          <tr>
+            <td><strong>Spécialiste Énergie & Tech Durable</strong></td>
+            <td>Green IT, Énergies renouvelables, Smart Grids</td>
+            <td>ISO 14001, GHG Protocol, Green IT</td>
+            <td>Mesurer empreinte carbone, privilégier infrastructures eco-friendly</td>
+          </tr>
+          <tr>
+            <td><strong>Expert Santé Digitale</strong></td>
+            <td>Télémédecine, Analyse d’imagerie, IoT médical</td>
+            <td>Health IT, HIPAA, ISO 13485</td>
+            <td>Respecter normes médicales, tester fiabilité, protéger données patients</td>
+          </tr>
+          <tr>
+            <td><strong>Manager Transformation Digitale</strong></td>
+            <td>Leadership, Change Management, Stratégie</td>
+            <td>PMP, Prosci Change Management, TOGAF</td>
+            <td>Former les équipes, piloter l’adoption, mesurer le ROI digital</td>
+          </tr>
+          <tr>
+            <td><strong>Spécialiste Robotique & RPA</strong></td>
+            <td>Automatisation, IA embarquée, Contrôle industriel</td>
+            <td>UiPath, Blue Prism, Automation Anywhere</td>
+            <td>Commencer petit (pilotes), impliquer métiers, sécuriser les bots</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="alert alert-info mt-4">
+      <i class="bi bi-lightbulb-fill me-2"></i>
+      <strong>Conseil :</strong> Les métiers évoluent vite, combinez <em>expertise technique</em>, <em>soft skills</em> et <em>certifications reconnues</em> pour rester compétitif.
+    </div>
+  </div>
+</section>
+
+
+    <section id="simulations" class="mb-5">
+      <h2 class="text-center mb-4">Simulations Interactives</h2>
+
+      <ul class="nav nav-tabs justify-content-center mb-4" id="simulationTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="risk-tab" data-bs-toggle="tab" data-bs-target="#risk" type="button" role="tab">Gestion des Risques</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="planning-tab" data-bs-toggle="tab" data-bs-target="#planning" type="button" role="tab">Planification de Projet</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="incident-tab" data-bs-toggle="tab" data-bs-target="#incident" type="button" role="tab">Gestion d'Incident</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="change-tab" data-bs-toggle="tab" data-bs-target="#change" type="button" role="tab">Gestion du Changement</button>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="simulationTabContent">
+        <div class="tab-pane fade show active" id="risk" role="tabpanel">
+          <div class="simulation-container">
+            <h3 class="mb-4"><i class="bi bi-exclamation-triangle me-2"></i>Simulation de Gestion des Risques</h3>
+            <p>Cette simulation vous permet d'expérimenter l'identification, l'évaluation et le traitement des risques dans un projet IT.</p>
+            
+            <div class="process-step">
+              <h5>1. Identification des risques</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" onclick="simulateRiskStep('identify')">Simuler cette étape</button>
+                <div id="identifyResult" class="mt-3" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Risques identifiés pour le projet de migration cloud :</p>
                     <ul>
-                      <li>TOGAF Foundation</li>
-                      <li>AWS/Azure Solutions Architect</li>
-                      <li>ITIL 4 Specialist</li>
-                      <li>Certified Kubernetes Administrator</li>
+                      <li>Dépassement de budget dû à une mauvaise estimation des coûts cloud</li>
+                      <li>Retards causés par des dépendances techniques non identifiées</li>
+                      <li>Perte de données pendant la migration</li>
+                      <li>Résistance au changement des équipes</li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSecurity">
-                    Responsable Sécurité
-                  </button>
-                </h2>
-                <div id="collapseSecurity" class="accordion-collapse collapse" data-bs-parent="#roleAccordion">
-                  <div class="accordion-body">
+            </div>
+
+            <div class="process-step">
+              <h5>2. Analyse et évaluation</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="analyzeBtn" disabled onclick="simulateRiskStep('analyze')">Simuler cette étape</button>
+                <div id="analyzeResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Évaluation des risques selon leur probabilité et impact :</p>
+                    <table class="table table-sm">
+                      <thead>
+                        <tr><th>Risque</th><th>Probabilité</th><th>Impact</th><th>Niveau</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Dépassement de budget</td><td>Élevée</td><td>Élevé</td><td>Critique</td></tr>
+                        <tr><td>Retards techniques</td><td>Moyenne</td><td>Moyen</td><td>Modéré</td></tr>
+                        <tr><td>Perte de données</td><td>Faible</td><td>Critique</td><td>Élevé</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>3. Plan de traitement</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="treatBtn" disabled onclick="simulateRiskStep('treat')">Simuler cette étape</button>
+                <div id="treatResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Stratégies de traitement des risques critiques :</p>
                     <ul>
-                      <li>CISSP</li>
-                      <li>CISM</li>
-                      <li>ISO 27001 Lead Implementer</li>
-                      <li>Certified Ethical Hacker</li>
+                      <li><strong>Dépassement budget :</strong> Mise en place de contrôles de coûts stricts et revues hebdomadaires</li>
+                      <li><strong>Perte de données :</strong> Plan de sauvegarde renforcé et tests de restauration</li>
+                      <li><strong>Retards techniques :</strong> Identification précoce des dépendances et buffers temporels</li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseData">
-                    Data Scientist
-                  </button>
-                </h2>
-                <div id="collapseData" class="accordion-collapse collapse" data-bs-parent="#roleAccordion">
-                  <div class="accordion-body">
-                    <ul>
-                      <li>Google Data Engineer</li>
-                      <li>Microsoft Data Analyst</li>
-                      <li>Certified Analytics Professional</li>
-                      <li>IBM Data Scientist</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+            </div>
+
+            <div class="mt-4">
+              <button class="btn btn-primary" onclick="resetRiskSimulation()">Réinitialiser la simulation</button>
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="card h-100 p-4">
-            <h4 class="card-title fw-bold mb-4">Coûts et Durées des Certifications</h4>
-            <div class="table-responsive">
-              <table class="table table-bordered">
-                <thead class="table-info">
-                  <tr>
-                    <th>Certification</th>
-                    <th>Coût Moyen</th>
-                    <th>Durée Préparation</th>
-                    <th>Validité</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>PMP</td>
-                    <td>600-800 €</td>
-                    <td>3-4 mois</td>
-                    <td>3 ans</td>
-                  </tr>
-                  <tr>
-                    <td>CISSP</td>
-                    <td>700-900 €</td>
-                    <td>4-6 mois</td>
-                    <td>3 ans</td>
-                  </tr>
-                  <tr>
-                    <td>AWS Solutions Architect</td>
-                    <td>150-300 €</td>
-                    <td>2-3 mois</td>
-                    <td>3 ans</td>
-                  </tr>
-                  <tr>
-                    <td>Google Data Engineer</td>
-                    <td>200-400 €</td>
-                    <td>3-4 mois</td>
-                    <td>2 ans</td>
-                  </tr>
-                  <tr>
-                    <td>ITIL 4</td>
-                    <td>300-500 €</td>
-                    <td>1-2 mois</td>
-                    <td>Indéfinie</td>
-                  </tr>
-                </tbody>
-              </table>
+
+        <div class="tab-pane fade" id="planning" role="tabpanel">
+          <div class="simulation-container">
+            <h3 class="mb-4"><i class="bi bi-calendar-check me-2"></i>Simulation de Planification de Projet</h3>
+            <p>Cette simulation vous guide à travers les étapes clés de la planification d'un projet IT.</p>
+            
+            <div class="process-step">
+              <h5>1. Définition du scope</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" onclick="simulatePlanningStep('scope')">Simuler cette étape</button>
+                <div id="scopeResult" class="mt-3" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Scope défini pour le projet "Modernisation de l'application client" :</p>
+                    <ul>
+                      <li>Refonte de l'interface utilisateur</li>
+                      <li>Intégration avec le nouveau système de paiement</li>
+                      <li>Migration des données historiques</li>
+                      <li>Formation des utilisateurs finaux</li>
+                      <li>Support post-déploiement (30 jours)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="alert alert-info mt-3">
-              <i class="bi bi-info-circle-fill me-2"></i>
-              Les coûts de formation (300-2000 € selon le format) s'ajoutent aux frais d'examen.
+
+            <div class="process-step">
+              <h5>2. Estimation des ressources</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="resourcesBtn" disabled onclick="simulatePlanningStep('resources')">Simuler cette étape</button>
+                <div id="resourcesResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Estimation des ressources nécessaires :</p>
+                    <table class="table table-sm">
+                      <thead>
+                        <tr><th>Rôle</th><th>Charge (jours-homme)</th><th>Compétences requises</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Développeur Front-end</td><td>45</td><td>React, HTML5, CSS3</td></tr>
+                        <tr><td>Développeur Back-end</td><td>30</td><td>Java, Spring Boot, API</td></tr>
+                        <tr><td>Architecte</td><td>20</td><td>Cloud, Microservices</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>3. Établissement du calendrier</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="calendarBtn" disabled onclick="simulatePlanningStep('calendar')">Simuler cette étape</button>
+                <div id="calendarResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Calendrier prévisionnel sur 12 semaines :</p>
+                    <ul>
+                      <li><strong>Semaines 1-2 :</strong> Conception détaillée et prototypage</li>
+                      <li><strong>Semaines 3-8 :</strong> Développement et tests unitaires</li>
+                      <li><strong>Semaines 9-10 :</strong> Tests d'intégration et recette</li>
+                      <li><strong>Semaine 11 :</strong> Formation utilisateurs</li>
+                      <li><strong>Semaine 12 :</strong> Déploiement et support</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <button class="btn btn-primary" onclick="resetPlanningSimulation()">Réinitialiser la simulation</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="incident" role="tabpanel">
+          <div class="simulation-container">
+            <h3 class="mb-4"><i class="bi bi-bug me-2"></i>Simulation de Gestion d'Incident de Sécurité</h3>
+            <p>Cette simulation reproduit la gestion d'un incident de sécurité dans un environnement critique.</p>
+            
+            <div class="process-step">
+              <h5>1. Détection et classification</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" onclick="simulateIncidentStep('detection')">Simuler cette étape</button>
+                <div id="detectionResult" class="mt-3" style="display:none;">
+                  <div class="alert alert-danger">
+                    <p><strong>ALERTE :</strong> Système de détection d'intrusion signale une activité suspecte sur le serveur SRV-PROD-02</p>
+                    <p>Classification initiale : Incident de niveau 2 (Impact moyen)</p>
+                    <p>Heure de détection : 08:45</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>2. Containment et analyse</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="containmentBtn" disabled onclick="simulateIncidentStep('containment')">Simuler cette étape</button>
+                <div id="containmentResult" style="display:none;">
+                  <div class="alert alert-warning">
+                    <p>Actions immédiates :</p>
+                    <ul>
+                      <li>Isolation du serveur du réseau</li>
+                      <li>Capture de la mémoire vive et des logs</li>
+                      <li>Analyse forensic initiale</li>
+                    </ul>
+                    <p>Conclusion : Tentative d'accès non autorisé via une vulnérabilité connue non patchée</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>3. Éradication et recovery</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="recoveryBtn" disabled onclick="simulateIncidentStep('recovery')">Simuler cette étape</button>
+                <div id="recoveryResult" style="display:none;">
+                  <div class="alert alert-info">
+                    <p>Actions correctives :</p>
+                    <ul>
+                      <li>Application du patch de sécurité manquant</li>
+                      <li>Nettoyage du système et vérification de l'intégrité</li>
+                      <li>Restoration depuis backup validé</li>
+                    </ul>
+                    <p>Heure de résolution : 11:30 (2h45 après détection)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="process-step">
+              <h5>4. Post-mortem et amélioration</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="postmortemBtn" disabled onclick="simulateIncidentStep('postmortem')">Simuler cette étape</button>
+                <div id="postmortemResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Leçons apprises et actions d'amélioration :</p>
+                    <ol>
+                      <li>Mise en place d'un processus de patch management plus rigoureux</li>
+                      <li>Renforcement des règles de monitoring et d'alerting</li>
+                      <li>Formation complémentaire de l'équipe sur la réponse aux incidents</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <button class="btn btn-primary" onclick="resetIncidentSimulation()">Réinitialiser la simulation</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-pane fade" id="change" role="tabpanel">
+          <div class="simulation-container">
+            <h3 class="mb-4"><i class="bi bi-shuffle me-2"></i>Simulation de Gestion du Changement</h3>
+            <p>Cette simulation vous guide dans l'implémentation d'un changement majeur, de la communication à la validation.</p>
+            
+            <div class="process-step">
+              <h5>1. Planification de la transition</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" onclick="simulateChangeStep('planning')">Simuler cette étape</button>
+                <div id="changePlanningResult" class="mt-3" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Plan de transition pour l'adoption du nouveau CRM :</p>
+                    <ul>
+                      <li>Identification des parties prenantes clés</li>
+                      <li>Analyse des impacts sur les processus métier</li>
+                      <li>Création d'un plan de communication</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="process-step">
+              <h5>2. Communication et formation</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="changeCommunicationBtn" disabled onclick="simulateChangeStep('communication')">Simuler cette étape</button>
+                <div id="changeCommunicationResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Exécution du plan de communication :</p>
+                    <ul>
+                      <li>Envoi d'une newsletter pour annoncer le changement</li>
+                      <li>Organisation de webinaires pour les utilisateurs</li>
+                      <li>Mise en place d'une formation pratique sur le nouvel outil</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="process-step">
+              <h5>3. Suivi et validation</h5>
+              <div class="mb-3">
+                <button class="btn btn-sm btn-outline-primary" id="changeValidationBtn" disabled onclick="simulateChangeStep('validation')">Simuler cette étape</button>
+                <div id="changeValidationResult" style="display:none;">
+                  <div class="alert alert-success">
+                    <p>Suivi post-lancement :</p>
+                    <ul>
+                      <li>Recueil des feedbacks des utilisateurs (sondages)</li>
+                      <li>Analyse des indicateurs d'adoption</li>
+                      <li>Ajustement du support et de la documentation</li>
+                    </ul>
+                    <p>Le changement est validé et les utilisateurs sont autonomes.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <button class="btn btn-primary" onclick="resetChangeSimulation()">Réinitialiser la simulation</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="temoignages" class="mb-5 section-padding bg-gradient-primary text-white">
-      <div class="container">
-        <h2 class="section-title text-white">Témoignages & Études de Cas</h2>
-        <p class="lead text-center mb-5">Des retours d'expérience concrets d'organisations ayant réussi leur transformation</p>
-        
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="testimonial-card">
-              <p style="color: black;">"La mise en place d'un programme structuré de certifications cloud a permis à notre entreprise de réduire de 35% nos coûts d'infrastructure tout en améliorant notre résilience. Les compétences acquises ont été directement applicables sur nos projets critiques."</p>
-              <div class="testimonial-author">Marie Lambert</div>
-              <div class="testimonial-role">DSI, Groupe Financier</div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="testimonial-card">
-              <p style="color: black;">"Former 70% de nos équipes techniques aux certifications de sécurité a transformé notre posture cyber. Nous avons réduit les incidents de 60% et passé avec succès des audits qui étaient précédemment problématiques. L'investissement a été rentabilisé en 14 mois."</p>
-              <div class="testimonial-author">Thomas Dubois</div>
-              <div class="testimonial-role">RSSI, Secteur Santé</div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="testimonial-card">
-              <p style="color: black;">"L'approche par compétences que nous avons adoptée nous a permis de combler notre gap digital sans recourir massivement à l'externe. La rétention de nos talents a augmenté de 20% et notre time to market s'est amélioré de 40%."</p>
-              <div class="testimonial-author">Sophie Martin</div>
-              <div class="testimonial-role">DRH, Groupe Industriel</div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="testimonial-card">
-              <p style="color: black;">"La gouvernance des données était notre point faible. Après avoir certifié une équipe centrale et déployé les bonnes pratiques, nous avons non seulement atteint la conformité RGPD mais aussi créé de nouveaux revenus grâce à une meilleure exploitation de nos actifs data."</p>
-              <div class="testimonial-author">Julien Petit</div>
-              <div class="testimonial-role">CDO, Retailer</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row mt-5">
-          <div class="col-12">
-            <div class="card bg-dark text-white">
-              <div class="card-body">
-                <h4 class="card-title mb-4">Étude de Cas : Transformation Agile à l'échelle</h4>
-                <div class="row">
-                  <div class="col-md-6">
-                    <h6>Situation Initiale</h6>
-                    <ul>
-                      <li>Time to market : 9-12 mois</li>
-                      <li>30% des projets livrés dans les délais</li>
-                      <li>Fort cloisonnement entre équipes</li>
-                      <li>Faible satisfaction client (56%)</li>
-                    </ul>
-                  </div>
-                  <div class="col-md-6">
-                    <h6>Actions Mises en Œuvre</h6>
-                    <ul>
-                      <li>Formation Agile SAFe/Scrum pour 120 managers</li>
-                      <li>Certification Scrum pour 200 praticiens</li>
-                      <li>Création d'un centre d'excellence Agile</li>
-                      <li>Refonte des processus de governance</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="row mt-4">
-                  <div class="col-12">
-                    <h6>Résultats après 18 mois</h6>
-                    <div class="row text-center">
-                      <div class="col-md-3">
-                        <div class="display-4">65%</div>
-                        <div>Projets dans les délais</div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="display-4">5.5 mois</div>
-                        <div>Time to market</div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="display-4">82%</div>
-                        <div>Satisfaction client</div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="display-4">210%</div>
-                        <div>ROI du programme</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="red-flags" class="mb-5 section-padding">
-      <h2 class="section-title">Les "Red Flags" : Dangers et Limites des Certifications sans Expérience</h2>
-      <div class="card p-5 alert-danger-custom">
-        <h4 class="card-title fw-bold"><i class="bi bi-exclamation-triangle-fill me-2"></i> Le syndrome du "CV gonflé"</h4>
-        <p>
-          Il est primordial de faire la distinction entre un "savoir" théorique et un "savoir-faire" opérationnel. Les certifications sont un excellent indicateur de connaissance, mais elles ne peuvent remplacer l'expérience terrain.
-        </p>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item bg-transparent">
-            <i class="bi bi-x-circle-fill text-danger me-2"></i>
-            <strong>Le Risque de la "Gouvernance de Façade" :</strong> Une entreprise peut obtenir toutes les certifications ISO 27001 sans avoir une véritable culture de la sécurité. En cas de crise (cyberattaque), l'absence d'expérience et de réflexes opérationnels peut être catastrophique. La certification prouve la conformité, l'expérience prouve la résilience.
-          </li>
-          <li class="list-group-item bg-transparent">
-            <i class="bi bi-x-circle-fill text-danger me-2"></i>
-            <strong>La "Théorie vs. Réalité" :</strong> Un développeur certifié en Cloud peut connaître les bonnes pratiques, mais s'il n'a jamais travaillé sur un projet à grande échelle, il peut faire face à des problèmes d'optimisation des coûts ou de performance non abordés dans les examens.
-          </li>
-          <li class="list-group-item bg-transparent">
-            <i class="bi bi-x-circle-fill text-danger me-2"></i>
-            <strong>Les "Arbres à Certifications" :</strong> L'entreprise qui envoie ses employés en formation pour accumuler des certifications sans les intégrer dans des projets ou les faire monter en responsabilité crée de la frustration et un gaspillage d'investissement. La certification doit ouvrir la porte à l'application.
-          </li>
-        </ul>
-        <h4 class="mt-4">Recommandation pour éviter ces pièges :</h4>
-        <p>
-          Mettez en place un programme de <strong>mentorat</strong> pour les certifiés, encouragez les <strong>projets pratiques</strong> qui leur permettent d'appliquer leurs nouvelles compétences, et liez la certification non pas seulement à une prime, mais à une <strong>évolution concrète de carrière</strong> et à des responsabilités accrues. La certification est un levier, pas une fin en soi.
-        </p>
-      </div>
+    <section id="inscription" class="mb-5">
+      <h2 class="text-center mb-4">Inscription au Petit Déjeuner IT</h2>
       
-      <div class="row mt-5">
-        <div class="col-lg-6">
-          <div class="card h-100 p-4">
-            <h4 class="card-title fw-bold mb-4">Signes d'Alerte à Surveiller</h4>
-            <div class="alert alert-danger">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              <strong>Certifications sans application :</strong> Des collaborateurs certifiés mais dont les compétences ne sont pas utilisées dans leurs missions
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header formation-header text-center">
+              <h4 class="mb-0">Réservez votre place</h4>
             </div>
-            <div class="alert alert-danger">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              <strong>Turnover élevé des certifiés :</strong> Les talents formés quittent l'entreprise par manque de perspectives
-            </div>
-            <div class="alert alert-danger">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              <strong>Absence de mesure d'impact :</strong> Aucun KPI business n'est suivi pour évaluer le ROI des formations
-            </div>
-            <div class="alert alert-danger">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              <strong>Résistance culturelle :</strong> Les nouvelles méthodes et compétences sont rejetées par l'organisation
-            </div>
-            <div class="alert alert-danger">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              <strong>Formations inadaptées :</strong> Les contenus de formation ne correspondent pas aux besoins réels du terrain
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card h-100 p-4">
-            <h4 class="card-title fw-bold mb-4">Solutions Correctives</h4>
-            <div class="alert alert-success">
-              <i class="bi bi-check-circle-fill me-2"></i>
-              <strong>Parcours d'application :</strong> Créer des missions spécifiques permettant d'appliquer les nouvelles compétences
-            </div>
-            <div class="alert alert-success">
-              <i class="bi bi-check-circle-fill me-2"></i>
-              <strong>Programmes de mentorat :</strong> Associer les certifiés juniors à des experts expérimentés
-            </div>
-            <div class="alert alert-success">
-              <i class="bi bi-check-circle-fill me-2"></i>
-              <strong>Plans de carrière :</strong> Intégrer les certifications dans les évolutions professionnelles
-            </div>
-            <div class="alert alert-success">
-              <i class="bi bi-check-circle-fill me-2"></i>
-              <strong>Communautés de pratique :</strong> Favoriser le partage d'expérience entre certifiés
-            </div>
-            <div class="alert alert-success">
-              <i class="bi bi-check-circle-fill me-2"></i>
-              <strong>Projets pilotes :</strong> Offrir un terrain d'expérimentation sécurisé pour les nouvelles compétences
+            <div class="card-body">
+              <form id="registrationForm">
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="firstName" class="form-label">Prénom</label>
+                    <input type="text" class="form-control" id="firstName" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="lastName" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="lastName" required>
+                  </div>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email professionnel</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="company" class="form-label">Entreprise</label>
+                  <input type="text" class="form-control" id="company" required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="position" class="form-label">Fonction</label>
+                  <select class="form-select" id="position" required>
+                    <option value="" selected disabled>Sélectionnez votre fonction</option>
+                    <option value="director">Directeur/Directrice</option>
+                    <option value="manager">Manager/Chef de service</option>
+                    <option value="project">Chef de projet</option>
+                    <option value="technical">Expert technique</option>
+                    <option value="other">Autre</option>
+                  </select>
+                </div>
+                
+                <div class="mb-3">
+                  <label class="form-label">Domaines d'intérêt (plusieurs choix possibles)</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="security" id="interestSecurity">
+                    <label class="form-check-label" for="interestSecurity">Sécurité et conformité</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="project" id="interestProject">
+                    <label class="form-check-label" for="interestProject">Gestion de projet</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="cloud" id="interestCloud">
+                    <label class="form-check-label" for="interestCloud">Cloud et infrastructure</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="governance" id="interestGovernance">
+                    <label class="form-check-label" for="interestGovernance">Gouvernance IT</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="development" id="interestDevelopment">
+                    <label class="form-check-label" for="interestDevelopment">Développement</label>
+                  </div>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="questions" class="form-label">Questions ou sujets spécifiques que vous souhaitez aborder</label>
+                  <textarea class="form-control" id="questions" rows="3"></textarea>
+                </div>
+                
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="newsletter">
+                  <label class="form-check-label" for="newsletter">
+                    Je souhaite recevoir des informations sur les futurs événements et formations
+                  </label>
+                </div>
+                
+                <button type="submit" class="btn btn-formation w-100">S'inscrire maintenant</button>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </section>
+  </div>
 
-    <section id="ressources" class="mb-5 section-padding bg-gradient-light">
-      <div class="container">
-        <h2 class="section-title">Ressources Complémentaires</h2>
-        <p class="lead text-center mb-5">Pour approfondir votre démarche de transformation digitale</p>
-        
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 resource-card">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">Modèles et Templates</h5>
-                <p class="card-text">Des documents prêts à l'emploi pour structurer votre démarche</p>
-                <ul>
-                  <li>Business case formation</li>
-                  <li>Plan de développement des compétences</li>
-                  <li>Dashboard de suivi KPI</li>
-                  <li>Modèle de calcul ROI</li>
-                </ul>
-                <a href="#" class="btn btn-primary mt-3">Télécharger</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 resource-card">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">Listes de Contrôle</h5>
-                <p class="card-text">Checklists pour ne rien oublier dans votre transformation</p>
-                <ul>
-                  <li>Audit des compétences</li>
-                  <li>Sélection des certifications</li>
-                  <li>Déploiement d'un programme</li>
-                  <li>Évaluation des résultats</li>
-                </ul>
-                <a href="#" class="btn btn-primary mt-3">Télécharger</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="card h-100 resource-card">
-              <div class="card-body">
-                <h5 class="card-title fw-bold">Référentiels</h5>
-                <p class="card-text">Cadres de référence et bonnes pratiques sectorielles</p>
-                <ul>
-                  <li>Cartographie des certifications</li>
-                  <li>Grilles de compétences</li>
-                  <li>Normes et réglementations</li>
-                  <li>Benchmarks sectoriels</li>
-                </ul>
-                <a href="#" class="btn btn-primary mt-3">Télécharger</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row mt-5">
-          <div class="col-lg-6">
-            <div class="card h-100 p-4">
-              <h4 class="card-title fw-bold mb-4">FAQ - Questions Fréquentes</h4>
-              <div class="faq-item">
-                <div class="faq-question">Comment convaincre sa direction d'investir dans un programme de certifications ?</div>
-                <div class="faq-answer">
-                  Préparez un business case solide incluant : le gap de compétences identifié, les risques associés, le ROI attendu (gains de productivité, réduction des risques, amélioration qualité), et des benchmarks sectoriels. Présentez des cas concrets d'organisations similaires ayant réussi leur transformation.
-                </div>
-              </div>
-              <div class="faq-item">
-                <div class="faq-question">Quel pourcentage du budget formation doit être alloué aux certifications ?</div>
-                <div class="faq-answer">
-                  En moyenne, les organisations consacrent 30-40% de leur budget formation aux certifications techniques et de gouvernance. Ce ratio peut varier selon la maturité digitale de l'entreprise et ses objectifs stratégiques.
-                </div>
-              </div>
-              <div class="faq-item">
-                <div class="faq-question">Comment maintenir à jour un large parc de certifiés ?</div>
-                <div class="faq-answer">
-                  Mettez en place : un système de veille des évolutions certifications, un budget dédié aux recertifications, des communautés de pratique pour l'entraide, et des partenariats avec des organismes de formation pour des tarifs préférentiels.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="card h-100 p-4">
-              <h4 class="card-title fw-bold mb-4">Veille Stratégique</h4>
-              <div class="alert alert-info">
-                <h6>Tendances 2024 en formation digitale</h6>
-                <ul>
-                  <li>Micro-learning et apprentissage juste-à-temps</li>
-                  <li>Reconnaissance des compétences alternatives (badges digitaux)</li>
-                  <li>Personalisation des parcours via l'IA</li>
-                  <li>Focus sur les soft skills digitales</li>
-                </ul>
-              </div>
-              <div class="alert alert-warning">
-                <h6>Certifications émergentes</h6>
-                <ul>
-                  <li>AI Engineering (Google, Microsoft)</li>
-                  <li>Cloud FinOps</li>
-                  <li>Zero Trust Architecture</li>
-                  <li>Sustainable Technology</li>
-                </ul>
-              </div>
-              <div class="alert alert-success">
-                <h6>Événements à ne pas manquer</h6>
-                <ul>
-                  <li>Digital Learning Summit (Paris, Mars)</li>
-                  <li>Cloud Security Conference (Lyon, Juin)</li>
-                  <li>Data Governance Symposium (Toulouse, Septembre)</li>
-                  <li>Future of Tech Training (Lille, Novembre)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-section">
-      <div class="container">
-        <h2 class="mb-4">Prêt à transformer votre organisation ?</h2>
-        <p class="lead mb-5">Notre équipe d'experts peut vous accompagner dans chaque étape de votre transformation digitale</p>
-        <div class="d-flex justify-content-center flex-wrap">
-          <a href="#" class="btn btn-light btn-lg px-5 me-3 mb-3">Demander une démo</a>
-          <a href="#" class="btn btn-outline-light btn-lg px-5 mb-3">Télécharger le guide complet</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
+  <footer>
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 mb-4">
-          <h5 class="footer-title">Guide de l'Excellence Digitale</h5>
-          <p>Ressource complète pour aligner formation, gouvernance et transformation digitale.</p>
-          <div class="social-links">
-            <a href="#"><i class="bi bi-linkedin"></i></a>
-            <a href="#"><i class="bi bi-twitter"></i></a>
-            <a href="#"><i class="bi bi-facebook"></i></a>
-            <a href="#"><i class="bi bi-youtube"></i></a>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5>Petit Déjeuner IT</h5>
+          <p>Formations Certifiantes & Gouvernance Digitale</p>
+          <p>Échangez, apprenez et repartez avec des clés concrètes pour booster vos projets.</p>
+        </div>
+        
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5>Contact</h5>
+          <p><i class="bi bi-envelope me-2"></i> contact@petitdejeunerit.fr</p>
+          <p><i class="bi bi-telephone me-2"></i> +33 1 23 45 67 89</p>
+          <p><i class="bi bi-geo-alt me-2"></i> Paris, France</p>
+        </div>
+        
+        <div class="col-md-4">
+          <h5>Suivez-nous</h5>
+          <div class="d-flex gap-3 fs-4">
+            <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
-        <div class="col-lg-2 col-md-6 mb-4">
-          <h5 class="footer-title">Navigation</h5>
-          <ul class="footer-links">
-            <li><a href="#manifeste">Manifeste</a></li>
-            <li><a href="#concepts">Concepts</a></li>
-            <li><a href="#bonnes-pratiques">Pratiques</a></li>
-            <li><a href="#metriques">Métriques</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-          <h5 class="footer-title">Ressources</h5>
-          <ul class="footer-links">
-            <li><a href="#">Modèles</a></li>
-            <li><a href="#">Checklists</a></li>
-            <li><a href="#">Études de cas</a></li>
-            <li><a href="#">Webinaires</a></li>
-            <li><a href="#">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3 mb-4">
-          <h5 class="footer-title">Contact</h5>
-          <ul class="footer-links">
-            <li><i class="bi bi-envelope me-2"></i> contact@excellence-digitale.fr</li>
-            <li><i class="bi bi-telephone me-2"></i> +33 1 23 45 67 89</li>
-            <li><i class="bi bi-geo-alt me-2"></i> Paris, France</li>
-          </ul>
-        </div>
       </div>
-      <hr>
-      <div class="row">
-        <div class="col-md-6">
-          <p>&copy; 2024 Guide de l'Excellence Digitale. Tous droits réservés.</p>
-        </div>
-        <div class="col-md-6 text-md-end">
-          <a href="#" class="text-white me-3">Mentions légales</a>
-          <a href="#" class="text-white me-3">Politique de confidentialité</a>
-          <a href="#" class="text-white">Conditions d'utilisation</a>
-        </div>
+      
+      <hr class="my-4">
+      
+      <div class="text-center">
+        <p class="mb-0">© 2023 Petit Déjeuner IT – Tous droits réservés</p>
       </div>
     </div>
   </footer>
 
-  <div class="back-to-top" id="backToTop">
-    <i class="bi bi-arrow-up"></i>
+  <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailsModalLabel">Détails</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="detailsModalContent">
+          Chargement...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Back to top button
-    const backToTopButton = document.getElementById('backToTop');
+    // États des simulations
+    let riskSimulationState = {
+      identify: false,
+      analyze: false,
+      treat: false
+    };
+
+    let planningSimulationState = {
+      scope: false,
+      resources: false,
+      calendar: false
+    };
+
+    let incidentSimulationState = {
+      detection: false,
+      containment: false,
+      recovery: false,
+      postmortem: false
+    };
     
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('visible');
-      } else {
-        backToTopButton.classList.remove('visible');
+    // NOUVEAU: État de la simulation de gestion du changement
+    let changeSimulationState = {
+      planning: false,
+      communication: false,
+      validation: false
+    };
+
+    // Éléments du DOM
+    const detailsModal = new bootstrap.Modal(document.getElementById('detailsModal'));
+    const detailsModalTitle = document.getElementById('detailsModalLabel');
+    const detailsModalContent = document.getElementById('detailsModalContent');
+
+    // Soumission du formulaire
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Merci pour votre inscription ! Vous recevrez prochainement un email de confirmation.');
+      this.reset();
+    });
+
+    // Affichage des détails dans le modal
+    function showDetails(type) {
+      let title = '';
+      let content = '';
+
+      switch(type) {
+        case 'gestion-projet':
+          title = 'Programme de Gestion de Projets & Méthodes Agiles';
+          content = `
+            <h5>Contenu de la formation :</h5>
+            <ol>
+              <li><strong>Fondamentaux de la gestion de projet</strong>
+                <ul>
+                  <li>Initiation et planification de projet</li>
+                  <li>Estimation des coûts et délais</li>
+                  <li>Gestion des parties prenantes</li>
+                </ul>
+              </li>
+              <li><strong>Méthodologies traditionnelles</strong>
+                <ul>
+                  <li>PRINCE2 Foundation & Practitioner</li>
+                  <li>PMP Exam Preparation</li>
+                  <li>Gestion des risques projet</li>
+                </ul>
+              </li>
+              <li><strong>Approches agiles</strong>
+                <ul>
+                  <li>Manifeste agile et principes</li>
+                  <li>Scrum Master Certified</li>
+                  <li>SAFe pour les grandes organisations</li>
+                </ul>
+              </li>
+              <li><strong>Outils et pratiques</strong>
+                <ul>
+                  <li>JIRA, Confluence, MS Project</li>
+                  <li>Techniques d'estimation agile</li>
+                  <li>Gestion de portefeuille projets</li>
+                </ul>
+              </li>
+            </ol>
+            
+            <div class="alert alert-info mt-3">
+              <p><strong>Durée :</strong> 5 jours (35 heures)</p>
+              <p><strong>Certifications préparées :</strong> PRINCE2, PMP, CSM, SAFe</p>
+              <p><strong>Public :</strong> Chefs de projet, Scrum Masters, Product Owners</p>
+            </div>
+          `;
+          break;
+        case 'securite':
+          title = 'Programme de Sécurité & Conformité';
+          content = `
+            <h5>Contenu de la formation :</h5>
+            <ol>
+              <li><strong>Fondamentaux de la cybersécurité</strong>
+                <ul>
+                  <li>Menaces et vulnérabilités actuelles</li>
+                  <li>Architectures de sécurité</li>
+                  <li>Principes de défense en profondeur</li>
+                </ul>
+              </li>
+              <li><strong>Normes et réglementations</strong>
+                <ul>
+                  <li>ISO 27001:2022</li>
+                  <li>RGPD et conformité données</li>
+                  <li>Directives sectorielles (NIS, DSP2)</li>
+                </ul>
+              </li>
+              <li><strong>Certifications techniques</strong>
+                <ul>
+                  <li>CISSP - Domaines de connaissance</li>
+                  <li>CISM - Management de la sécurité</li>
+                  <li>CEH - Ethical Hacking</li>
+                </ul>
+              </li>
+              <li><strong>Gestion d'incidents et continuité</strong>
+                <ul>
+                  <li>Plans de Reprise d'Activité (PRA)</li>
+                  <li>Réponse aux incidents de sécurité</li>
+                  <li>Forensic numérique</li>
+                </ul>
+              </li>
+            </ol>
+            
+            <div class="alert alert-info mt-3">
+              <p><strong>Durée :</strong> 5 jours (35 heures)</p>
+              <p><strong>Certifications préparées :</strong> CISSP, CISM, ISO 27001 Lead Implementer</p>
+              <p><strong>Public :</strong> RSSI, auditeurs, responsables conformité</p>
+            </div>
+          `;
+          break;
+        case 'risque':
+          title = 'Management du Risque IT';
+          content = `
+            <h5>Approche complète de gestion des risques IT :</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-header governance-header">
+                    <h6>Identification</h6>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li>Brainstorming avec parties prenantes</li>
+                      <li>Analyse documentaire</li>
+                      <li>Audits et revues</li>
+                      <li>Benchmarks sectoriels</li>
+                      <li>Veille menaces</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-header governance-header">
+                    <h6>Évaluation</h6>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li>Matrices probabilité/impact</li>
+                      <li>Analyse quantitative</li>
+                      <li>Scénarios de crise</li>
+                      <li>Tests de résistance</li>
+                      <li>Cartographie des risques</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-header governance-header">
+                    <h6>Traitement</h6>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li>Évitement</li>
+                      <li>Atténuation</li>
+                      <li>Transfert (assurance)</li>
+                      <li>Acceptation</li>
+                      <li>Plans d'action</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100">
+                  <div class="card-header governance-header">
+                    <h6>Monitoring</h6>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li>Indicateurs clés (KRIs)</li>
+                      <li>Tableaux de bord</li>
+                      <li>Revues régulières</li>
+                      <li>Audits de contrôle</li>
+                      <li>Rapports direction</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="alert alert-info mt-3">
+              <p><strong>Cadres de référence :</strong> COBIT, ISO 31000, ISO 27005, MÉHARI</p>
+              <p><strong>Outils :</strong> RiskLens, RSA Archer, ServiceNow GRC</p>
+            </div>
+          `;
+          break;
       }
-    });
-    
-    backToTopButton.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    // Navbar scroll effect
-    const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
+
+      detailsModalTitle.textContent = title;
+      detailsModalContent.innerHTML = content;
+      detailsModal.show();
+    }
+
+    // Fonctions de la simulation 1 : Gestion des risques
+    function simulateRiskStep(step) {
+      switch (step) {
+        case 'identify':
+          document.getElementById('identifyResult').style.display = 'block';
+          riskSimulationState.identify = true;
+          document.getElementById('analyzeBtn').disabled = false;
+          break;
+        case 'analyze':
+          document.getElementById('analyzeResult').style.display = 'block';
+          riskSimulationState.analyze = true;
+          document.getElementById('analyzeBtn').disabled = true;
+          document.getElementById('treatBtn').disabled = false;
+          break;
+        case 'treat':
+          document.getElementById('treatResult').style.display = 'block';
+          riskSimulationState.treat = true;
+          document.getElementById('treatBtn').disabled = true;
+          break;
       }
-    });
-    
-    // FAQ toggle
-    document.querySelectorAll('.faq-question').forEach(question => {
-      question.addEventListener('click', () => {
-        const item = question.parentElement;
-        item.classList.toggle('active');
-      });
-    });
-    
-    // Number circles for roadmap
-    const numberCircles = document.querySelectorAll('.number-circle');
-    numberCircles.forEach(circle => {
-      circle.innerHTML = circle.textContent;
-    });
+    }
+
+    function resetRiskSimulation() {
+      riskSimulationState = {
+        identify: false,
+        analyze: false,
+        treat: false
+      };
+
+      document.getElementById('identifyResult').style.display = 'none';
+      document.getElementById('analyzeResult').style.display = 'none';
+      document.getElementById('treatResult').style.display = 'none';
+
+      document.getElementById('analyzeBtn').disabled = true;
+      document.getElementById('treatBtn').disabled = true;
+    }
+
+    // Fonctions de la simulation 2 : Planification de projet
+    function simulatePlanningStep(step) {
+      switch (step) {
+        case 'scope':
+          document.getElementById('scopeResult').style.display = 'block';
+          planningSimulationState.scope = true;
+          document.getElementById('resourcesBtn').disabled = false;
+          break;
+        case 'resources':
+          document.getElementById('resourcesResult').style.display = 'block';
+          planningSimulationState.resources = true;
+          document.getElementById('resourcesBtn').disabled = true;
+          document.getElementById('calendarBtn').disabled = false;
+          break;
+        case 'calendar':
+          document.getElementById('calendarResult').style.display = 'block';
+          planningSimulationState.calendar = true;
+          document.getElementById('calendarBtn').disabled = true;
+          break;
+      }
+    }
+
+    function resetPlanningSimulation() {
+      planningSimulationState = {
+        scope: false,
+        resources: false,
+        calendar: false
+      };
+
+      document.getElementById('scopeResult').style.display = 'none';
+      document.getElementById('resourcesResult').style.display = 'none';
+      document.getElementById('calendarResult').style.display = 'none';
+
+      document.getElementById('resourcesBtn').disabled = true;
+      document.getElementById('calendarBtn').disabled = true;
+    }
+
+    // Fonctions de la simulation 3 : Gestion d'incident
+    function simulateIncidentStep(step) {
+      switch (step) {
+        case 'detection':
+          document.getElementById('detectionResult').style.display = 'block';
+          incidentSimulationState.detection = true;
+          document.getElementById('containmentBtn').disabled = false;
+          break;
+        case 'containment':
+          document.getElementById('containmentResult').style.display = 'block';
+          incidentSimulationState.containment = true;
+          document.getElementById('containmentBtn').disabled = true;
+          document.getElementById('recoveryBtn').disabled = false;
+          break;
+        case 'recovery':
+          document.getElementById('recoveryResult').style.display = 'block';
+          incidentSimulationState.recovery = true;
+          document.getElementById('recoveryBtn').disabled = true;
+          document.getElementById('postmortemBtn').disabled = false;
+          break;
+        case 'postmortem':
+          document.getElementById('postmortemResult').style.display = 'block';
+          incidentSimulationState.postmortem = true;
+          document.getElementById('postmortemBtn').disabled = true;
+          break;
+      }
+    }
+
+    function resetIncidentSimulation() {
+      incidentSimulationState = {
+        detection: false,
+        containment: false,
+        recovery: false,
+        postmortem: false
+      };
+
+      document.getElementById('detectionResult').style.display = 'none';
+      document.getElementById('containmentResult').style.display = 'none';
+      document.getElementById('recoveryResult').style.display = 'none';
+      document.getElementById('postmortemResult').style.display = 'none';
+
+      document.getElementById('containmentBtn').disabled = true;
+      document.getElementById('recoveryBtn').disabled = true;
+      document.getElementById('postmortemBtn').disabled = true;
+    }
+
+    // NOUVEAU: Fonctions de la simulation 4 : Gestion du Changement
+    function simulateChangeStep(step) {
+      switch (step) {
+        case 'planning':
+          document.getElementById('changePlanningResult').style.display = 'block';
+          changeSimulationState.planning = true;
+          document.getElementById('changeCommunicationBtn').disabled = false;
+          break;
+        case 'communication':
+          document.getElementById('changeCommunicationResult').style.display = 'block';
+          changeSimulationState.communication = true;
+          document.getElementById('changeCommunicationBtn').disabled = true;
+          document.getElementById('changeValidationBtn').disabled = false;
+          break;
+        case 'validation':
+          document.getElementById('changeValidationResult').style.display = 'block';
+          changeSimulationState.validation = true;
+          document.getElementById('changeValidationBtn').disabled = true;
+          break;
+      }
+    }
+
+    function resetChangeSimulation() {
+      changeSimulationState = {
+        planning: false,
+        communication: false,
+        validation: false
+      };
+
+      document.getElementById('changePlanningResult').style.display = 'none';
+      document.getElementById('changeCommunicationResult').style.display = 'none';
+      document.getElementById('changeValidationResult').style.display = 'none';
+
+      document.getElementById('changeCommunicationBtn').disabled = true;
+      document.getElementById('changeValidationBtn').disabled = true;
+    }
   </script>
 </body>
 </html>
